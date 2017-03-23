@@ -15,7 +15,8 @@ $(start);
 
 function start(){
 	//Example how to show our templates in the DOM
-	$('body').append(example());
+	$('body').append(yatzyformular());
 }
+
 
 // Events
