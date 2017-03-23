@@ -17,6 +17,9 @@ $(start);
 
 function start(){
 	//Example how to show our templates in the DOM
+
+	$('body').append(yatzyformular());
+
 	$('#diceTableCol').append(diceTable());
 	rollDice();
 }
@@ -56,5 +59,6 @@ function rollDice(){
 	}
 	console.log(dices);
 }
+
 
 // Events
