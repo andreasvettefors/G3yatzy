@@ -1,3 +1,9 @@
-p{
+#diceHolder{
+	display:flex;
+	justify-content: space-around;
+}
+
+#diceHolder p{
   font-size: 100px;
 }
+
