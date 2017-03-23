@@ -17,7 +17,7 @@ $(start);
 
 function start(){
 	//Example how to show our templates in the DOM
-	$('body').append(example());
+	$('#diceTableCol').append(diceTable());
 	rollDice();
 }
 
@@ -35,18 +35,17 @@ function rollDice(){
 			if(dices[i] === 0){
 				dices[i] = randomize();
 				if(dices[i] === 1){
-					$('body').append(`<p>&#9856;</p>`);
+					$('#diceHolder').append(`<p>&#9856;</p>`);
 				} else if(dices[i] === 2){
-
-					$('body').append(`<p>&#9857;</p>`);
+					$('#diceHolder').append(`<p>&#9857;</p>`);
 				} else if(dices[i] === 3){
-						$('body').append(`<p>&#9858;</p>`);
+						$('#diceHolder').append(`<p>&#9858;</p>`);
 				} else if(dices[i] === 4){
-					$('body').append(`<p>&#9859;</p>`);
+					$('#diceHolder').append(`<p>&#9859;</p>`);
 				}else if(dices[i] === 5){
-						$('body').append(`<p>&#9860;</p>`);
+						$('#diceHolder').append(`<p>&#9860;</p>`);
 				} else if(dices[i] === 6){
-					$('body').append(`<p>&#9861;</p>`);
+					$('#diceHolder').append(`<p>&#9861;</p>`);
 				}
 
 
