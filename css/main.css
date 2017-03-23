@@ -1,4 +1,6 @@
-
+body{
+	margin-left: 20px;
+}
 /*Här börjar CSS för Yatzy formuläret*/
 td {
 	font-family: arial; 

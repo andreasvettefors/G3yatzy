@@ -19,9 +19,11 @@ function start(){
 	//Example how to show our templates in the DOM
 
 	$('#yatzyFormCol').append(yatzyformular());
+	$('#submitFormCol').append(submitForm());
 
 	$('#diceTableCol').append(diceTable());
 	rollDice();
+	saveName();
 }
 
 function randomize(){
@@ -62,3 +64,14 @@ function rollDice(){
 $(document).on('click','#diceHolder p',function(){	
 	$(this).toggleClass('active');
 });
+
+
+//submit formulär (Sparar namn i en variable
+function saveName(){
+	$('#submitForm').submit(function(){	
+		var textValue = $("input:text").val();
+		console.log(textValue);	
+		return false;
+	});
+}
+
