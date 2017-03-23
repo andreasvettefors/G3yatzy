@@ -50,11 +50,7 @@ function rollDice(){
 				} else if(dices[i] === 6){
 					$('#diceHolder').append(`<p>&#9861;</p>`);
 				}
-
-
 			}
-
-
 		}
 	}
 	console.log(dices);
@@ -62,3 +58,7 @@ function rollDice(){
 
 
 // Events
+
+$(document).on('click','#diceHolder p',function(){	
+	$(this).toggleClass('active');
+});
