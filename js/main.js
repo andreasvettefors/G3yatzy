@@ -19,13 +19,10 @@ function start(){
 	randomize();
 
 	rollDice();
-	rollDice();
-	rollDice();
-	rollDice();
 }
 
 var throws = 0;
-var dices = [0,1,0,0,0];
+var dices = [0,0,0,0,0];
 
 function randomize(){
 	return Math.floor(Math.random() * 6) + 1;
@@ -41,11 +38,28 @@ function rollDice(){
 		for(var i =0; i < 5; i++){
 			if(dices[i] === 0){
 				dices[i] = randomize();
+				if(dices[i] === 1){
+					$('body').append(`<p>&#9856;</p>`);
+				} else if(dices[i] === 2){
+
+					$('body').append(`<p>&#9857;</p>`);
+				} else if(dices[i] === 3){
+						$('body').append(`<p>&#9858;</p>`);
+				} else if(dices[i] === 4){
+					$('body').append(`<p>&#9859;</p>`);
+				}else if(dices[i] === 5){
+						$('body').append(`<p>&#9860;</p>`);
+				} else if(dices[i] === 6){
+					$('body').append(`<p>&#9861;</p>`);
+				}
+
+
 			}
+
+
 		}
 	}
 	console.log(dices);
 }
-
 
 // Events
