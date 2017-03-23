@@ -38,22 +38,7 @@ function rollDice(){
 		for(var i =0; i < 5; i++){
 			if(dices[i] === 0){
 				dices[i] = randomize();
-				if(dices[i] === 1){
-					$('body').append(`<p>&#9856;</p>`);
-				} else if(dices[i] === 2){
-
-					$('body').append(`<p>&#9857;</p>`);
-				} else if(dices[i] === 3){
-						$('body').append(`<p>&#9858;</p>`);
-				} else if(dices[i] === 4){
-					$('body').append(`<p>&#9859;</p>`);
-				}else if(dices[i] === 5){
-						$('body').append(`<p>&#9860;</p>`);
-				} else if(dices[i] === 6){
-					$('body').append(`<p>&#9861;</p>`);
-				}
-
-
+				appendDicesToDom(dices[i]);
 			}
 
 
@@ -61,5 +46,19 @@ function rollDice(){
 	}
 	console.log(dices);
 }
-
+function appendDicesToDom(value){
+	if(value === 1){
+		$('body').append(`<p>&#9856;</p>`);
+	} else if(value === 2){
+		$('body').append(`<p>&#9857;</p>`);
+	} else if(value === 3){
+			$('body').append(`<p>&#9858;</p>`);
+	} else if(value === 4){
+		$('body').append(`<p>&#9859;</p>`);
+	}else if(value === 5){
+			$('body').append(`<p>&#9860;</p>`);
+	} else if(value === 6){
+		$('body').append(`<p>&#9861;</p>`);
+	}
+}
 // Events
