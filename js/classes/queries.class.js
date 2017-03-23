@@ -25,6 +25,13 @@ class Queries extends Base {
 			callback();
     });
   }*/
+      
+    runAQuery(callback){
+    this.db.all((data)=>{
+      console.log('Result of the query "all"',data);
+			callback(data);
+    });
+  }
   
   static get sqlQueries(){
     //
@@ -36,7 +43,7 @@ class Queries extends Base {
     //
     return {
       all: `
-        select * from students 
+        select * from players 
       `,
       newStudent: `
         INSERT INTO students SET ?

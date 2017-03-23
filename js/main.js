@@ -3,6 +3,9 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
+ 			query.runAQuery((element) => {
+ 				console.log(element);
+ 			});
 
 // Functions
 // Example how to get data from database (Will be removed when our app is finished)
@@ -17,6 +20,7 @@ function start(){
 	//Example how to show our templates in the DOM
 	$('body').append(example());
 	randomize();
+  
 
 	rollDice();
 	rollDice();
