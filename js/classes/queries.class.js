@@ -28,7 +28,6 @@ class Queries extends Base {
       
     runAQuery(callback){
     this.db.all((data)=>{
-      console.log('Result of the query "all"',data);
 			callback(data);
     });
   }

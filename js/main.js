@@ -4,10 +4,6 @@
 // Use query to talk with the database
 var query = new Queries();
 
- 			query.runAQuery((element) => {
- 				console.log(element);
- 			});
-
 var throws = 0;
 var dices = [0,0,0,0,0];
 
@@ -62,6 +58,15 @@ function rollDice(){
 		}
 	}
 	console.log(dices);
+}
+
+function printScores(){
+    query.runAQuery((element) => {
+    for(var i = 0; i < element.length; i++){
+        console.log(element[i].username)
+        console.log(element[i].score)
+    }
+});
 }
 
 
