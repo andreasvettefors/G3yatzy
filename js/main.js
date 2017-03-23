@@ -18,7 +18,7 @@ $(start);
 function start(){
 	//Example how to show our templates in the DOM
 
-	$('body').append(yatzyformular());
+	$('#yatzyFormCol').append(yatzyformular());
 
 	$('#diceTableCol').append(diceTable());
 	rollDice();

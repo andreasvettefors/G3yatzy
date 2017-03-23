@@ -27,10 +27,15 @@ td {
 #diceHolder{
 	display:flex;
 	justify-content: space-around;
+	background-color: #353a40;
 }
 
 #diceHolder p{
   font-size: 100px;
-	margin-bottom:0;
+  margin-bottom:0;
+  color: #8cccca;
+
 }
+
+
 
