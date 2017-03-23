@@ -25,7 +25,8 @@ class Queries extends Base {
 			callback();
     });
   }*/
-      
+    
+    // Hämtar "all" från sqlQueries och returnerar data
     runAQuery(callback){
     this.db.all((data)=>{
 			callback(data);
