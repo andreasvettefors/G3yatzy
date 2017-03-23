@@ -1,4 +1,4 @@
-class dbConnect extends Base {
+class Queries extends Base {
 	
 // Here is all our queries to the database
   constructor(){

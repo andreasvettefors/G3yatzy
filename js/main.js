@@ -1,13 +1,13 @@
 // Yatzy main.js
 
 // Global variables
-// Use dbCon to retrieve data from the dbConnect class
-var dbCon = new dbConnect();
+// Use query to talk with the database
+var query = new Queries();
 
 // Functions
 // Example how to get data from database (Will be removed when our app is finished)
-/*dbCon.runAQuery(() =>{
-	dbCon.runAThirdQuery(() =>{
+/*query.runAQuery(() =>{
+	query.runAThirdQuery(() =>{
 	});
 });*/
 
