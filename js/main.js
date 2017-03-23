@@ -3,6 +3,8 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
+var throws = 0;
+var dices = [0,0,0,0,0];
 
 // Functions
 // Example how to get data from database (Will be removed when our app is finished)
@@ -16,18 +18,12 @@ $(start);
 function start(){
 	//Example how to show our templates in the DOM
 	$('body').append(example());
-	randomize();
-
 	rollDice();
 }
-
-var throws = 0;
-var dices = [0,0,0,0,0];
 
 function randomize(){
 	return Math.floor(Math.random() * 6) + 1;
 }
-
 
 function rollDice(){
 	throws++;
