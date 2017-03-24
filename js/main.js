@@ -71,7 +71,6 @@ function rollDice(){
 			console.log(die.value);
 			if(die.saved === false){
 			die.value = randomize();
-			
 		}
 		});	
 		
@@ -115,6 +114,23 @@ function appendToDom(){
 	
 	});	
 }
+
+function appendDicesToDom(value){
+	if(value === 1){
+		$('#diceHolder').append(`<p>&#9856;</p>`);
+	} else if(value === 2){
+		$('#diceHolder').append(`<p>&#9857;</p>`);
+	} else if(value === 3){
+			$('#diceHolder').append(`<p>&#9858;</p>`);
+	} else if(value === 4){
+		$('#diceHolder').append(`<p>&#9859;</p>`);
+	}else if(value === 5){
+			$('#diceHolder').append(`<p>&#9860;</p>`);
+	} else if(value === 6){
+		$('#diceHolder').append(`<p>&#9861;</p>`);
+	}
+}
+
 
 //Calls "runAQuery" which exists in queries class. The returned value can be found in "element" as an array
 function printScores(){
@@ -205,11 +221,27 @@ function submitPlayer(){
 }
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
+function holdDice(){
+	$('#diceHolder p').each(function(index){
+		console.log($(this));
+		console.log(index);
+		if($(this).attr('class') == 'active'){
+			dice[index].saved == true;
+
+		}
+	});
+
+}
+
+
 // Events
 
 $(document).on('click','#diceHolder p',function(){	
 	$(this).toggleClass('active');
 });
 
-
+$(document).on('click','#diceTable #throwDice',function(){	
+	holdDice();
+	rollDice();
+});
 
