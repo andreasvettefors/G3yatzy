@@ -44,16 +44,15 @@ function start(){
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
-	randomize();
-  
-	$('#yatzyFormCol').append(yatzyformular());
+  $('body').append(startPage());
+	/*$('#yatzyFormCol').append(yatzyformular());
 	$('#submitFormCol').append(submitForm());
 
 	$('#diceTableCol').append(diceTable());
 
-	submitPlayer();
-    totalCalc(); 
-    appendToDom(); 
+		submitPlayer();
+    totalCalc(); */
+
 
 
 }
@@ -74,12 +73,13 @@ function rollDie(){
 			die.value = randomize();
 		}
 		});	
+		    appendToDom(); 
 		
 	}
-	console.log(dice);
 }
 
 function appendToDom(){
+	$('#diceHolder p').remove();
 	dice.forEach(function(die){
 		if(die.saved === false){
 					if(die.value === 1){
@@ -111,27 +111,9 @@ function appendToDom(){
 			}
 
 		}
-		console.log(die);
 	
 	});	
 }
-
-function appendDicesToDom(value){
-	if(value === 1){
-		$('#diceHolder').append(`<p>&#9856;</p>`);
-	} else if(value === 2){
-		$('#diceHolder').append(`<p>&#9857;</p>`);
-	} else if(value === 3){
-			$('#diceHolder').append(`<p>&#9858;</p>`);
-	} else if(value === 4){
-		$('#diceHolder').append(`<p>&#9859;</p>`);
-	}else if(value === 5){
-			$('#diceHolder').append(`<p>&#9860;</p>`);
-	} else if(value === 6){
-		$('#diceHolder').append(`<p>&#9861;</p>`);
-	}
-}
-
 
 //Calls "runAQuery" which exists in queries class. The returned value can be found in "element" as an array
 function printScores(){
@@ -243,6 +225,6 @@ $(document).on('click','#diceHolder p',function(){
 
 $(document).on('click','#diceTable #throwDice',function(){	
 	holdDice();
-	rollDice();
+	rollDie();
 });
 
