@@ -63,10 +63,11 @@ function start(){
 	//$('body').append(example());
 	randomize();
   
-	$('#yatzyFormCol').append(yatzyformular());
-	$('#submitFormCol').append(submitForm());
+	//$('#yatzyFormCol').append(yatzyformular());
+	//$('#submitFormCol').append(submitForm());
+	$('#inputFieldCol').append(inputField());
 
-	$('#diceTableCol').append(diceTable());
+	//$('#diceTableCol').append(diceTable());
 	rollDice();
 
 	submitPlayer();
@@ -74,6 +75,7 @@ function start(){
     totalCalc(); 
     appendToDom(); 
     findWinner();
+    
 
 }
 
@@ -267,8 +269,30 @@ function holdDice(){
 
 }
 
-
+//function add inputfield for new players
+var clicks = 0;
+function addField(){
+	
+		$('.addField').remove();
+		var newField = $('body').append('<div class="name-input"><input autocomplete="off" class="input form-control" id="field" type="text"><button id="b1" class="btn addField" type="button">+</button></div>');
+		
+	}
+	
 // Events
+
+$(document).on('click','.addField',function(){
+	
+	if(clicks < 3){
+		clicks+=1;
+
+		if($(this).parent().find('input').val() != ""){
+		addField();
+		}else{
+		console.log("hej");
+		}
+	}
+});
+
 
 $(document).on('click','#diceHolder img',function(){	
 	$(this).toggleClass('active');
