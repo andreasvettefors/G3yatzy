@@ -20,13 +20,19 @@ $(start);
 function start(){
 	//Example how to show our templates in the DOM
 
-	$('body').append(example());
+	//$('body').append(example());
 	randomize();
   
 	$('#yatzyFormCol').append(yatzyformular());
+	$('#submitFormCol').append(submitForm());
+
 	$('#diceTableCol').append(diceTable());
 	rollDice();
+
+	submitPlayer();
+
     totalCalc();  
+
 }
 
 function randomize(){
@@ -136,8 +142,22 @@ function totalCalc(){
         $(".total").text(pointsReturned);
 }
 
+//submit form (saves the players name in a variable)
+function submitPlayer(){
+	$('#submitForm').submit(function(){	
+		var textValue = $("input:text").val();
+		var sumValue = $(".total").text();
+		console.log(textValue + " " + sumValue);	
+		return false;
+	});
+}
+//hur ska jag få rätt totalsumma som tillhör en viss spelare?
+
 // Events
 
 $(document).on('click','#diceHolder p',function(){	
 	$(this).toggleClass('active');
 });
+
+
+
