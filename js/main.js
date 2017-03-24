@@ -136,6 +136,57 @@ function totalCalc(){
         $(".total").text(pointsReturned);
 }
 
+dice=[{
+    name:1,
+    value:1,
+    saved:false
+},
+{
+    name:2,
+    value:1,
+    saved:false
+},
+{
+    name:3,
+    value:2,
+    saved:false
+},
+{
+    name:4,
+    value:2,
+    saved:false
+},
+{
+    name:5,
+    value:6,
+    saved:false
+}];
+
+//Adderar poäng till formuläret
+function addToScore(a){
+    var pointAdded = 0;
+    var x = a.previousElementSibling.innerHTML;
+    var p = parseInt(a.previousElementSibling.id);
+    console.log(p);
+    if(x==x){
+        for(var i = 0; i < dice.length; i++){
+            if(dice[i].value==p){
+                pointAdded += p;
+            }
+        }
+    }
+    $(a).text(pointAdded);
+    totalCalc();
+    newRound();
+}
+
+function newRound(){
+    for(var i = 0; i < dice.length; i++){
+        dice[i].saved=false;
+    }
+    $('#diceHolder p').remove();
+}
+
 // Events
 
 $(document).on('click','#diceHolder p',function(){	
