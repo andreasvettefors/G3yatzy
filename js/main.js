@@ -5,6 +5,25 @@
 var query = new Queries();
 
 var throws = 0;
+var players =[
+	{ "username":"",
+	  "yatzyPoints":[],
+	  "score":0
+	},
+	{ "username":"",
+	  "yatzyPoints":[],
+	  "score":0
+	},
+	{ "username":"",
+	  "yatzyPoints":[],
+	  "score":0
+	},
+	{ "username":"",
+	  "yatzyPoints":[],
+	  "score":0
+	}
+];
+
 var dice = [
 	{ "die": 0,
 	  "value":0,
@@ -82,31 +101,31 @@ function appendToDom(){
 	dice.forEach(function(die){
 		if(die.saved === false){
 					if(die.value === 1){
-				$('#diceHolder').append(`<p>&#9856;</p>`);
+				$('#diceHolder').append(`<img src="img/dice-1.png">`);
 			} else if(die.value === 2){
-				$('#diceHolder').append(`<p>&#9857;</p>`);
+				$('#diceHolder').append(`<img src="img/dice-2.png">`);
 			} else if(die.value === 3){
-					$('#diceHolder').append(`<p>&#9858;</p>`);
+					$('#diceHolder').append(`<img src="img/dice-3.png">`);
 			} else if(die.value === 4){
-				$('#diceHolder').append(`<p>&#9859;</p>`);
+				$('#diceHolder').append(`<img src="img/dice-4.png">`);
 			}else if(die.value === 5){
-					$('#diceHolder').append(`<p>&#9860;</p>`);
+					$('#diceHolder').append(`<img src="img/dice-5.png">`);
 			} else if(die.value === 6){
-				$('#diceHolder').append(`<p>&#9861;</p>`);
+				$('#diceHolder').append(`<img src="img/dice-6.png">`);
 			}
 		}else {
 			if(die.value === 1){
-				$('#diceHolder').append(`<p class="active">&#9856;</p>`);
+				$('#diceHolder').append(`<img class="active" src="img/dice-1-active.png">`);
 			} else if(die.value === 2){
-				$('#diceHolder').append(`<p class="active">&#9857;</p>`);
+				$('#diceHolder').append(`<img class="active" src="img/dice-2-active.png">`);
 			} else if(die.value === 3){
-					$('#diceHolder').append(`<p class="active">&#9858;</p>`);
+					$('#diceHolder').append(`<img class="active" src="img/dice-3-active.png">`);
 			} else if(die.value === 4){
-				$('#diceHolder').append(`<p class="active">&#9859;</p>`);
+				$('#diceHolder').append(`<img class="active" src="img/dice-4-active.png">`);
 			}else if(die.value === 5){
-					$('#diceHolder').append(`<p class="active">&#9860;</p>`);
+					$('#diceHolder').append(`<img class="active" src="img/dice-5-active.png">`);
 			} else if(die.value === 6){
-				$('#diceHolder').append(`<p class="active">&#9861;</p>`);
+				$('#diceHolder').append(`<img class="active" src="img/dice-6-active.png">`);
 			}
 
 		}
@@ -216,8 +235,14 @@ function submitPlayer(){
 		console.log(textValue + " " + sumValue);	
 		query.submitHighscoreToDB(textValue, sumValue, ()=>{
 		});
+		//return false does so that the page doesn't refresh
 		return false;	
 	});
+}
+
+//function that shows who's the winner
+function findHighScore(){
+
 }
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
@@ -236,7 +261,7 @@ function holdDice(){
 
 // Events
 
-$(document).on('click','#diceHolder p',function(){	
+$(document).on('click','#diceHolder img',function(){	
 	$(this).toggleClass('active');
 });
 

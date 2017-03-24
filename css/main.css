@@ -35,23 +35,24 @@ td {
 	background-color: #353a40;
 }
 
-#diceHolder p{
-	font-size: 100px;
-	margin-bottom:0;
-	color: #8cccca;
-	line-height: 50px;
 
-}
-
-#diceHolder p:hover{
-	cursor:pointer;
-	color:#2ea5a3;
-}
 
 #diceHolder .active{
 	border-color: #1ff973;
 	color: #96ffe8;
 	box-shadow: 0 0 14px 2px #1aeaa8;
+}
+
+#diceHolder img{
+	width:50px;
+	height:50px;
+}
+
+#diceHolder img:hover{
+	width:50px;
+	height:50px;
+	background-color: #150f28;
+	cursor:pointer;
 }
 
 /* CSS för submitform*/
@@ -65,3 +66,4 @@ td {
 	font-style: italic;
     color: #cccccc;
 }
+
