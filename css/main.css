@@ -54,4 +54,14 @@ td {
 	box-shadow: 0 0 14px 2px #1aeaa8;
 }
 
+/* CSS för submitform*/
 
+.submitButton{
+	background-color:#67bdba;
+	border-radius: 0px;
+}
+
+.form-control{
+	font-style: italic;
+    color: #cccccc;
+}
