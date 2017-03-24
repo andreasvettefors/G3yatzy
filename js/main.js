@@ -126,6 +126,7 @@ function printScores(){
 });
 }
 
+
 //Checks whether bonus is valid
 function bonusChecker(){
     var points = singlePoints();
@@ -197,7 +198,9 @@ function submitPlayer(){
 		var textValue = $("input:text").val();
 		var sumValue = $(".total").text();
 		console.log(textValue + " " + sumValue);	
-		return false;
+		query.submitHighscoreToDB(textValue, sumValue, ()=>{
+		});
+		return false;	
 	});
 }
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
