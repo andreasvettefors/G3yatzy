@@ -12,19 +12,18 @@ class Queries extends Base {
       console.log('Result of the query "all"',data);
 			callback();
     });
-  }
+  }*/
 	
 	 // Example how to insert data to db
-  runAThirdQuery(callback){
-    this.db.newStudent({
-        firstName:'Anna',
-        lastName:'Andersson',
-        course:5
+  submitHighscoreToDB(name, highscore, callback){
+    this.db.newPlayers({
+        username: name,
+        score: highscore
       },(data)=>{
-      console.log('Result of the query "newStudent"',data);
-			callback();
+      console.log('Result of the query "newPlayers"',data);
+      callback();
     });
-  }*/
+  }
     
     // Hämtar "all" från sqlQueries och returnerar data
     runAQuery(callback){
@@ -45,8 +44,9 @@ class Queries extends Base {
       all: `
         select * from players 
       `,
-      newStudent: `
-        INSERT INTO students SET ?
+      newPlayers: `
+        INSERT INTO players SET ?
+
       `
     }
   }
