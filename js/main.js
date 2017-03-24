@@ -5,7 +5,28 @@
 var query = new Queries();
 
 var throws = 0;
-var dices = [0,0,0,0,0];
+var dice = [
+	{ "die": 0,
+	  "value":0,
+	  "saved":false
+	},
+	{ "die": 1,
+	  "value":0,
+	  "saved":false
+	},
+	{ "die": 2,
+	  "value":0,
+	  "saved":false
+	},
+	{ "die": 3,
+	  "value":0,
+	  "saved":false
+	},
+	{ "die": 4,
+	  "value":0,
+	  "saved":false
+	}
+];
 
 
 // Functions
@@ -31,7 +52,8 @@ function start(){
 
 	submitPlayer();
 
-    totalCalc();  
+    totalCalc(); 
+    appendToDom(); 
 
 }
 
@@ -45,26 +67,53 @@ function rollDice(){
 		// här ska kallas på aktiv spelare
 		console.log('next person');
 	}else {
-		for(var i =0; i < 5; i++){
-			if(dices[i] === 0){
-				dices[i] = randomize();
-				if(dices[i] === 1){
-					$('#diceHolder').append(`<p>&#9856;</p>`);
-				} else if(dices[i] === 2){
-					$('#diceHolder').append(`<p>&#9857;</p>`);
-				} else if(dices[i] === 3){
-						$('#diceHolder').append(`<p>&#9858;</p>`);
-				} else if(dices[i] === 4){
-					$('#diceHolder').append(`<p>&#9859;</p>`);
-				}else if(dices[i] === 5){
-						$('#diceHolder').append(`<p>&#9860;</p>`);
-				} else if(dices[i] === 6){
-					$('#diceHolder').append(`<p>&#9861;</p>`);
-				}
-			}
+		dice.forEach(function(die){
+			console.log(die.value);
+			if(die.saved === false){
+			die.value = randomize();
+			
 		}
+		});	
+		
 	}
-	console.log(dices);
+	console.log(dice);
+}
+
+function appendToDom(){
+	dice.forEach(function(die){
+		if(die.saved === false){
+					if(die.value === 1){
+				$('#diceHolder').append(`<p>&#9856;</p>`);
+			} else if(die.value === 2){
+				$('#diceHolder').append(`<p>&#9857;</p>`);
+			} else if(die.value === 3){
+					$('#diceHolder').append(`<p>&#9858;</p>`);
+			} else if(die.value === 4){
+				$('#diceHolder').append(`<p>&#9859;</p>`);
+			}else if(die.value === 5){
+					$('#diceHolder').append(`<p>&#9860;</p>`);
+			} else if(die.value === 6){
+				$('#diceHolder').append(`<p>&#9861;</p>`);
+			}
+		}else {
+			if(die.value === 1){
+				$('#diceHolder').append(`<p class="active">&#9856;</p>`);
+			} else if(die.value === 2){
+				$('#diceHolder').append(`<p class="active">&#9857;</p>`);
+			} else if(die.value === 3){
+					$('#diceHolder').append(`<p class="active">&#9858;</p>`);
+			} else if(die.value === 4){
+				$('#diceHolder').append(`<p class="active">&#9859;</p>`);
+			}else if(die.value === 5){
+					$('#diceHolder').append(`<p class="active">&#9860;</p>`);
+			} else if(die.value === 6){
+				$('#diceHolder').append(`<p class="active">&#9861;</p>`);
+			}
+
+		}
+		console.log(die);
+	
+	});	
 }
 
 //Calls "runAQuery" which exists in queries class. The returned value can be found in "element" as an array
