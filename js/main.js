@@ -5,7 +5,7 @@
 var query = new Queries();
 
 var throws = 0;
-var dices = [0,0,0,0,0];
+var dice = [0,0,0,0,0];
 
 
 // Functions
@@ -27,11 +27,10 @@ function start(){
 	$('#submitFormCol').append(submitForm());
 
 	$('#diceTableCol').append(diceTable());
-	rollDice();
 
 	submitPlayer();
 
-    totalCalc();  
+  totalCalc();  
 
 }
 
@@ -39,7 +38,7 @@ function randomize(){
 	return Math.floor(Math.random() * 6) + 1;
 }
 
-function rollDice(){
+function rollDie(){
 	throws++;
 	if(throws > 3){
 		// här ska kallas på aktiv spelare
