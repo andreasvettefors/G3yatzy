@@ -57,17 +57,17 @@ function rollDie(){
 
 function appendDicesToDom(value){
 	if(value === 1){
-		$('body').append(`<p>&#9856;</p>`);
+		$('#diceHolder').append(`<p>&#9856;</p>`);
 	} else if(value === 2){
-		$('body').append(`<p>&#9857;</p>`);
+		$('#diceHolder').append(`<p>&#9857;</p>`);
 	} else if(value === 3){
-			$('body').append(`<p>&#9858;</p>`);
+			$('#diceHolder').append(`<p>&#9858;</p>`);
 	} else if(value === 4){
-		$('body').append(`<p>&#9859;</p>`);
+		$('#diceHolder').append(`<p>&#9859;</p>`);
 	}else if(value === 5){
-			$('body').append(`<p>&#9860;</p>`);
+			$('#diceHolder').append(`<p>&#9860;</p>`);
 	} else if(value === 6){
-		$('body').append(`<p>&#9861;</p>`);
+		$('#diceHolder').append(`<p>&#9861;</p>`);
 	}
 }
 
@@ -158,6 +158,18 @@ function submitPlayer(){
 }
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
+function holdDice(){
+	$('#diceHolder p').each(function(index){
+		console.log($(this));
+		console.log(index);
+		if($(this).attr('class') == 'active'){
+			dice[index].saved == true;
+
+		}
+	});
+
+}
+
 
 // Events
 
@@ -165,5 +177,8 @@ $(document).on('click','#diceHolder p',function(){
 	$(this).toggleClass('active');
 });
 
-
+$(document).on('click','#diceTable #throwDice',function(){	
+	holdDice();
+	rollDice();
+});
 
