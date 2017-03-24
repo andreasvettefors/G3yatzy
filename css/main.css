@@ -1,9 +1,67 @@
+body{
+	margin-left: 20px;
+}
+/*Här börjar CSS för Yatzy formuläret*/
+td {
+	font-family: arial; 
+	font-size: 10px;
+}
+.possClass {
+	text-align:center;
+}
+.scoreClass {
+	font-weight: bold;
+	font-size: 12pt;
+	text-align:center;
+}
+#greyField {
+	background-color: #f2f2f2;
+}
+#tdSpecialField {
+	font-weight: bold;
+	color: black;
+}
+#tdsmallerField {
+	width: 20%;
+}
+/*Här slutar CSS för Yatzy formuläret*/
+
 #diceHolder{
+	height:110px;
+	padding-top: 22px;
+	padding-bottom: 23px;
 	display:flex;
 	justify-content: space-around;
+	background-color: #353a40;
 }
 
 #diceHolder p{
-  font-size: 100px;
+	font-size: 100px;
+	margin-bottom:0;
+	color: #8cccca;
+	line-height: 50px;
+
 }
 
+#diceHolder p:hover{
+	cursor:pointer;
+	color:#2ea5a3;
+}
+
+#diceHolder .active{
+	border-color: #1ff973;
+	color: #96ffe8;
+	box-shadow: 0 0 14px 2px #1aeaa8;
+}
+
+/* CSS för submitform*/
+
+.submitButton{
+	background-color:#67bdba;
+	border-radius: 0px;
+}
+
+.form-control{
+	font-style: italic;
+    color: #cccccc;
+}
