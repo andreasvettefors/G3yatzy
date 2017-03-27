@@ -31,6 +31,12 @@ class Queries extends Base {
     });
   }
 
+  dbHighScore(callback){
+  this.db.highscore((data)=>{
+    callback(data);
+  });
+}
+
   static get sqlQueries(){
     //
     // Please note: This part of the class is read by
@@ -46,6 +52,9 @@ class Queries extends Base {
       newPlayers: `
         INSERT INTO players SET ?
 
+      `,
+      highscore: `
+        select * from players
       `
     }
   }
