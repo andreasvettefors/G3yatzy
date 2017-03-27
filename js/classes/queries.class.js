@@ -1,5 +1,5 @@
 class Queries extends Base {
-	
+
 // Here is all our queries to the database
   constructor(){
     super();
@@ -12,8 +12,7 @@ class Queries extends Base {
       console.log('Result of the query "all"',data);
 			callback();
     });
-  }*/
-	
+  }
 	 // Example how to insert data to db
   submitHighscoreToDB(name, highscore, callback){
     this.db.newPlayers({
@@ -23,15 +22,15 @@ class Queries extends Base {
       console.log('Result of the query "newPlayers"',data);
       callback();
     });
-  }
-    
+  }*/
+
     // Hämtar "all" från sqlQueries och returnerar data
     runAQuery(callback){
     this.db.all((data)=>{
 			callback(data);
     });
   }
-  
+
   static get sqlQueries(){
     //
     // Please note: This part of the class is read by
@@ -42,7 +41,7 @@ class Queries extends Base {
     //
     return {
       all: `
-        select * from players 
+        select * from players
       `,
       newPlayers: `
         INSERT INTO players SET ?

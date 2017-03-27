@@ -63,7 +63,6 @@ function start(){
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
-
   $('body').append(startPage());
 	$('#pageContent').append(welcome());
 
@@ -200,7 +199,7 @@ function totalCalc(){
                 pointsReturned += p;
             }
         }
-    }   
+    }
         //Add the sum of the single points (onces-sixes and bonus)
         pointsReturned += sumCalc();
         $(".total").text(pointsReturned);
@@ -208,7 +207,7 @@ function totalCalc(){
 
 //submit form (saves the players name in a variable)
 function submitPlayer(){
-	$('#submitForm').submit(function(){	
+	$('#submitForm').submit(function(){
 		var textValue = $("input:text").val();
 		var sumValue = $(".total").text();
 		console.log(textValue + " " + sumValue);	
@@ -241,7 +240,6 @@ function holdDice(){
 	});
 
 }
-
 //function add inputfield for new players
 
 var clicks = 0;
