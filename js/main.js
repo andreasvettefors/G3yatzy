@@ -5,8 +5,7 @@
 var query = new Queries();
 
 var throws = 0;
-<<<<<<< HEAD
-=======
+
 var players =[
 	{ "username":"",
 	  "yatzyPoints":[],
@@ -25,7 +24,6 @@ var players =[
 	  "score":0
 	}
 ];
->>>>>>> 67e97f8b2301b4653261a18a858e8eb39e42b1a8
 
 var dice = [
 	{ "die": 0,
@@ -66,16 +64,11 @@ function start(){
 
 	//$('body').append(example());
   $('body').append(startPage());
-	/*$('#yatzyFormCol').append(yatzyformular());
-	$('#submitFormCol').append(submitForm());
+	$('#pageContent').append(welcome());
 
-	$('#diceTableCol').append(diceTable());
-
+	/*
 		submitPlayer();
     totalCalc(); */
-
-
-
 }
 
 function randomize(){
@@ -100,7 +93,7 @@ function rollDie(){
 }
 
 function appendToDom(){
-	$('#diceHolder p').remove();
+	$('#diceHolder img').remove();
 	dice.forEach(function(die){
 		if(die.saved === false){
 					if(die.value === 1){
@@ -232,12 +225,9 @@ function findHighScore(){
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
 function holdDice(){
-	$('#diceHolder p').each(function(index){
-		console.log($(this));
-		console.log(index);
+	$('#diceHolder img').each(function(index){
 		if($(this).attr('class') == 'active'){
-			dice[index].saved == true;
-
+			dice[index].saved = true;
 		}
 	});
 

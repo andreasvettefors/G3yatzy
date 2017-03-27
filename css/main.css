@@ -1,19 +1,61 @@
 body{
 	/*margin-left: 20px;*/
-	background:white;
+	background:black;
 }
 
 /*Navbar style*/
 
 .navbar-custom{
-	background-color: rgba(0,0,0,0.5);
+	background-color: transparent;
+	/*background-color: #353a40;*/
 	margin-top: 5%;
+	border-radius:0;
+	border:none;
+	border-top: 2px solid #82B9B8;
+	border-bottom: 2px solid #82B9B8;
 }
 
-.navbar-custom a{
-	background-color: rgba(0,0,0,0.5);
-	margin-top: 5%;
+.navbar-custom .navbar-header .navbar-brand, .navbar-custom .navbar-nav > li > a{
+	color: #82B9B8;
 }
+
+.navbar-custom .navbar-header .navbar-brand:hover{
+	color: #96ffe8;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus
+{
+	background:#150f28;
+	color: #96ffe8;
+}
+
+.navbar-custom .navbar-nav > .active > a,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus
+{
+  background:#150f28;
+	color: #96ffe8;
+}
+
+.navbar-custom .navbar-toggle {
+	border-color:#82B9B8;
+	border-radius: 0;
+}
+
+.navbar-custom .navbar-toggle .icon-bar {
+ background-color: #96ffe8;
+}
+
+/* Welcome splash style */
+#welcome .well-custom{
+	background: transparent;
+}
+
+#welcome .well-custom > h3{
+	color:#82B9B8;
+	}
+
 /*Här börjar CSS för Yatzy formuläret*/
 td {
 	font-family: arial; 
