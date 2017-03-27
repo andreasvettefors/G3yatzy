@@ -54,7 +54,7 @@ class Queries extends Base {
 
       `,
       highscore: `
-        select * from players
+        select * from players ORDER BY score DESC LIMIT 10
       `
     }
   }

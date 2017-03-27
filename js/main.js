@@ -70,7 +70,6 @@ function start(){
 		submitPlayer();
     totalCalc(); */
 	$('body').append(HighScoreTemplate());
-	printScores();
 	printHighScoreToDom();
 }
 
@@ -133,12 +132,17 @@ function appendToDom(){
 }
 
 function printHighScoreToDom(){
-	var highScoreOrder = [];
 	query.dbHighScore((users) => {
-		for(var index = 0; index < users.length;index++){
-			highScoreOrder.push(users[index].score);
-		}
-		console.log(highScoreOrder.sort(function(a, b){return b-a}));
+		users.forEach(function(user,index){
+			$('tbody').append(`
+									<tr>
+					        <td class="lalign">${index+1}</td>
+					        <td>${user.score}</td>
+					        <td>${user.username}</td>
+					      </tr>
+				`)
+			console.log(user.score);
+		})
 });
 }
 
