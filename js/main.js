@@ -9,19 +9,19 @@ var throws = 0;
 var players =[
 	{ "username":"",
 	  "yatzyPoints":[],
-	  "score":0
+	  "score":5
+	},
+	{ "username":"Hanna",
+	  "yatzyPoints":[],
+	  "score":10
 	},
 	{ "username":"",
 	  "yatzyPoints":[],
-	  "score":0
+	  "score":4
 	},
 	{ "username":"",
 	  "yatzyPoints":[],
-	  "score":0
-	},
-	{ "username":"",
-	  "yatzyPoints":[],
-	  "score":0
+	  "score":7
 	}
 ];
 
@@ -63,8 +63,10 @@ function start(){
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
+
   $('body').append(startPage());
 	$('#pageContent').append(welcome());
+
 
 	/*
 		submitPlayer();
@@ -219,8 +221,16 @@ function submitPlayer(){
 }
 
 //function that shows who's the winner
-function findHighScore(){
-
+function findWinner(){
+ 	var highestScore = 0;
+ 	var winner;
+ 	players.forEach(function(player){
+ 		if(player.score > highestScore){
+			highestScore = player.score;
+			winner = player.username;
+ 		}
+ 	});
+ 	console.log("Vinnaren är: ",winner, "Totalpoäng: ", highestScore);
 }
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
@@ -233,8 +243,42 @@ function holdDice(){
 
 }
 
+//function add inputfield for new players
 
-// Events
+var clicks = 0;
+
+function addField(){
+	
+		$('.addField').remove();
+		var newField = $('body').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
+		
+	}
+
+// Event that adds a new input field
+$(document).on('click','.addField',function(){
+	
+	if(clicks < 3){
+		clicks+=1;
+
+		if($(this).parent().find('input').val() != ""){
+		addField();
+			}else{
+		console.log("hej");
+		}
+	}
+});
+
+// event that removes previous field
+ $(document).on("click",".removeField", function(e){ //user click on remove text
+        e.preventDefault(); 
+        $(this).parent('div').remove();
+       $('.addField').remove();
+       $('.field:last-child').append('<span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span>');
+       
+        clicks--;
+
+    });
+
 
 $(document).on('click','#diceHolder img',function(){	
 	$(this).toggleClass('active');

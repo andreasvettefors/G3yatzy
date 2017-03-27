@@ -122,3 +122,58 @@ td {
     color: #cccccc;
 }
 
+/* CSS för inputField*/
+.form-control{
+	width:180px;
+}
+
+#member{
+	width: 20px;
+}
+
+#field1{
+
+    background: rgba(255,255,255,.1);
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 0;
+    outline: 0;
+    height:24px;
+    padding: 4px;
+    width: 130px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 8px;
+}
+
+.addField, .removeField{
+	margin-left: 5px;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.addField{
+	color:#3fbdc5;
+}
+
+.removeField{
+	color:#ce0f0f;
+}
+
+.addField:hover{
+	color:black;
+}
+
+.removeField:hover{
+	color:black;
+}
+#child{
+	border: 1px grey solid;
+}
