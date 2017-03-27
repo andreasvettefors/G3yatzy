@@ -22,7 +22,7 @@ function start(){
 
 	//$('body').append(example());
 	randomize();
-  
+
 	$('#yatzyFormCol').append(yatzyformular());
 	$('#submitFormCol').append(submitForm());
 
@@ -31,7 +31,7 @@ function start(){
 
 	submitPlayer();
 
-    totalCalc();  
+    totalCalc();
 
 }
 
@@ -142,7 +142,7 @@ function totalCalc(){
                 pointsReturned += p;
             }
         }
-    }   
+    }
         //Add the sum of the single points (onces-sixes and bonus)
         pointsReturned += sumCalc();
         $(".total").text(pointsReturned);
@@ -150,10 +150,10 @@ function totalCalc(){
 
 //submit form (saves the players name in a variable)
 function submitPlayer(){
-	$('#submitForm').submit(function(){	
+	$('#submitForm').submit(function(){
 		var textValue = $("input:text").val();
 		var sumValue = $(".total").text();
-		console.log(textValue + " " + sumValue);	
+		console.log(textValue + " " + sumValue);
 		return false;
 	});
 }
@@ -162,9 +162,6 @@ function submitPlayer(){
 
 // Events
 
-$(document).on('click','#diceHolder p',function(){	
+$(document).on('click','#diceHolder p',function(){
 	$(this).toggleClass('active');
 });
-
-
-
