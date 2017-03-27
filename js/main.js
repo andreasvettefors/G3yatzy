@@ -5,6 +5,7 @@
 var query = new Queries();
 
 var throws = 0;
+
 var players =[
 	{ "username":"",
 	  "yatzyPoints":[],
@@ -48,6 +49,7 @@ var dice = [
 ];
 
 
+
 // Functions
 // Example how to get data from database (Will be removed when our app is finished)
 /*query.runAQuery(() =>{
@@ -61,29 +63,21 @@ function start(){
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
-	randomize();
-  
-	$('#yatzyFormCol').append(yatzyformular());
-	$('#submitFormCol').append(submitForm());
-	$('#inputFieldCol').append(inputField());
 
-	$('#diceTableCol').append(diceTable());
-	rollDice();
+  $('body').append(startPage());
+	$('#pageContent').append(welcome());
 
-	submitPlayer();
 
-    totalCalc(); 
-    appendToDom(); 
-    findWinner();
-    
-
+	/*
+		submitPlayer();
+    totalCalc(); */
 }
 
 function randomize(){
 	return Math.floor(Math.random() * 6) + 1;
 }
 
-function rollDice(){
+function rollDie(){
 	throws++;
 	if(throws > 3){
 		// här ska kallas på aktiv spelare
@@ -95,12 +89,13 @@ function rollDice(){
 			die.value = randomize();
 		}
 		});	
+		    appendToDom(); 
 		
 	}
-	console.log(dice);
 }
 
 function appendToDom(){
+	$('#diceHolder img').remove();
 	dice.forEach(function(die){
 		if(die.saved === false){
 					if(die.value === 1){
@@ -132,27 +127,9 @@ function appendToDom(){
 			}
 
 		}
-		console.log(die);
 	
 	});	
 }
-
-function appendDicesToDom(value){
-	if(value === 1){
-		$('#diceHolder').append(`<p>&#9856;</p>`);
-	} else if(value === 2){
-		$('#diceHolder').append(`<p>&#9857;</p>`);
-	} else if(value === 3){
-			$('#diceHolder').append(`<p>&#9858;</p>`);
-	} else if(value === 4){
-		$('#diceHolder').append(`<p>&#9859;</p>`);
-	}else if(value === 5){
-			$('#diceHolder').append(`<p>&#9860;</p>`);
-	} else if(value === 6){
-		$('#diceHolder').append(`<p>&#9861;</p>`);
-	}
-}
-
 
 //Calls "runAQuery" which exists in queries class. The returned value can be found in "element" as an array
 function printScores(){
@@ -258,12 +235,9 @@ function findWinner(){
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
 function holdDice(){
-	$('#diceHolder p').each(function(index){
-		console.log($(this));
-		console.log(index);
+	$('#diceHolder img').each(function(index){
 		if($(this).attr('class') == 'active'){
-			dice[index].saved == true;
-
+			dice[index].saved = true;
 		}
 	});
 
@@ -312,6 +286,6 @@ $(document).on('click','#diceHolder img',function(){
 
 $(document).on('click','#diceTable #throwDice',function(){	
 	holdDice();
-	rollDice();
+	rollDie();
 });
 
