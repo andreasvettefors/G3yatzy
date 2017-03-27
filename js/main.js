@@ -63,11 +63,11 @@ function start(){
 	//$('body').append(example());
 	randomize();
   
-	//$('#yatzyFormCol').append(yatzyformular());
-	//$('#submitFormCol').append(submitForm());
+	$('#yatzyFormCol').append(yatzyformular());
+	$('#submitFormCol').append(submitForm());
 	$('#inputFieldCol').append(inputField());
 
-	//$('#diceTableCol').append(diceTable());
+	$('#diceTableCol').append(diceTable());
 	rollDice();
 
 	submitPlayer();
