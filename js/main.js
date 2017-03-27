@@ -270,16 +270,17 @@ function holdDice(){
 }
 
 //function add inputfield for new players
+
 var clicks = 0;
+
 function addField(){
 	
 		$('.addField').remove();
-		var newField = $('body').append('<div class="name-input"><input autocomplete="off" class="input form-control" id="field" type="text"><button id="b1" class="btn addField" type="button">+</button></div>');
+		var newField = $('body').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 		
 	}
-	
-// Events
 
+// Event that adds a new input field
 $(document).on('click','.addField',function(){
 	
 	if(clicks < 3){
@@ -287,11 +288,22 @@ $(document).on('click','.addField',function(){
 
 		if($(this).parent().find('input').val() != ""){
 		addField();
-		}else{
+			}else{
 		console.log("hej");
 		}
 	}
 });
+
+// event that removes previous field
+ $(document).on("click",".removeField", function(e){ //user click on remove text
+        e.preventDefault(); 
+        $(this).parent('div').remove();
+       $('.addField').remove();
+       $('.field:last-child').append('<span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span>');
+       
+        clicks--;
+
+    });
 
 
 $(document).on('click','#diceHolder img',function(){	
