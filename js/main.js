@@ -138,28 +138,28 @@ function totalCalc(){
 
 dice=[{
     name:1,
-    value:1,
-    saved:false
+    value:3,
+    saved:true
 },
 {
     name:2,
-    value:1,
+    value:3,
     saved:false
 },
 {
     name:3,
-    value:2,
-    saved:false
+    value:1,
+    saved:true
 },
 {
     name:4,
-    value:2,
-    saved:false
+    value:4,
+    saved:true
 },
 {
     name:5,
-    value:6,
-    saved:false
+    value:1,
+    saved:true
 }];
 
 //Adderar poäng till formuläret
@@ -179,6 +179,59 @@ function addToScore(a){
     totalCalc();
     newRound();
 }
+function addToScoreAdvanced(a){
+    var result = [];
+    var result1= [];
+    var pointAdded = 0;
+    var count = 0;
+    var x = a.previousElementSibling.innerHTML;
+        
+    if(x=="Ett Par"){
+        $.each(dice, function (key, point) {
+            if($.inArray(point.value, result) === -1) {
+                result.push(point.value);
+            }else{
+                result1.push(point.value,point.saved)
+            }
+        }); 
+        if(result1[1]==null){
+            pointAdded=result1[0].value*2
+            console.log(pointAdded)
+        }else{
+            if(result1[1]==true&&result1[3]==true){
+                pointAdded=Math.min(result1[0],result1[2])*2
+                console.log("1")
+            }else if(result1[1]==true){
+                pointAdded=result1[0]*2
+                console.log("2")
+            }else{
+                pointAdded=result1[2]*2
+                console.log(result1)
+            }
+        }
+            $(a).text(pointAdded);
+            totalCalc();
+            newRound();
+        
+    }else if(x=="Två Par"){
+        $.each(dice, function (key, point) {
+            if($.inArray(point.value, result) === -1) {
+                result.push(point.value);
+            }else{
+                result1.push(point.value);
+            }
+        });     
+        if(result1[1]==null){
+        }else{
+            pointAdded = (result1[0]*2) + (result1[1]*2)
+        }
+            $(a).text(pointAdded);
+            totalCalc();
+            newRound();
+        }            
+}
+    
+
 
 function newRound(){
     for(var i = 0; i < dice.length; i++){
