@@ -122,6 +122,47 @@ td {
     color: #cccccc;
 }
 
+/* Början för CSS vinnar popup*/
+.popup {
+    position: absolute;
+    width:300px;
+    margin: 20% 0 0 40%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px 0 20px 0;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    background: -webkit-linear-gradient(top left, white 50%, coral 50%);
+    background:    -moz-linear-gradient(top left, white 50%, coral 50%);
+    background:     -ms-linear-gradient(top left, white 50%, coral 50%);
+    background:      -o-linear-gradient(top left, white 50%, coral 50%);
+    background:         linear-gradient(top left, white 50%, coral 50%);
+}
+
+.popup-content {
+    background: #444;
+    box-sizing: border-box;
+    border-radius: 500px 0 10px 0;
+}
+
+.popup-text {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 100;
+    text-align: center;
+    bottom:30px;
+    transform: translateZ(15px);
+}
+
+.popup-text b {
+    color: coral;
+    font-weight: 300;
+}
+/* Slutet för CSS vinnar popup*/
+
+
 /* CSS för inputField*/
 .form-control{
 	width:180px;

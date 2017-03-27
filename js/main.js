@@ -67,7 +67,6 @@ function start(){
   $('body').append(startPage());
 	$('#pageContent').append(welcome());
 
-
 	/*
 		submitPlayer();
     totalCalc(); */
