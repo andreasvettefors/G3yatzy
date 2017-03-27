@@ -198,6 +198,7 @@ td {
 	border-radius: 50%;
 	cursor: pointer;
 	font-size: 18px;
+	top:5px;
 }
 
 .addField{
@@ -209,11 +210,11 @@ td {
 }
 
 .addField:hover{
-	color:black;
+	color:darkgrey;
 }
 
 .removeField:hover{
-	color:black;
+	color:darkgrey;
 }
 #child{
 	border: 1px grey solid;
