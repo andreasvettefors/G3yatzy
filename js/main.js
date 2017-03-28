@@ -75,7 +75,6 @@ function start() {
 
 	//$('body').append(example());
 	$('body').append(startPage());
-
 }
 
 function randomize() {
@@ -136,6 +135,22 @@ function appendToDom() {
 	});
 }
 
+function printHighScoreToDom(){
+	query.dbHighScore((users) => {
+		users.forEach(function(user,index){
+			$('tbody').append(`
+									<tr>
+					        <td class="lalign">${index+1}</td>
+					        <td>${user.score}</td>
+					        <td>${user.username}</td>
+					      </tr>
+				`)
+			console.log(user.score);
+		})
+});
+
+}
+
 //Calls "runAQuery" which exists in queries class. The returned value can be found in "element" as an array
 function printScores() {
 	query.runAQuery((element) => {
@@ -145,6 +160,31 @@ function printScores() {
 		}
 	});
 }
+
+function addPlayersToGame(){
+	players = [];
+	$('.input').each(function(index,value){
+		if(index === 0){
+					players.push({
+						"username": $(this).val(),
+						  "yatzyPoints":[],
+							"active": true,
+						  "score":0
+					})
+		} else {
+					players.push({
+						"username": $(this).val(),
+						  "yatzyPoints":[],
+							"active": false,
+						  "score":0
+					});
+		}
+
+		console.log(players);
+	})
+
+}
+
 
 
 //Checks whether bonus is valid
@@ -218,7 +258,9 @@ function submitPlayer() {
 		var textValue = $("input:text").val();
 		var sumValue = $(".total").text();
 		console.log(textValue + " " + sumValue);
-		query.submitHighscoreToDB(textValue, sumValue, () => {});
+		query.submitHighscoreToDB(textValue, sumValue, ()=>{
+		});
+
 		//return false does so that the page doesn't refresh
 		return false;
 	});
@@ -250,7 +292,6 @@ function holdDice() {
 
 var clicks = 0;
 
-
 function addField() {
 
 	$('.addField').remove();
@@ -268,9 +309,12 @@ $(document).on('click', '.addField', function () {
 			addField();
 		} else {
 			console.log("hej");
-		}
+					}
 	}
 });
+
+
+
 
 // event that removes previous field
 $(document).on("click", ".removeField", function (e) { //user click on remove text
@@ -278,11 +322,13 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 	$(this).parent('div').remove();
 	$('.addField').remove();
 	$('.field:last-child').append('<span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span>');
-
 	clicks--;
 
 });
 
+			$(document).on('click','.btn-info',function(){
+				addPlayersToGame();
+					});
 
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
@@ -292,3 +338,4 @@ $(document).on('click', '#diceTable #throwDice', function () {
 	holdDice();
 	rollDie();
 });
+
