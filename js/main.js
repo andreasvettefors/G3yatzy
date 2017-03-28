@@ -158,8 +158,25 @@ function printScores(){
 }
 
 function addPlayersToGame(){
+	players = [];
 	$('.input').each(function(index,value){
-		console.log($(this).val());
+		if(index === 0){
+					players.push({
+						"username": $(this).val(),
+						  "yatzyPoints":[],
+							"active": true,
+						  "score":0
+					})
+		} else {
+					players.push({
+						"username": $(this).val(),
+						  "yatzyPoints":[],
+							"active": false,
+						  "score":0
+					});
+		}
+
+		console.log(players);
 	})
 
 }
