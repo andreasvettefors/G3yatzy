@@ -313,9 +313,6 @@ $(document).on('click', '.addField', function () {
 	}
 });
 
-
-
-
 // event that removes previous field
 $(document).on("click", ".removeField", function (e) { //user click on remove text
 	e.preventDefault();
