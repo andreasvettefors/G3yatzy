@@ -63,12 +63,13 @@ function start(){
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
-  	$('body').append(startPage());
-	//$('#pageContent').append(welcome());
+	$('body').append(diceTable());
+  	//$('body').append(startPage());
+	$('#pageContent').append(welcome());
 	//$('body').append(winnerTemplate());
-	/*
+	
 		submitPlayer();
-    totalCalc(); */
+    totalCalc(); 
 }
 
 function randomize(){

@@ -107,6 +107,7 @@ td {
 	border-color: #1ff973;
 	color: #96ffe8;
 	box-shadow: 0 0 14px 2px #1aeaa8;
+	background-color: #0b3444;
 }
 
 #diceHolder img{
@@ -120,6 +121,8 @@ td {
 	background-color: #150f28;
 	cursor:pointer;
 }
+
+
 
 /* CSS för submitform*/
 
