@@ -69,6 +69,9 @@ function start(){
 	/*
 		submitPlayer();
     totalCalc(); */
+	$('body').append(HighScoreTemplate());
+	$('body').append(inputField());
+	addPlayersToGame();
 }
 
 function randomize(){
@@ -86,9 +89,9 @@ function rollDie(){
 			if(die.saved === false){
 			die.value = randomize();
 		}
-		});	
-		    appendToDom(); 
-		
+		});
+		    appendToDom();
+
 	}
 }
 
@@ -125,8 +128,23 @@ function appendToDom(){
 			}
 
 		}
-	
-	});	
+
+	});
+}
+
+function printHighScoreToDom(){
+	query.dbHighScore((users) => {
+		users.forEach(function(user,index){
+			$('tbody').append(`
+									<tr>
+					        <td class="lalign">${index+1}</td>
+					        <td>${user.score}</td>
+					        <td>${user.username}</td>
+					      </tr>
+				`)
+			console.log(user.score);
+		})
+});
 }
 
 //Calls "runAQuery" which exists in queries class. The returned value can be found in "element" as an array
@@ -138,6 +156,31 @@ function printScores(){
     }
 });
 }
+
+function addPlayersToGame(){
+	players = [];
+	$('.input').each(function(index,value){
+		if(index === 0){
+					players.push({
+						"username": $(this).val(),
+						  "yatzyPoints":[],
+							"active": true,
+						  "score":0
+					})
+		} else {
+					players.push({
+						"username": $(this).val(),
+						  "yatzyPoints":[],
+							"active": false,
+						  "score":0
+					});
+		}
+
+		console.log(players);
+	})
+
+}
+
 
 
 //Checks whether bonus is valid
@@ -210,11 +253,11 @@ function submitPlayer(){
 	$('#submitForm').submit(function(){
 		var textValue = $("input:text").val();
 		var sumValue = $(".total").text();
-		console.log(textValue + " " + sumValue);	
+		console.log(textValue + " " + sumValue);
 		query.submitHighscoreToDB(textValue, sumValue, ()=>{
 		});
 		//return false does so that the page doesn't refresh
-		return false;	
+		return false;
 	});
 }
 
@@ -245,15 +288,15 @@ function holdDice(){
 var clicks = 0;
 
 function addField(){
-	
+
 		$('.addField').remove();
-		var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input inputControl" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
-		
+
+		var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 	}
 
 // Event that adds a new input field
 $(document).on('click','.addField',function(){
-	
+
 	if(clicks < 3){
 		clicks+=1;
 
@@ -265,24 +308,28 @@ $(document).on('click','.addField',function(){
 	}
 });
 
+
+
 // event that removes previous field
  $(document).on("click",".removeField", function(e){ //user click on remove text
-        e.preventDefault(); 
+        e.preventDefault();
         $(this).parent('div').remove();
        $('.addField').remove();
        $('.field:last-child').append('<span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span>');
-       
+
         clicks--;
 
     });
 
+			$(document).on('click','.btn-info',function(){
+				addPlayersToGame();
+					});
 
-$(document).on('click','#diceHolder img',function(){	
+$(document).on('click','#diceHolder img',function(){
 	$(this).toggleClass('active');
 });
 
-$(document).on('click','#diceTable #throwDice',function(){	
+$(document).on('click','#diceTable #throwDice',function(){
 	holdDice();
 	rollDie();
 });
-
