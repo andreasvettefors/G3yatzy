@@ -70,7 +70,8 @@ function start(){
 		submitPlayer();
     totalCalc(); */
 	$('body').append(HighScoreTemplate());
-	printHighScoreToDom();
+	$('body').append(inputField());
+	addPlayersToGame();
 }
 
 function randomize(){
@@ -155,6 +156,14 @@ function printScores(){
     }
 });
 }
+
+function addPlayersToGame(){
+	$('.input').each(function(index,value){
+		console.log($(this).val());
+	})
+
+}
+
 
 
 //Checks whether bonus is valid
@@ -264,7 +273,7 @@ var clicks = 0;
 function addField(){
 
 		$('.addField').remove();
-		var newField = $('body').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
+		var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 
 	}
 
@@ -295,6 +304,9 @@ $(document).on('click','.addField',function(){
 
     });
 
+			$(document).on('click','.btn-info',function(){
+				addPlayersToGame();
+					});
 
 $(document).on('click','#diceHolder img',function(){
 	$(this).toggleClass('active');
