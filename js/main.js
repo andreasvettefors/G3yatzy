@@ -76,11 +76,17 @@ function start() {
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
+<<<<<<< HEAD
 	$('body').append(startPage());
 	yatzyForm();
 
 
 
+=======
+  	$('body').append(startPage());
+	//$('#pageContent').append(welcome());
+	//$('body').append(winnerTemplate());
+>>>>>>> c2a30d718a52504bece4ff5a37087d608a50a45d
 	/*
 		submitPlayer();
     totalCalc(); */
@@ -258,6 +264,7 @@ function holdDice() {
 
 var clicks = 0;
 
+<<<<<<< HEAD
 function addField() {
 
 	$('.addField').remove();
@@ -301,6 +308,14 @@ function yatzyForm() {
 
 
 }
+=======
+function addField(){
+	
+		$('.addField').remove();
+		var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input inputControl" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
+		
+	}
+>>>>>>> c2a30d718a52504bece4ff5a37087d608a50a45d
 
 // Event that adds a new input field
 $(document).on('click', '.addField', function () {
