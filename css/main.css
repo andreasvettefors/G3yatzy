@@ -80,15 +80,24 @@ td {
 	font-size: 12pt;
 	text-align:center;
 }
-#greyField {
+.greyField {
 	background-color: #f2f2f2;
 }
 #tdSpecialField {
 	font-weight: bold;
-	color: black;
+	color: blue;
 }
 #tdsmallerField {
 	width: 20%;
+}
+
+.customTd:hover{
+	background:pink;
+	cursor:pointer:;
+}
+
+#yatzyFormContainer{
+	background-color: #353a40;
 }
 /*Här slutar CSS för Yatzy formuläret*/
 
@@ -100,8 +109,6 @@ td {
 	justify-content: space-around;
 	background-color: #353a40;
 }
-
-
 
 #diceHolder .active{
 	border-color: #1ff973;

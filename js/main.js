@@ -3,8 +3,9 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
-
 var throws = 0;
+var yatzyForm = ["Spelare", "Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor", "Bonus", "Summa",
+"Ett Par", "Två Par", "Tretal", "Fyrtal", "Liten Stege", "Stor Stege", "Kåk", "Chans", "Yatzy", "Total"];
 
 var players = [
 	{
@@ -74,7 +75,8 @@ function start() {
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
-	$('body').append(startPage());
+  $('body').append(startPage());
+
 }
 
 function randomize() {
@@ -297,6 +299,36 @@ function addField() {
 	$('.addField').remove();
 	var newField = $('body').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 
+}
+
+//Funktion för att kunna starta spelet och rita upp spelet med spelare och formulär
+function startGame(){
+	var tableRow;
+	var tableData;
+    yatzyForm.forEach(function(outPrint, index){
+        tableRow = $(`<tr></tr>`);
+        if(index == 0){
+        	tableData = $(`<th class="greyField">${outPrint}</th>`);
+        	tableRow.append(tableData);
+        	players.forEach(function(player, index){
+            tableRow.append($(`<th class = "text-center greyField">${index + 1}</th>`));
+        });
+        }else if(index == 7 || index == 8 || index == 18){
+        	tableData = $(`<td class="greyField"><strong>${outPrint}</strong></td>`);
+        	tableRow.append(tableData);
+        	players.forEach(function(player, index){
+            tableRow.append($(`<td class="player${index + 1} greyField"></td>`));
+        	});
+        }else{
+        	tableData = $(`<td>${outPrint}</td>`);
+        	tableRow.append(tableData);
+        	players.forEach(function(player, index){
+            tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
+        	});
+        }
+        $("#scoretabel").append(tableRow);
+
+    });
 }
 
 // Event that adds a new input field
