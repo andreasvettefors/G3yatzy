@@ -11,12 +11,17 @@ body{
 	margin-top: 5%;
 	border-radius:0;
 	border:none;
-	border-top: 2px solid #82B9B8;
-	border-bottom: 2px solid #82B9B8;
+	border-top: 2px solid #0f446a;
+	border-bottom: 2px solid #0f446a;
 }
 
 .navbar-custom .navbar-header .navbar-brand, .navbar-custom .navbar-nav > li > a{
-	color: #82B9B8;
+	color: #acd13f;
+	font-family: 'Quicksand';
+	font-size: 12px;
+	font-weight: bolder;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
 }
 
 .navbar-custom .navbar-header .navbar-brand:hover{
@@ -26,16 +31,16 @@ body{
 .navbar-custom .navbar-nav > li > a:hover,
 .navbar-custom .navbar-nav > li > a:focus
 {
-	background:#150f28;
-	color: #96ffe8;
+	background:#0f446a;
+	color: #a3efaf;
 }
 
 .navbar-custom .navbar-nav > .active > a,
 .navbar-custom .navbar-nav > .active > a:hover,
 .navbar-custom .navbar-nav > .active > a:focus
 {
-  background:#150f28;
-	color: #96ffe8;
+  background:#0f446a;
+	color: #a3efaf;
 }
 
 .navbar-custom .navbar-toggle {
@@ -53,9 +58,15 @@ body{
 }
 
 #welcome .well-custom > h3{
-	color:#82B9B8;
-	}
+	color:#d78548;
+	letter-spacing: 0.5px;
+	font-family: 'Quicksand';
 
+	}
+#welcome .well-custom > h5{
+	color:#5a5959;
+	font-size: 17px;
+}
 /*Här börjar CSS för Yatzy formuläret*/
 td {
 	font-family: arial; 
@@ -139,23 +150,23 @@ td {
     border-radius: 20px 0 20px 0;
     cursor: pointer;
     transform-style: preserve-3d;
-    background: -webkit-linear-gradient(top left, white 50%, coral 50%);
-    background:    -moz-linear-gradient(top left, white 50%, coral 50%);
-    background:     -ms-linear-gradient(top left, white 50%, coral 50%);
-    background:      -o-linear-gradient(top left, white 50%, coral 50%);
-    background:         linear-gradient(top left, white 50%, coral 50%);
+    background: -webkit-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
+    background:    -moz-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
+    background:     -ms-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
+    background:      -o-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
+    background:         linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
 }
 
 .popup-content {
-    background: #444;
+    background: #3f3f40;
     box-sizing: border-box;
     border-radius: 500px 0 10px 0;
 }
 
 .popup-text {
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    color: #dfff43;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
     line-height: 30px;
     font-weight: 100;
     text-align: center;
@@ -166,6 +177,18 @@ td {
 .popup-text b {
     color: coral;
     font-weight: 300;
+}
+
+.modal-title{
+	font-family: 'Quicksand';
+}
+
+.modal-button{
+	background-color:#82c98d;
+}
+
+.modal-button:hover{
+	background-color:#5d8db2;
 }
 /* Slutet för CSS vinnar popup*/
 
@@ -180,7 +203,6 @@ td {
 }
 
 #field1{
-
     background: rgba(255,255,255,.1);
     border: 0;
     border-radius: 4px;
@@ -193,18 +215,21 @@ td {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    background-color: #e8eeef;
+    background-color: #191616;
     color: #8a97a0;
+    border: 2px #5a8ab1 solid;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 8px;
 }
+
 
 .addField, .removeField{
 	margin-left: 5px;
 	border-radius: 50%;
 	cursor: pointer;
 	font-size: 18px;
+	top:5px;
 }
 
 .addField{
@@ -212,16 +237,32 @@ td {
 }
 
 .removeField{
-	color:#ce0f0f;
+	color:#d7804a;
 }
 
 .addField:hover{
-	color:black;
+	color:darkgrey;
 }
 
 .removeField:hover{
-	color:black;
+	color:darkgrey;
 }
 #child{
 	border: 1px grey solid;
 }
+
+
+
+/*CSS för startsida*/
+
+.navbar-brand{
+	padding:0;
+}
+
+.navbar-brand> img{
+	height:80%;
+	padding-top: 10px;
+	width:auto;
+
+}
+
