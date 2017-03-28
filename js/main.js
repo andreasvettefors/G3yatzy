@@ -61,8 +61,6 @@ var dice = [
 	}
 ];
 
-
-
 // Functions
 // Example how to get data from database (Will be removed when our app is finished)
 /*query.runAQuery(() =>{
@@ -76,20 +74,8 @@ function start() {
 	//Example how to show our templates in the DOM
 
 	//$('body').append(example());
-<<<<<<< HEAD
 	$('body').append(startPage());
-	yatzyForm();
 
-
-
-=======
-  	$('body').append(startPage());
-	//$('#pageContent').append(welcome());
-	//$('body').append(winnerTemplate());
->>>>>>> c2a30d718a52504bece4ff5a37087d608a50a45d
-	/*
-		submitPlayer();
-    totalCalc(); */
 }
 
 function randomize() {
@@ -264,58 +250,13 @@ function holdDice() {
 
 var clicks = 0;
 
-<<<<<<< HEAD
+
 function addField() {
 
 	$('.addField').remove();
 	var newField = $('body').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 
 }
-
-var arr = ['Spelare', 'Ettor', 'Tvåor', 'Treor', 'Fyror', 'Femmor', 'Sexor', 'Summa', 'Bonus'];
-
-
-function yatzyForm() {
-	var tablerow;
-	var tabledata;
-	arr.forEach(function (a, index) {
-			tablerow = $('<tr/>');
-			if (index == 0) {
-				tabledata = $(`<th>${a}</th>`);
-				tablerow.append(tabledata);
-				players.forEach(function (player, index) {
-					tabledata = $(`<th class="text-center">${index + 1}</th>`);
-					tablerow.append(tabledata);
-				});
-			} else if (index == 7 || index == 8) {
-				tabledata = $(`<td><strong>${a}</strong></td>`);
-				tablerow.append(tabledata);
-				players.forEach(function (player, index) {
-					tabledata = $(`<td></td>`);
-					tablerow.append(tabledata);
-				});
-			} else {
-			tabledata = $(`<td>${a}</td>`);
-			tablerow.append(tabledata);
-			players.forEach(function (player, index) {
-				tabledata = $(`<td class="player${index + 1}"></td>`);
-				tablerow.append(tabledata);
-			});
-		}
-
-		$('#scoretabel').append(tablerow);
-	});
-
-
-}
-=======
-function addField(){
-	
-		$('.addField').remove();
-		var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input inputControl" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
-		
-	}
->>>>>>> c2a30d718a52504bece4ff5a37087d608a50a45d
 
 // Event that adds a new input field
 $(document).on('click', '.addField', function () {
