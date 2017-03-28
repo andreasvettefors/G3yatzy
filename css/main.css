@@ -1,6 +1,11 @@
 body{
 	/*margin-left: 20px;*/
-	background:black;
+	background:white;
+}
+
+.player1:hover,.player2:hover,.player3:hover,.player4:hover{
+	background: red;
+	cursor:pointer;
 }
 
 /*Navbar style*/
@@ -173,7 +178,6 @@ td {
 }
 
 #field1{
-
     background: rgba(255,255,255,.1);
     border: 0;
     border-radius: 4px;
