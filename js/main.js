@@ -258,7 +258,6 @@ function findWinner() {
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
 function holdDice() {
-    console.log(dice)
 	$('#diceHolder img').each(function (index) {
 		if ($(this).attr('class') == 'active') {
 			dice[index].saved = true;
@@ -637,10 +636,10 @@ $(document).on('click', '.btn-info', function () {
 
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
+    holdDice();
 });
 
 $(document).on('click', '#diceTable #throwDice', function () {
-	holdDice();
 	rollDie();
 });
 $(document).on('click', '.customTd', function () {
