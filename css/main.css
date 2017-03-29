@@ -9,10 +9,10 @@ body{
 	background-color: transparent;
 	/*background-color: #353a40;*/
 	margin-top: 5%;
-	border-radius:0;
-	border:none;
+	border-radius:0;	
 	border-top: 2px solid #0f446a;
 	border-bottom: 2px solid #0f446a;
+	box-shadow: none;
 }
 
 .navbar-custom .navbar-header .navbar-brand, .navbar-custom .navbar-nav > li > a{
@@ -33,6 +33,7 @@ body{
 {
 	background:#0f446a;
 	color: #a3efaf;
+	cursor:pointer;
 }
 
 .navbar-custom .navbar-nav > .active > a,
@@ -69,8 +70,14 @@ body{
 }
 /*Här börjar CSS för Yatzy formuläret*/
 td {
-	font-family: arial; 
-	font-size: 10px;
+	font-family: 'Quicksand';
+	font-size: 15px;
+	color:lightgray;
+}
+
+th{
+	font-family: 'Quicksand';
+	font-size: 17px;		
 }
 .possClass {
 	text-align:center;
@@ -80,28 +87,34 @@ td {
 	font-size: 12pt;
 	text-align:center;
 }
-#greyField {
-	background-color: #f2f2f2;
+.greyField {
+	    background-color: #032329;
+    color: #acd13f;
 }
 #tdSpecialField {
 	font-weight: bold;
-	color: black;
+	color: blue;
 }
 #tdsmallerField {
 	width: 20%;
 }
+
+.customTd:hover{
+	background:pink;
+	cursor:pointer:;
+}
+
+#yatzyFormContainer{
+	background-color: #353a40;
+}
 /*Här slutar CSS för Yatzy formuläret*/
 
 #diceHolder{
-	height:110px;
-	padding-top: 22px;
-	padding-bottom: 23px;
+	height:89.6px;
 	display:flex;
 	justify-content: space-around;
 	background-color: #353a40;
 }
-
-
 
 #diceHolder .active{
 	border-color: #1ff973;
@@ -196,7 +209,6 @@ td {
 }
 
 #field1{
-
     background: rgba(255,255,255,.1);
     border: 0;
     border-radius: 4px;
