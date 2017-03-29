@@ -275,3 +275,23 @@ th{
 
 }
 
+/* CSS för aktiv spelare*/
+
+.activePlayersList{
+	 list-style-type: none;
+}
+
+.activePlayerForm{
+	    box-shadow: 0 0 14px 2px #f7ef42;
+}
+
+.activePlayer{
+	color:yellow;
+	font-size:15px;
+	font-weight:bold;
+}
+
+.playerList{
+	font-family: 'Quicksand';
+	font-size: 14px;
+}
