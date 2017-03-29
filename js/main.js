@@ -44,19 +44,23 @@ var dice = [
 	});
 });*/
 
-// Yut to be domready before we do stuff
+// Just to be domready before we do stuff
 $(start);
 
 function start() {
-
 	$('body').append(startPage());
-
+	$('#gamePage').hide();
+	$('#wrapper').hide();
+		printHighScoreToDom();
 }
 
 function startGame(){
-	$('#pageContent').html('');
-	$('#pageContent').append(gamePage());
+	//$('#pageContent').html('');
+	//$('#pageContent').append(gamePage());
+	$('#homePage').hide();
 	buildYatzyForm();
+	$('#gamePage').show();
+	
 	
 }
 
@@ -119,6 +123,7 @@ function appendToDom() {
 }
 
 function printHighScoreToDom() {
+	console.log('hej');
 	query.dbHighScore((users) => {
 		users.forEach(function (user, index) {
 			$('tbody').append(`
@@ -360,3 +365,10 @@ $(document).on('click', '#diceTable #throwDice', function () {
 	holdDice();
 	rollDie();
 });
+
+$(document).on('click', 'li', function () {
+	$('#wrapper').show();
+	$('#homePage').hide();
+});
+
+

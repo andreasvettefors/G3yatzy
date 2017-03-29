@@ -9,10 +9,10 @@ body{
 	background-color: transparent;
 	/*background-color: #353a40;*/
 	margin-top: 5%;
-	border-radius:0;
-	border:none;
+	border-radius:0;	
 	border-top: 2px solid #0f446a;
 	border-bottom: 2px solid #0f446a;
+	box-shadow: none;
 }
 
 .navbar-custom .navbar-header .navbar-brand, .navbar-custom .navbar-nav > li > a{
@@ -33,6 +33,7 @@ body{
 {
 	background:#0f446a;
 	color: #a3efaf;
+	cursor:pointer;
 }
 
 .navbar-custom .navbar-nav > .active > a,
@@ -70,13 +71,13 @@ body{
 /*Här börjar CSS för Yatzy formuläret*/
 td {
 	font-family: 'Quicksand';
-	font-size: 16px;
+	font-size: 15px;
 	color:lightgray;
 }
 
 th{
 	font-family: 'Quicksand';
-	font-size: 18px;		
+	font-size: 17px;		
 }
 .possClass {
 	text-align:center;
