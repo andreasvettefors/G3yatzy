@@ -69,8 +69,14 @@ body{
 }
 /*Här börjar CSS för Yatzy formuläret*/
 td {
-	font-family: arial; 
-	font-size: 10px;
+	font-family: 'Quicksand';
+	font-size: 16px;
+	color:lightgray;
+}
+
+th{
+	font-family: 'Quicksand';
+	font-size: 18px;		
 }
 .possClass {
 	text-align:center;
@@ -81,7 +87,8 @@ td {
 	text-align:center;
 }
 .greyField {
-	background-color: #f2f2f2;
+	    background-color: #032329;
+    color: #acd13f;
 }
 #tdSpecialField {
 	font-weight: bold;
@@ -102,9 +109,7 @@ td {
 /*Här slutar CSS för Yatzy formuläret*/
 
 #diceHolder{
-	height:110px;
-	padding-top: 22px;
-	padding-bottom: 23px;
+	height:89.6px;
 	display:flex;
 	justify-content: space-around;
 	background-color: #353a40;

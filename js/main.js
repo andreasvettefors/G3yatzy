@@ -7,32 +7,7 @@ var throws = 0;
 var yatzyForm = ["Spelare", "Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor", "Bonus", "Summa",
 "Ett Par", "Två Par", "Tretal", "Fyrtal", "Liten Stege", "Stor Stege", "Kåk", "Chans", "Yatzy", "Total"];
 
-var players = [
-	{
-		"username": "hhh",
-		"yatzyPoints": [],
-		"score": 5,
-		"active": false
-	},
-	{
-		"username": "Hanna",
-		"yatzyPoints": [],
-		"score": 10,
-		"active": false
-	},
-	{
-		"username": "sss",
-		"yatzyPoints": [],
-		"score": 4,
-		"active": false
-	},
-	{
-		"username": "rrr",
-		"yatzyPoints": [],
-		"score": 7,
-		"active": false
-	}
-];
+var players = [];
 
 var dice = [
 	{
@@ -69,15 +44,18 @@ var dice = [
 	});
 });*/
 
+// Yut to be domready before we do stuff
 $(start);
 
 function start() {
-	//Example how to show our templates in the DOM
+	$('body').append(startPage());
+}
 
-	//$('body').append(example());
-  $('body').append(startPage());
-    startGame();
-
+function startGame(){
+	$('#pageContent').html('');
+	$('#pageContent').append(gamePage());
+	buildYatzyForm();
+	
 }
 
 function randomize() {
@@ -138,9 +116,9 @@ function appendToDom() {
 	});
 }
 
-function printHighScoreToDom(){
+function printHighScoreToDom() {
 	query.dbHighScore((users) => {
-		users.forEach(function(user,index){
+		users.forEach(function (user, index) {
 			$('tbody').append(`
 									<tr>
 					        <td class="lalign">${index+1}</td>
@@ -150,7 +128,7 @@ function printHighScoreToDom(){
 				`)
 			console.log(user.score);
 		})
-});
+	});
 
 }
 
@@ -164,31 +142,28 @@ function printScores() {
 	});
 }
 
-function addPlayersToGame(){
+function addPlayersToGame() {
 	players = [];
-	$('.input').each(function(index,value){
-		if(index === 0){
-					players.push({
-						"username": $(this).val(),
-						  "yatzyPoints":[],
-							"active": true,
-						  "score":0
-					})
+	$('.input').each(function (index) {
+		if (index === 0) {
+			players.push({
+				"username": $(this).val(),
+				"yatzyPoints": [],
+				"active": true,
+				"score": 0
+			});
 		} else {
-					players.push({
-						"username": $(this).val(),
-						  "yatzyPoints":[],
-							"active": false,
-						  "score":0
-					});
+			players.push({
+				"username": $(this).val(),
+				"yatzyPoints": [],
+				"active": false,
+				"score": 0
+			});
 		}
 
-		console.log(players);
-	})
+	});
 
 }
-
-
 
 //Checks whether bonus is valid
 function bonusChecker() {
@@ -261,8 +236,7 @@ function submitPlayer() {
 		var textValue = $("input:text").val();
 		var sumValue = $(".total").text();
 		console.log(textValue + " " + sumValue);
-		query.submitHighscoreToDB(textValue, sumValue, ()=>{
-		});
+		query.submitHighscoreToDB(textValue, sumValue, () => {});
 
 		//return false does so that the page doesn't refresh
 		return false;
@@ -284,51 +258,58 @@ function findWinner() {
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
 function holdDice() {
+    console.log(dice)
 	$('#diceHolder img').each(function (index) {
 		if ($(this).attr('class') == 'active') {
 			dice[index].saved = true;
+            console.log(dice)
 		}
 	});
 
 }
 //function add inputfield for new players
 
-var clicks = 0;
+
 
 function addField() {
 
 	$('.addField').remove();
-	var newField = $('body').append('<div class="field"><input autocomplete="off" class="input form-control" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
+	var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input inputControl" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 
 }
 
 //Funktion för att kunna starta spelet och rita upp spelet med spelare och formulär
-function startGame(){
+function buildYatzyForm() {
 	var tableRow;
 	var tableData;
-    yatzyForm.forEach(function(outPrint, index){
-        tableRow = $(`<tr></tr>`);
-        if(index == 0){
-        	tableData = $(`<th class="greyField">${outPrint}</th>`);
-        	tableRow.append(tableData);
-        	players.forEach(function(player, index){
-            tableRow.append($(`<th class = "text-center greyField">${index + 1}</th>`));
-        });
-        }else if(index == 7 || index == 8 || index == 18){
-        	tableData = $(`<td class="greyField"><strong>${outPrint}</strong></td>`);
-        	tableRow.append(tableData);
-        	players.forEach(function(player, index){
-            tableRow.append($(`<td class="player${index + 1} greyField"></td>`));
-        	});
-        }else{
-        	tableData = $(`<td>${outPrint}</td>`);
-        	tableRow.append(tableData);
-        	players.forEach(function(player, index){
-            tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
-        	});
-        }
-        $("#scoretabel").append(tableRow);
-
+	yatzyForm.forEach(function (outPrint, index) {
+		tableRow = $(`<tr></tr>`);
+		if (index == 0) {
+			tableData = $(`<th class="greyField">${outPrint}</th>`);
+			tableRow.append(tableData);
+			players.forEach(function (player, index) {
+				tableRow.append($(`<th class = "text-center greyField">${index + 1}</th>`));
+			});
+		}else if(index<7&&index>0){
+            tableData = $(`<td id="${index}">${outPrint}</td>`);
+			tableRow.append(tableData);
+			players.forEach(function (player, index) {
+				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
+			});     
+       } else if (index == 7 || index == 8 || index == 18) {
+			tableData = $(`<td class="greyField"><strong>${outPrint}</strong></td>`);
+			tableRow.append(tableData);
+			players.forEach(function (player, index) {
+				tableRow.append($(`<td class="player${index + 1} greyField"></td>`));
+			});
+		} else {
+			tableData = $(`<td>${outPrint}</td>`);
+			tableRow.append(tableData);
+			players.forEach(function (player, index) {
+				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
+			});
+		}
+		$("#scoretabel").append(tableRow);
     });
 }
 
@@ -337,6 +318,8 @@ function addToScore(thisDiv){
     var pointAdded = 0;
     var x = thisDiv.previousElementSibling.innerHTML;
     var p = parseInt(thisDiv.previousElementSibling.id);
+    console.log(x)
+    console.log(p)
     if(x==x){
         for(var i = 0; i < dice.length; i++){
             if(dice[i].value==p){
@@ -373,14 +356,18 @@ function addToScoreAdvanced(thisDiv){
         }else{
             if(result1[1]==true&&result1[3]==true){
                 pointAdded=Math.min(result1[0],result1[2])*2
+                console.log("")
             }else if(result1[1]==true){
                 pointAdded=result1[0]*2
+                console.log("")
             }else if(result1[3]==true){
                 pointAdded=result1[2]*2
+                console.log("")
             }else if(result1.length==0){
             }
             else{
                 pointAdded=result1[4]*2
+                console.log(result1)
             }
         }
             $(thisDiv).text(pointAdded);
@@ -415,7 +402,7 @@ function addToScoreAdvanced(thisDiv){
     //
         //THREE OF A KIND
     //
-    else if(x=="Triss"){
+    else if(x=="Tretal"){
             //Check if any values match eachother in the Dice array
             for (var i = 0; i < dice.length;i++){
                 var count = 0;
@@ -586,6 +573,10 @@ function addToScoreAdvanced(thisDiv){
             newRound();
             }            
         }
+    else if(x=="Ettor"||x=="Tvåor"||x=="Treor"||x=="Fyror"||x=="Femmor"||x=="Sexor"){
+        addToScore(thisDiv);
+        console.log("")
+    }
 }
 
 
@@ -598,6 +589,8 @@ function newRound(){
 
 // Events
 
+var clicks = 0;
+
 // Event that adds a new input field
 $(document).on('click', '.addField', function () {
 
@@ -608,7 +601,7 @@ $(document).on('click', '.addField', function () {
 			addField();
 		} else {
 			console.log("hej");
-					}
+		}
 	}
 });
 
@@ -622,9 +615,25 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 
 });
 
-			$(document).on('click','.btn-info',function(){
-				addPlayersToGame();
-					});
+$(document).on('click', '.btn-info', function () {
+	var flag = false;
+	$('.input').each(function (index) {
+		if ($(this).val() != '') {
+			flag = true;
+		} else {
+			flag = false;
+		}
+	});
+	if (flag) {
+		addPlayersToGame();
+		startGame();
+		
+	}
+	else{
+		console.log('Får inte vara tomt');
+		return;
+	}
+});
 
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
@@ -634,4 +643,7 @@ $(document).on('click', '#diceTable #throwDice', function () {
 	holdDice();
 	rollDie();
 });
-
+$(document).on('click', '.customTd', function () {
+	addToScoreAdvanced(this);
+});
+ 
