@@ -67,6 +67,7 @@ body{
 #welcome .well-custom > h5{
 	color:#5a5959;
 	font-size: 17px;
+	line-height: 25px;
 }
 /*Här börjar CSS för Yatzy formuläret*/
 td {
@@ -224,7 +225,7 @@ th{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    background-color: #191616;
+    background-color: #2f3133;
     color: #8a97a0;
     border: 2px #5a8ab1 solid;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -261,7 +262,23 @@ th{
 }
 
 
+.containerInput{
+	margin-top: 50px;
+	background-color: #353a40;
+}
 
+.header2{
+	color: #acd13f;
+    font-weight: bold;
+    font-size: 19px;
+    font-family: 'Quicksand';
+    }
+
+.paragraph{
+	color: #acd13f;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
 /*CSS för startsida*/
 
 .navbar-brand{
