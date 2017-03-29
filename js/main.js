@@ -76,6 +76,8 @@ function start() {
 
 	//$('body').append(example());
   $('body').append(startPage());
+  $('body').append(welcome());
+  $('body').append(inputField());
 
 
 function randomize() {
@@ -97,6 +99,7 @@ function rollDie() {
 		appendToDom();
 
 	}
+}
 }
 
 function appendToDom() {
@@ -366,4 +369,3 @@ $(document).on('click', '#diceTable #throwDice', function () {
 	holdDice();
 	rollDie();
 });
-
