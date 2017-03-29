@@ -1,0 +1,25 @@
+<!--Template för vinnar popup-->
+
+function winnerTemplate(){return `
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	  Vinnar knapp
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="popup" class="modal-dialog" role="document">
+	    <div class="popup-content" class="modal-content">
+	      <div class="modal-header">        
+	        <h4 class="modal-title" id="myModalLabel">Yay!</h4>
+	      </div>
+	      <div class="popup-text" class="modal-body">
+	            Grattis till <b>vinsten</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default modal-button" data-dismiss="modal">Ok</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+` }
