@@ -50,7 +50,8 @@ $(start);
 function start() {
 	$('body').append(startPage());
 	$('#gamePage').hide();
-	$('#wrapper').hide();
+	$('#highscore').hide();
+	$('#aboutus').hide();
 	printHighScoreToDom();
 }
 
@@ -299,7 +300,7 @@ function buildYatzyForm() {
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
 				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
-			});     
+			});
        } else if (index == 7 || index == 8 || index == 18) {
 			tableData = $(`<td class="greyField"><strong>${outPrint}</strong></td>`);
 			tableRow.append(tableData);
@@ -398,7 +399,7 @@ function addToScoreAdvanced(thisDiv){
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
-        
+
     }
     //
         //TWO PAIR
@@ -413,6 +414,7 @@ function addToScoreAdvanced(thisDiv){
             }
         });
         //To make sure you cant trick the system, we check several options which needs to be true
+   
         if(result1.length==2){
             var count=[0,0,0,0,0]
             for (var i = 0; i < dice.length;i++){
@@ -500,7 +502,7 @@ function addToScoreAdvanced(thisDiv){
             }
             $(thisDiv).text(pointAdded);
             totalCalc();
-            newRound();            
+            newRound();
         }
     //
         //SMALL LADDER
@@ -525,7 +527,7 @@ function addToScoreAdvanced(thisDiv){
             }if(dice[i].value==5){
                 count5=1;
             }
-        }   
+        }
             //We add the counts
             count += (count1+count2+count3+count4+count5)
             //If all count has been triggered, point is valid
@@ -578,7 +580,7 @@ function addToScoreAdvanced(thisDiv){
             }else{
                 result1.push(point.value);
             }
-        });     
+        });
             //You can log result1 for better understanding
                 // This array needs to have 3 numbers
             if(result1.length==3){
@@ -597,7 +599,7 @@ function addToScoreAdvanced(thisDiv){
             }
             $(thisDiv).text(pointAdded);
             totalCalc();
-            newRound();            
+            newRound();
         }
     //
         //CHANCE
@@ -686,7 +688,7 @@ $(document).on('click', '.btn-info', function () {
 	if (flag) {
 		addPlayersToGame();
 		startGame();
-		
+
 	}
 	else{
 		console.log('Får inte vara tomt');
@@ -703,12 +705,28 @@ $(document).on('click', '#diceTable #throwDice', function () {
 	rollDie();
 });
 
+var pages = ['aboutusPage','highscorePage','rulesPage','homePage'];
+
 $(document).on('click', 'li', function () {
-	$('#wrapper').show();
-	$('#homePage').hide();
+	var buttonId = $(this).attr('id');
+
+	var page;
+
+	pages.forEach(function(value){
+		if(buttonId === value){
+
+		page = value.replace("Page","");
+		console.log(page);
+		$(`#${page}`).show();
+	} else {
+		page = value.replace("Page","");
+		console.log(page);
+		$(`#${page}`).hide();
+	}
+	});
+
 });
 
 $(document).on('click', '.customTd', function () {
 	addToScoreAdvanced(this);
 });
- 
