@@ -67,6 +67,7 @@ body{
 #welcome .well-custom > h5{
 	color:#5a5959;
 	font-size: 17px;
+	line-height: 25px;
 }
 /*Här börjar CSS för Yatzy formuläret*/
 td {
@@ -120,6 +121,7 @@ th{
 	border-color: #1ff973;
 	color: #96ffe8;
 	box-shadow: 0 0 14px 2px #1aeaa8;
+	background-color: #0b3444;
 }
 
 #diceHolder img{
@@ -133,6 +135,8 @@ th{
 	background-color: #150f28;
 	cursor:pointer;
 }
+
+
 
 /* CSS för submitform*/
 
@@ -221,7 +225,7 @@ th{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    background-color: #191616;
+    background-color: #2f3133;
     color: #8a97a0;
     border: 2px #5a8ab1 solid;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -258,7 +262,23 @@ th{
 }
 
 
+.containerInput{
+	margin-top: 50px;
+	background-color: #353a40;
+}
 
+.header2{
+	color: #acd13f;
+    font-weight: bold;
+    font-size: 19px;
+    font-family: 'Quicksand';
+    }
+
+.paragraph{
+	color: #acd13f;
+    font-size: 15px;
+    font-family: 'Quicksand';
+}
 /*CSS för startsida*/
 
 .navbar-brand{
@@ -272,3 +292,23 @@ th{
 
 }
 
+/* CSS för aktiv spelare*/
+
+.activePlayersList{
+	 list-style-type: none;
+}
+
+.activePlayerForm{
+	    box-shadow: 0 0 14px 2px #f7ef42;
+}
+
+.activePlayer{
+	color:yellow;
+	font-size:15px;
+	font-weight:bold;
+}
+
+.playerList{
+	font-family: 'Quicksand';
+	font-size: 14px;
+}
