@@ -60,6 +60,8 @@ function startGame(){
 	$('#homePage').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
+    players[0].yatzyPoints.length=10;
+    console.log(players)
 }
 
 function randomize() {
@@ -320,15 +322,12 @@ function buildYatzyForm() {
 //Adderar poäng till formuläret
 function addToScore(thisDiv){
     var pointAdded = 0;
-    var x = thisDiv.previousElementSibling.innerHTML;
-    var p = parseInt(thisDiv.previousElementSibling.id);
-    if(x==x){
+    var p = parseInt($(thisDiv).closest('tr').find('td:first').attr('id'));
         for(var i = 0; i < dice.length; i++){
             if(dice[i].value==p){
                 pointAdded += p;
             }
         }
-    }
     $(thisDiv).text(pointAdded);
     totalCalc();
     newRound();
@@ -339,7 +338,8 @@ function addToScoreAdvanced(thisDiv){
     var result1= [];
     var pointAdded = 0;
     var count = 0;
-    var x = thisDiv.previousElementSibling.innerHTML;
+    var x = $(thisDiv).closest('tr').find('td:first').text();
+    
     //
         //ONE PAIR
     //
@@ -636,6 +636,7 @@ function addToScoreAdvanced(thisDiv){
         addToScore(thisDiv);
         console.log("")
     }
+    console.log(x)
 }
 
 
@@ -710,5 +711,7 @@ $(document).on('click', 'li', function () {
 
 $(document).on('click', '.customTd', function () {
 	addToScoreAdvanced(this);
+    var x = $(this).closest('tr').find('td:first').attr('id');
+    console.log(x)
 });
  
