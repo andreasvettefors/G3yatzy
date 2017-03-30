@@ -12,27 +12,27 @@ var players = [];
 var dice = [
 	{
 		"die": 0,
-		"value": 0,
+		"value": 5,
 		"saved": false
 	},
 	{
 		"die": 1,
-		"value": 0,
+		"value": 5,
 		"saved": false
 	},
 	{
 		"die": 2,
-		"value": 0,
+		"value": 5,
 		"saved": false
 	},
 	{
 		"die": 3,
-		"value": 0,
+		"value": 5,
 		"saved": false
 	},
 	{
 		"die": 4,
-		"value": 0,
+		"value": 1,
 		"saved": false
 	}
 ];
@@ -52,7 +52,8 @@ function start() {
 	$('body').append(startPage());
 
 	$('#gamePage').hide();
-	$('#wrapper').hide();
+	$('#highscore').hide();
+	$('#aboutus').hide();
 	printHighScoreToDom();
 }
 
@@ -77,7 +78,6 @@ function rollDie() {
 		console.log('next person');
 	} else {
 		dice.forEach(function (die) {
-			console.log(die.value);
 			if (die.saved === false) {
 				die.value = randomize();
 			}
@@ -268,12 +268,12 @@ function findWinner() {
 //hur ska jag få rätt totalsumma som tillhör en viss spelare?
 
 function holdDice() {
-    console.log(dice)
 	$('#diceHolder img').each(function (index) {
 		if ($(this).attr('class') == 'active') {
 			dice[index].saved = true;
-            console.log(dice)
-		}
+		}else{
+            dice[index].saved = false;
+        }
 	});
 
 }
@@ -305,7 +305,7 @@ function buildYatzyForm() {
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
 				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
-			});     
+			});
        } else if (index == 7 || index == 8 || index == 18) {
 			tableData = $(`<td class="greyField"><strong>${outPrint}</strong></td>`);
 			tableRow.append(tableData);
@@ -328,8 +328,6 @@ function addToScore(thisDiv){
     var pointAdded = 0;
     var x = thisDiv.previousElementSibling.innerHTML;
     var p = parseInt(thisDiv.previousElementSibling.id);
-    console.log(x)
-    console.log(p)
     if(x==x){
         for(var i = 0; i < dice.length; i++){
             if(dice[i].value==p){
@@ -360,30 +358,53 @@ function addToScoreAdvanced(thisDiv){
                 result1.push(point.value,point.saved)
             }
         });
-        //To make sure you cant trick the system, we check several options which needs to be true
-        if(result1[1]==null&&result1[0]<7){
-            pointAdded=result1[0].value*2
-        }else{
+        if(result1.length==2){
+            pointAdded=result1[0]*2
+        }else if(result1.length==4){
             if(result1[1]==true&&result1[3]==true){
-                pointAdded=Math.min(result1[0],result1[2])*2
-                console.log("")
+                console.log('Var god välj vilket par som ska sparas!')
+                return;
             }else if(result1[1]==true){
                 pointAdded=result1[0]*2
-                console.log("")
-            }else if(result1[3]==true){
+            }
+            else if(result1[3]==true){
                 pointAdded=result1[2]*2
-                console.log("")
-            }else if(result1.length==0){
             }
             else{
-                pointAdded=result1[4]*2
-                console.log(result1)
+                console.log('Var god välj vilket par som ska sparas!')
+                return;
+            }
+        }else if(result1.length==6){
+            if(result1[1]==true&&result1[3]==true&&result1[5]==true){
+                console.log('Var god välj vilket par som ska sparas!')
+                return;                
+            }else if(result1[0]==result1[2]&&result[1]==true&&result1[3]==true){
+                console.log('Var god välj vilket par som ska sparas!')
+                return;                    
+            }else if(result1[2]==result1[4]&&result1[1]==true&&result1[3]==true){
+                console.log('Var god välj vilket par som ska sparas!')
+                return;                    
+            }else if(result1[1]==false&&result1[3]==false&&result1[5]==false){
+                if(result1[0]==result1[2]&&result1[2]==result1[4]){
+                 pointAdded=result1[0]*2                        
+                }
+                else{
+                console.log('Var god välj vilket par som ska sparas!')
+                return;                     
+                }
+            }
+            else if(result1[1]==true){
+                 pointAdded=result1[0]*2    
+            }else if(result1[3]==true){
+                pointAdded=result1[2]*2  
+            }else if(result1[5]==true){
+                pointAdded=result1[4]*2  
             }
         }
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
-        
+
     }
     //
         //TWO PAIR
@@ -398,13 +419,48 @@ function addToScoreAdvanced(thisDiv){
             }
         });
         //To make sure you cant trick the system, we check several options which needs to be true
-        if(result1[1]==null){   
-        }else if(result1[2]==null){
-         pointAdded = (result1[0]*2) + (result1[1]*2) 
+   
+        if(result1.length==2){
+            var count=[0,0,0,0,0]
+            for (var i = 0; i < dice.length;i++){
+                for(var j = 0; j < dice.length; j++){
+                    if(dice[i].value == dice[j].value){
+                        count[i]++
+                    }
+                }
+            }
+            if(count[0]==3||count[1]==3||count[2]==3){
+            }else if(count[0]==2||count[1]==2||count[2]==2||count[3]==2){
+                pointAdded= (result1[0]*2) + (result1[1]*2)
+            }else{
+                pointAdded= (result1[0]*2) + (result1[1]*2)
+            }
+        }else if(result1.length==3){
+            console.log(result1)
+            if(result1[0]==result1[1]&&result1[1]==result1[2]){
+               
+                var count=[0,0,0,0,0]
+            for (var i = 0; i < dice.length;i++){
+                for(var j = 0; j < dice.length; j++){
+                    if(dice[i].value == dice[j].value){
+                        count[i]++
+                    }
+                }
+            }if(count[0]==4||count[1]==4){
+                pointAdded=result1[0]*4
+            }              
+                
+            }else if(result1[0]==result1[1]){
+                pointAdded= (result1[0]*2) + (result1[2]*2)  
+            }else if(result1[0]==result1[2]){
+                pointAdded= (result1[0]*2) + (result1[1]*2)
+            }else{
+                pointAdded= (result1[0]*2) + (result1[2]*2)
+            }
+        }else if(result1.length==4){
+            
         }
-        else{
-            pointAdded = (result1[2]*2) + (result1[1]*2)
-        }
+    
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -451,7 +507,7 @@ function addToScoreAdvanced(thisDiv){
             }
             $(thisDiv).text(pointAdded);
             totalCalc();
-            newRound();            
+            newRound();
         }
     //
         //SMALL LADDER
@@ -476,7 +532,7 @@ function addToScoreAdvanced(thisDiv){
             }if(dice[i].value==5){
                 count5=1;
             }
-        }   
+        }
             //We add the counts
             count += (count1+count2+count3+count4+count5)
             //If all count has been triggered, point is valid
@@ -529,7 +585,7 @@ function addToScoreAdvanced(thisDiv){
             }else{
                 result1.push(point.value);
             }
-        });     
+        });
             //You can log result1 for better understanding
                 // This array needs to have 3 numbers
             if(result1.length==3){
@@ -538,7 +594,7 @@ function addToScoreAdvanced(thisDiv){
                 }else{
                     if(result1[0]==result1[1]){
                         pointAdded= (result1[0]*3)+(result1[2]*2)
-                    }if(result1[0]==result1[2]){
+                    }else if(result1[0]==result1[2]){
                         pointAdded= (result1[0]*3)+(result1[1]*2)
                     }
                     else{
@@ -548,7 +604,7 @@ function addToScoreAdvanced(thisDiv){
             }
             $(thisDiv).text(pointAdded);
             totalCalc();
-            newRound();            
+            newRound();
         }
     //
         //CHANCE
@@ -574,14 +630,14 @@ function addToScoreAdvanced(thisDiv){
                         count++;
                         //Modified
                         if(count>4){
-                            pointAdded=dice[i].value*6
+                            pointAdded=dice[i].value*5
                         }
                     }
                 }
+            }    
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
-            }            
         }
     else if(x=="Ettor"||x=="Tvåor"||x=="Treor"||x=="Fyror"||x=="Femmor"||x=="Sexor"){
         addToScore(thisDiv);
@@ -669,7 +725,7 @@ $(document).on('click', '.btn-info', function () {
 		showActivePlayers();
 
 		startGame();
-		
+
 	}
 	else{
 		console.log('Får inte vara tomt');
@@ -681,22 +737,38 @@ $(document).on('click', '.btn-info', function () {
 
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
+    holdDice();
 });
 
 $(document).on('click', '#diceTable #throwDice', function () {
-	holdDice();
 	rollDie();
 
 });
 
+var pages = ['aboutusPage','highscorePage','rulesPage','homePage'];
+
 
 $(document).on('click', 'li', function () {
-	$('#wrapper').show();
-	$('#homePage').hide();
+	var buttonId = $(this).attr('id');
+
+	var page;
+
+	pages.forEach(function(value){
+		if(buttonId === value){
+
+		page = value.replace("Page","");
+		console.log(page);
+		$(`#${page}`).show();
+	} else {
+		page = value.replace("Page","");
+		console.log(page);
+		$(`#${page}`).hide();
+	}
+	});
+
 });
 
 $(document).on('click', '.customTd', function () {
 	addToScoreAdvanced(this);
 });
- 
 
