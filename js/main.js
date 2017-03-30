@@ -48,7 +48,9 @@ var dice = [
 $(start);
 
 function start() {
+
 	$('body').append(startPage());
+
 	$('#gamePage').hide();
 	$('#highscore').hide();
 	$('#aboutus').hide();
@@ -61,7 +63,9 @@ function startGame(){
 	$('#home').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
+	seeActivePlayer();
 }
+
 
 function randomize() {
 	return Math.floor(Math.random() * 6) + 1;
@@ -82,6 +86,7 @@ function rollDie() {
 
 	}
 }
+
 
 function appendToDom() {
 	$('#diceHolder img').remove();
@@ -294,7 +299,7 @@ function buildYatzyForm() {
 			tableData = $(`<th class="greyField">${outPrint}</th>`);
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
-				tableRow.append($(`<th class = "text-center greyField">${index + 1}</th>`));
+				tableRow.append($(`<th id="player${index + 1}" class = "text-center greyField">${index + 1}</th>`));
 			});
 		}else if(index<7&&index>0){
             tableData = $(`<td id="${index}">${outPrint}</td>`);
@@ -649,6 +654,36 @@ function newRound(){
     $('#diceHolder p').remove();
 }
 
+//function see active players
+
+function showActivePlayers(){
+		var unorderedList = $(`<ul class="activePlayersList"></ul>`);
+	players.forEach(function(player, index){
+		var playerItem = $(`<li class="playerList" id="p${index}">Spelare ${index + 1} - ${player.username}</li>`);
+		unorderedList.append(playerItem);
+	});
+
+	$('#activePlayers').append(unorderedList);
+}
+
+function seeActivePlayer(){
+
+	players.forEach(function(player,index){
+	
+		if(player.active){
+			$(`#p${index}`).addClass('activePlayer');
+			$(`#player${index +1}`).addClass('activePlayerForm');
+			
+		}
+		else{
+			$(`#p${index}`).removeClass('activePlayer');
+			$(`#player${index +1}`).removeClass('activePlayerForm');
+		}
+	});
+
+	
+}
+
 // Events
 
 var clicks = 0;
@@ -688,6 +723,8 @@ $(document).on('click', '.btn-info', function () {
 	});
 	if (flag) {
 		addPlayersToGame();
+		showActivePlayers();
+
 		startGame();
 
 	}
@@ -697,6 +734,8 @@ $(document).on('click', '.btn-info', function () {
 	}
 });
 
+
+
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
     holdDice();
@@ -704,9 +743,11 @@ $(document).on('click', '#diceHolder img', function () {
 
 $(document).on('click', '#diceTable #throwDice', function () {
 	rollDie();
+
 });
 
 var pages = ['aboutusPage','highscorePage','rulesPage','homePage'];
+
 
 $(document).on('click', 'li', function () {
 	var buttonId = $(this).attr('id');
@@ -731,3 +772,4 @@ $(document).on('click', 'li', function () {
 $(document).on('click', '.customTd', function () {
 	addToScoreAdvanced(this);
 });
+
