@@ -50,8 +50,9 @@ $(start);
 function start() {
 	$('body').append(startPage());
 	$('#gamePage').hide();
-	$('#wrapper').hide();
 	printHighScoreToDom();
+	$('#wrapper').hide();
+	
 }
 
 function startGame(){
@@ -123,8 +124,9 @@ function appendToDom() {
 function printHighScoreToDom() {
 	console.log('hej');
 	query.dbHighScore((users) => {
+		console.log(users);
 		users.forEach(function (user, index) {
-			$('tbody').append(`
+			$('tbody').append(` 
 									<tr>
 					        <td class="lalign">${index+1}</td>
 					        <td>${user.score}</td>
@@ -332,7 +334,7 @@ function addToScore(thisDiv){
             }
         }
     }
-    $(thisDiv).text(pointAdded);
+    $(thisDiv).html(pointAdded);
     totalCalc();
     newRound();
 }

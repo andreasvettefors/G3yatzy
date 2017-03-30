@@ -75,6 +75,7 @@ td {
 	color:lightgray;
 }
 
+
 th{
 	font-family: 'Quicksand';
 	font-size: 17px;		
@@ -102,6 +103,10 @@ th{
 .customTd:hover{
 	background:pink;
 	cursor:pointer:;
+}
+
+.customTd{
+	width: 10%;
 }
 
 #yatzyFormContainer{
