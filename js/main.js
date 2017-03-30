@@ -50,20 +50,15 @@ $(start);
 function start() {
 	$('body').append(startPage());
 	$('#gamePage').hide();
-<<<<<<< HEAD
-=======
 	$('#highscore').hide();
 	$('#aboutus').hide();
->>>>>>> dc7e52b2f0bdbd13a6b49f8bc932c9bada03a8fd
 	printHighScoreToDom();
-	$('#wrapper').hide();
+
 	
 }
 
 function startGame(){
-	//$('#pageContent').html('');
-	//$('#pageContent').append(gamePage());
-	$('#homePage').hide();
+	$('#home').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
 }
