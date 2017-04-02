@@ -126,9 +126,7 @@ function appendToDom() {
 }
 
 function printHighScoreToDom() {
-	console.log('hej');
 	query.dbHighScore((users) => {
-		console.log(users);
 		users.forEach(function (user, index) {
 			$('tbody').append(` 
 									<tr>
@@ -137,7 +135,7 @@ function printHighScoreToDom() {
 					        <td>${user.username}</td>
 					      </tr>
 				`)
-			console.log(user.score);
+			//console.log(user.score);
 		})
 	});
 
@@ -176,69 +174,66 @@ function addPlayersToGame() {
 
 }
 
-//Checks whether bonus is valid
-function bonusChecker() {
-	var points = singlePoints();
-	var bonusActive = false;
-	if (points > 63) {
-		bonusActive = true;
-	}
-	return bonusActive;
-}
-
-//counts all points in the singel point board, ones-sixes
-function singlePoints() {
-	var pointsReturned = 0;
-	//founds how many <tr> exists within DOM
-	var amountOfTRs = $(document).find('tr').length;
-	//Loopa igenom varje tr element
-	for (var i = 0; i < amountOfTRs; i++) {
-		//We want to manipulate every <tr> where points are being written, theese are nth-child 2-7, bonus is not included
-		if (i < 8 && i > 1) {
-			//Get points written in <tr>. You can console log for more clarification what the variables contains
-			var a = $("tr:nth-child(" + i + ")").text();
-			//We have to split the string, because other characters is included which we dont need
-			var b = a.split("\n");
-			//parse to int so we can perform mathematic functions
-			var p = parseInt(b[2]);
-			//If <tr> tags where empty (no points), parse int was unsuccessful and we can skip those
-			if (!isNaN(p)) {
-				//Add point to pointsReturned
-				pointsReturned += p;
-			}
-		}
-	}
-	return pointsReturned;
-}
-
-//Adds 50 points if bonus is active
-function sumCalc() {
-	var pointsReturned = singlePoints();
-	if (bonusChecker() == true) {
-		pointsReturned += 50;
-		$(".bonus").text(50);
-	}
-	$(".summa").text(pointsReturned);
-	return pointsReturned;
-}
-
 //Calculates the total score
 function totalCalc() {
-	var pointsReturned = 0;
-	var amountOfTRs = $(document).find('tr').length;
-	for (var i = 0; i < amountOfTRs; i++) {
-		if (i < 19 && i > 9) {
-			var a = $("tr:nth-child(" + i + ")").text();
-			var b = a.split("\n");
-			var p = parseInt(b[2]);
-			if (!isNaN(p)) {
-				pointsReturned += p;
-			}
-		}
-	}
-	//Add the sum of the single points (onces-sixes and bonus)
-	pointsReturned += sumCalc();
-	$(".total").text(pointsReturned);
+    	players.forEach(function(player,index){
+
+        	if(player.active){
+            var count=0;
+            var points=0;
+            var bonusPoints=0;
+            var bonusActive=false;
+            var sumPoints=true;
+                for(var i = 0; i < 6;i++){
+                    if(typeof player.yatzyPoints[i]!=='undefined'){
+                        bonusPoints+=player.yatzyPoints[i]
+                    }
+                    if(bonusPoints>63&&bonusActive==false){
+                        player.yatzyPoints[6]=50;
+                        $('tr:nth-child(8)').children(".player"+(index+1)).text(50)
+                        bonusPoints+=50
+                        bonusActive=true
+                    }
+                    console.log(bonusPoints)
+                    player.yatzyPoints[7]=bonusPoints;
+                    $('tr:nth-child(9)').children(".player"+(index+1)).text(bonusPoints)
+                    
+                }
+                
+                
+			     for(var i = 8; i < 16; i++){
+                     
+                     if(typeof player.yatzyPoints[i]=='undefined'){
+                        count++;
+                     }else{
+                         points+=player.yatzyPoints[i]
+                     }
+                     if(sumPoints){
+                         points+=player.yatzyPoints[7]
+                         sumPoints=false
+                     }
+
+                     $('tr:nth-child(19)').children(".player"+(index+1)).text(points)
+                     
+                 }        
+             }
+            
+	});
+    
+    /*
+                var onceToSixesPoints=0;
+		for(var i = 0; i < 6;i++){
+            if(isNaN(player.yatzyPoints[i])){
+            }else{
+            onceToSixesPoints += player.yatzyPoints[i]    
+                }
+        }       if(onceToSixesPoints<63){
+            $('tr:nth-child(8)').children('.player'+index).text(50);
+            player.yatzyPoints[8]=50;
+        }
+    */
+   // $('tr:nth-child(19)').children(".player1").text(12)
+    
 }
 
 //submit form (saves the players name in a variable)
@@ -335,7 +330,6 @@ function addToScore(thisDiv){
         }
  		var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
 		players[playerToAddPointsTo -1].yatzyPoints[p-1] = pointAdded;
-		console.log(players);
     $(thisDiv).html(pointAdded);
     totalCalc();
     newRound();
@@ -647,7 +641,7 @@ function addToScoreAdvanced(thisDiv){
                         count++;
                         //Modified
                         if(count>4){
-                            pointAdded=dice[i].value*5
+                            pointAdded=50
                         }
                     }
                 }
@@ -660,9 +654,7 @@ function addToScoreAdvanced(thisDiv){
         }
     else if(x=="Ettor"||x=="Tvåor"||x=="Treor"||x=="Fyror"||x=="Femmor"||x=="Sexor"){
         addToScore(thisDiv);
-        console.log("")
     }
-    console.log(x)
 }
 
 
@@ -688,10 +680,10 @@ function newRound(){
 			}
 		});
 		
-		console.log(nextIndex);
+		
 		players[nextIndex].active = true;
 		seeActivePlayer();
-		console.log(players);
+		
     $('#diceHolder img').remove();
 }
 
@@ -714,7 +706,7 @@ function seeActivePlayer(){
 		if(player.active){
 			$(`#p${index}`).addClass('activePlayer');
 			$(`#player${index +1}`).addClass('activePlayerForm');
-			console.log('lägger till class');
+			
 			
 		}
 		else{
