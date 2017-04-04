@@ -242,7 +242,9 @@ function findPlayerIndexOfWinner() {
 function endGame(){
     console.log(findPlayerIndexOfWinner())
     var playerIndex=findPlayerIndexOfWinner();
-    submitPlayer(players[playerIndex].username, players[playerIndex].score)
+    for(var i = 0; i < players.length; i++){
+        submitPlayer(players[i].username, players[i].score)
+    }
     $('#myModal2').modal('show');
     $('.popup-text').append('<p>Grattis till vinsten <br/><b>'+players[playerIndex].username+'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>')
 }
@@ -336,11 +338,17 @@ function addToScoreAdvanced(thisDiv){
                 result1.push(point.value,point.saved)
             }
         });
+        console.log(result1.length)
         if(result1.length==2){
             pointAdded=result1[0]*2
         }else if(result1.length==4){
+            console.log(result1)
             if(result1[1]==true&&result1[3]==true){
-                return false;
+                if(result1[0]==result1[2]){
+                    pointAdded=result1[0]*2
+                }else{
+                    return false;
+                }
             }else if(result1[1]==true){
                 pointAdded=result1[0]*2
             }
@@ -350,7 +358,8 @@ function addToScoreAdvanced(thisDiv){
             else{
                 return false;
             }
-        }else if(result1.length==6){
+        }
+        else if(result1.length==6){
             if(result1[1]==true&&result1[3]==true&&result1[5]==true){
                 return false;
             }else if(result1[0]==result1[2]&&result[1]==true&&result1[3]==true){
@@ -627,7 +636,6 @@ function newRound(){
 			if(player.active && index == players.length - 1){
 				nextIndex = 0;
 				player.active = false;
-				console.log('last player')
 			}
 			else if(player.active && players.length > 1){
 				nextIndex = index+1;
@@ -671,7 +679,6 @@ function seeActivePlayer(){
 		else{
 			$(`#p${index}`).removeClass('activePlayer');
 			$(`#player${index +1}`).removeClass('activePlayerForm');
-			console.log('tar bort class');
 		}
 	});
 
@@ -753,11 +760,9 @@ $(document).on('click', 'li', function () {
 		if(buttonId === value){
 
 		page = value.replace("Page","");
-		console.log(page);
 		$(`#${page}`).show();
 	} else {
 		page = value.replace("Page","");
-		console.log(page);
 		$(`#${page}`).hide();
 	}
 	});
