@@ -644,7 +644,7 @@ function addToScoreAdvanced(thisDiv){
                     }
                 }
             }    
-									var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
 						players[playerToAddPointsTo -1].yatzyPoints[16] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
