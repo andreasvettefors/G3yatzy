@@ -73,6 +73,7 @@ body{
 td {
 	font-family: 'Quicksand';
 	font-size: 15px;
+    padding-left: 5px;
 	color:lightgray;
 }
 
@@ -304,14 +305,18 @@ th{
 }
 
 .activePlayerForm{
-	    box-shadow: 0 0 14px 2px #f7ef42;
+	    box-shadow:inset 0 0 5px 2px #f7ef42;
 }
 
-.activePlayer{
-	color:yellow;
-	font-size:15px;
-	font-weight:bold;
+#activePlayers .activePlayer{
+	color: #acd13f;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 0.5em #8F7;
+
 }
+
+
 
 .playerList{
 	font-family: 'Quicksand';
