@@ -48,20 +48,24 @@ var dice = [
 $(start);
 
 function start() {
+
 	$('body').append(startPage());
+
 	$('#gamePage').hide();
 	$('#highscore').hide();
 	$('#aboutus').hide();
 	printHighScoreToDom();
+
+	
 }
 
 function startGame(){
-	//$('#pageContent').html('');
-	//$('#pageContent').append(gamePage());
-	$('#homePage').hide();
+	$('#home').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
+	seeActivePlayer();
 }
+
 
 function randomize() {
 	return Math.floor(Math.random() * 6) + 1;
@@ -82,6 +86,7 @@ function rollDie() {
 
 	}
 }
+
 
 function appendToDom() {
 	$('#diceHolder img').remove();
@@ -121,17 +126,16 @@ function appendToDom() {
 }
 
 function printHighScoreToDom() {
-	console.log('hej');
 	query.dbHighScore((users) => {
 		users.forEach(function (user, index) {
-			$('tbody').append(`
+			$('tbody').append(` 
 									<tr>
 					        <td class="lalign">${index+1}</td>
 					        <td>${user.score}</td>
 					        <td>${user.username}</td>
 					      </tr>
 				`)
-			console.log(user.score);
+			//console.log(user.score);
 		})
 	});
 
@@ -153,14 +157,14 @@ function addPlayersToGame() {
 		if (index === 0) {
 			players.push({
 				"username": $(this).val(),
-				"yatzyPoints": [],
+				"yatzyPoints": [,,,,,,,,,,,,,,,,,],
 				"active": true,
 				"score": 0
 			});
 		} else {
 			players.push({
 				"username": $(this).val(),
-				"yatzyPoints": [],
+				"yatzyPoints": [,,,,,,,,,,,,,,,,,],
 				"active": false,
 				"score": 0
 			});
@@ -170,69 +174,66 @@ function addPlayersToGame() {
 
 }
 
-//Checks whether bonus is valid
-function bonusChecker() {
-	var points = singlePoints();
-	var bonusActive = false;
-	if (points > 63) {
-		bonusActive = true;
-	}
-	return bonusActive;
-}
-
-//counts all points in the singel point board, ones-sixes
-function singlePoints() {
-	var pointsReturned = 0;
-	//founds how many <tr> exists within DOM
-	var amountOfTRs = $(document).find('tr').length;
-	//Loopa igenom varje tr element
-	for (var i = 0; i < amountOfTRs; i++) {
-		//We want to manipulate every <tr> where points are being written, theese are nth-child 2-7, bonus is not included
-		if (i < 8 && i > 1) {
-			//Get points written in <tr>. You can console log for more clarification what the variables contains
-			var a = $("tr:nth-child(" + i + ")").text();
-			//We have to split the string, because other characters is included which we dont need
-			var b = a.split("\n");
-			//parse to int so we can perform mathematic functions
-			var p = parseInt(b[2]);
-			//If <tr> tags where empty (no points), parse int was unsuccessful and we can skip those
-			if (!isNaN(p)) {
-				//Add point to pointsReturned
-				pointsReturned += p;
-			}
-		}
-	}
-	return pointsReturned;
-}
-
-//Adds 50 points if bonus is active
-function sumCalc() {
-	var pointsReturned = singlePoints();
-	if (bonusChecker() == true) {
-		pointsReturned += 50;
-		$(".bonus").text(50);
-	}
-	$(".summa").text(pointsReturned);
-	return pointsReturned;
-}
-
 //Calculates the total score
 function totalCalc() {
-	var pointsReturned = 0;
-	var amountOfTRs = $(document).find('tr').length;
-	for (var i = 0; i < amountOfTRs; i++) {
-		if (i < 19 && i > 9) {
-			var a = $("tr:nth-child(" + i + ")").text();
-			var b = a.split("\n");
-			var p = parseInt(b[2]);
-			if (!isNaN(p)) {
-				pointsReturned += p;
-			}
-		}
-	}
-	//Add the sum of the single points (onces-sixes and bonus)
-	pointsReturned += sumCalc();
-	$(".total").text(pointsReturned);
+    	players.forEach(function(player,index){
+
+        	if(player.active){
+            var count=0;
+            var points=0;
+            var bonusPoints=0;
+            var bonusActive=false;
+            var sumPoints=true;
+                for(var i = 0; i < 6;i++){
+                    if(typeof player.yatzyPoints[i]!=='undefined'){
+                        bonusPoints+=player.yatzyPoints[i]
+                    }
+                    if(bonusPoints>63&&bonusActive==false){
+                        player.yatzyPoints[6]=50;
+                        $('tr:nth-child(8)').children(".player"+(index+1)).text(50)
+                        bonusPoints+=50
+                        bonusActive=true
+                    }
+                    console.log(bonusPoints)
+                    player.yatzyPoints[7]=bonusPoints;
+                    $('tr:nth-child(9)').children(".player"+(index+1)).text(bonusPoints)
+                    
+                }
+                
+                
+			     for(var i = 8; i < 16; i++){
+                     
+                     if(typeof player.yatzyPoints[i]=='undefined'){
+                        count++;
+                     }else{
+                         points+=player.yatzyPoints[i]
+                     }
+                     if(sumPoints){
+                         points+=player.yatzyPoints[7]
+                         sumPoints=false
+                     }
+
+                     $('tr:nth-child(19)').children(".player"+(index+1)).text(points)
+                     
+                 }        
+             }
+            
+	});
+    
+    /*
+                var onceToSixesPoints=0;
+		for(var i = 0; i < 6;i++){
+            if(isNaN(player.yatzyPoints[i])){
+            }else{
+            onceToSixesPoints += player.yatzyPoints[i]    
+                }
+        }       if(onceToSixesPoints<63){
+            $('tr:nth-child(8)').children('.player'+index).text(50);
+            player.yatzyPoints[8]=50;
+        }
+    */
+   // $('tr:nth-child(19)').children(".player1").text(12)
+    
 }
 
 //submit form (saves the players name in a variable)
@@ -293,7 +294,7 @@ function buildYatzyForm() {
 			tableData = $(`<th class="greyField">${outPrint}</th>`);
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
-				tableRow.append($(`<th class = "text-center greyField">${index + 1}</th>`));
+				tableRow.append($(`<th id="player${index + 1}" class = "text-center greyField">${index + 1}</th>`));
 			});
 		}else if(index<7&&index>0){
             tableData = $(`<td id="${index}">${outPrint}</td>`);
@@ -321,16 +322,15 @@ function buildYatzyForm() {
 //Adderar poäng till formuläret
 function addToScore(thisDiv){
     var pointAdded = 0;
-    var x = thisDiv.previousElementSibling.innerHTML;
-    var p = parseInt(thisDiv.previousElementSibling.id);
-    if(x==x){
+    var p = parseInt($(thisDiv).closest('tr').find('td:first').attr('id'));
         for(var i = 0; i < dice.length; i++){
             if(dice[i].value==p){
                 pointAdded += p;
-            }
+            }	
         }
-    }
-    $(thisDiv).text(pointAdded);
+ 		var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+		players[playerToAddPointsTo -1].yatzyPoints[p-1] = pointAdded;
+    $(thisDiv).html(pointAdded);
     totalCalc();
     newRound();
 }
@@ -340,7 +340,8 @@ function addToScoreAdvanced(thisDiv){
     var result1= [];
     var pointAdded = 0;
     var count = 0;
-    var x = thisDiv.previousElementSibling.innerHTML;
+
+		var x = $(thisDiv).closest('tr').find('td:first').text();
     //
         //ONE PAIR
     //
@@ -396,6 +397,8 @@ function addToScoreAdvanced(thisDiv){
                 pointAdded=result1[4]*2  
             }
         }
+						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[8] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -455,7 +458,8 @@ function addToScoreAdvanced(thisDiv){
         }else if(result1.length==4){
             
         }
-    
+    				var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[9] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -478,6 +482,8 @@ function addToScoreAdvanced(thisDiv){
                     }
                 }
             }
+						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[10] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -500,6 +506,8 @@ function addToScoreAdvanced(thisDiv){
                     }
                 }
             }
+						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[11] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -534,6 +542,8 @@ function addToScoreAdvanced(thisDiv){
             if(count==5){
             pointAdded=15;
         }
+						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[12] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -565,6 +575,8 @@ function addToScoreAdvanced(thisDiv){
             if(count==5){
             pointAdded=20;
         }
+					var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[13] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -597,6 +609,8 @@ function addToScoreAdvanced(thisDiv){
                     }
                 }
             }
+			var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[14] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -609,6 +623,8 @@ function addToScoreAdvanced(thisDiv){
             for(var i = 0; i < dice.length;i++){
                 pointAdded+=dice[i].value
             }
+						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[15] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
@@ -625,18 +641,19 @@ function addToScoreAdvanced(thisDiv){
                         count++;
                         //Modified
                         if(count>4){
-                            pointAdded=dice[i].value*5
+                            pointAdded=50
                         }
                     }
                 }
             }    
+									var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+						players[playerToAddPointsTo -1].yatzyPoints[16] = pointAdded;
             $(thisDiv).text(pointAdded);
             totalCalc();
             newRound();
         }
     else if(x=="Ettor"||x=="Tvåor"||x=="Treor"||x=="Fyror"||x=="Femmor"||x=="Sexor"){
         addToScore(thisDiv);
-        console.log("")
     }
 }
 
@@ -645,7 +662,61 @@ function newRound(){
     for(var i = 0; i < dice.length; i++){
         dice[i].saved=false;
     }
-    $('#diceHolder p').remove();
+		throws = 0;
+	  var nextIndex = 0;
+		players.forEach(function(player,index){
+			if(player.active && index == players.length - 1){
+				nextIndex = 0;
+				player.active = false;
+				console.log('last player')
+			}
+			else if(player.active && players.length > 1){
+				nextIndex = index+1;
+				player.active = false;
+			}
+			
+			else{
+	
+			}
+		});
+		
+		
+		players[nextIndex].active = true;
+		seeActivePlayer();
+		
+    $('#diceHolder img').remove();
+}
+
+//function see active players
+
+function showActivePlayers(){
+		var unorderedList = $(`<ul class="activePlayersList"></ul>`);
+	players.forEach(function(player, index){
+		var playerItem = $(`<li class="playerList" id="p${index}">Spelare ${index + 1} - ${player.username}</li>`);
+		unorderedList.append(playerItem);
+	});
+
+	$('#activePlayers').append(unorderedList);
+}
+
+function seeActivePlayer(){
+
+	players.forEach(function(player,index){
+	
+		if(player.active){
+			$(`#p${index}`).addClass('activePlayer');
+			$(`#player${index +1}`).addClass('activePlayerForm');
+			
+			
+		}
+		else{
+			$(`#p${index}`).removeClass('activePlayer');
+			$(`#player${index +1}`).removeClass('activePlayerForm');
+			console.log('tar bort class');
+		}
+	});
+
+	
 }
 
 // Events
@@ -677,6 +748,7 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 });
 
 $(document).on('click', '.btn-info', function () {
+	
 	var flag = false;
 	$('.input').each(function (index) {
 		if ($(this).val() != '') {
@@ -687,6 +759,8 @@ $(document).on('click', '.btn-info', function () {
 	});
 	if (flag) {
 		addPlayersToGame();
+		showActivePlayers();
+
 		startGame();
 
 	}
@@ -696,6 +770,8 @@ $(document).on('click', '.btn-info', function () {
 	}
 });
 
+
+
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
     holdDice();
@@ -703,9 +779,11 @@ $(document).on('click', '#diceHolder img', function () {
 
 $(document).on('click', '#diceTable #throwDice', function () {
 	rollDie();
+
 });
 
 var pages = ['aboutusPage','highscorePage','rulesPage','homePage'];
+
 
 $(document).on('click', 'li', function () {
 	var buttonId = $(this).attr('id');
@@ -728,5 +806,16 @@ $(document).on('click', 'li', function () {
 });
 
 $(document).on('click', '.customTd', function () {
-	addToScoreAdvanced(this);
+	var tdThatCanBeUsed;
+	players.forEach(function(player,index){
+		if(player.active){
+			tdThatCanBeUsed = index + 1;
+		}
+	});
+	
+	if($(this).attr('class').indexOf(`player${tdThatCanBeUsed}`) > -1){
+		addToScoreAdvanced(this);
+	}
+	
 });
+
