@@ -12,7 +12,7 @@ class Queries extends Base {
       console.log('Result of the query "all"',data);
 			callback();
     });
-  }
+  }*/
 	 // Example how to insert data to db
   submitHighscoreToDB(name, highscore, callback){
     this.db.newPlayers({
@@ -22,7 +22,7 @@ class Queries extends Base {
       console.log('Result of the query "newPlayers"',data);
       callback();
     });
-  }*/
+  }
 
     // Hämtar "all" från sqlQueries och returnerar data
     runAQuery(callback){
