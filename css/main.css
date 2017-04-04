@@ -381,6 +381,13 @@ th {
 	padding-top: 10px;
 	width: auto;
 }
+.parWarning
+{
+    background: none;
+    border: 3px darkred solid;
+    font-family: 'Quicksand'
+    
+}
 
 
 /* CSS för aktiv spelare*/
