@@ -66,8 +66,10 @@ body {
 	font-family: 'Quicksand';
 }
 
-#welcome .well-custom>h5 {
-	color: #5a5959;
+
+	}
+#welcome .well-custom > h5{
+	color:#A0A0A0;
 	font-size: 17px;
 	line-height: 25px;
 }
