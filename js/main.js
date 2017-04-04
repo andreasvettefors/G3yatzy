@@ -777,10 +777,12 @@ $(document).on('click', '.customTd', function () {
 		if(player.active){
 			tdThatCanBeUsed = index + 1;
 		}
-	});
+    });
+                    
 	if($(this).attr('class').indexOf(`player${tdThatCanBeUsed}`) > -1){
 
-		if($(this).text() == ''){
+		if($(this).text() == ''&&throws>=1){
+            console.log($(this).text())
 
 		addToScoreAdvanced(this);
         totalCalc();
@@ -808,11 +810,7 @@ $(document).on('click', '.customTd', function () {
         }
         console.log(players[players.length-1])
         newRound();
-	}
+	   }
+    }
  }
-}
-	
-});
-
-
 });
