@@ -283,19 +283,19 @@ function buildYatzyForm() {
 				tableRow.append($(`<th id="player${index + 1}" class = "text-center greyField">${index + 1}</th>`));
 			});
 		}else if(index<7&&index>0){
-            tableData = $(`<td id="${index}">${outPrint}</td>`);
+            tableData = $(`<td class="possClass" id="${index}">${outPrint}</td>`);
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
 				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
 			});
        } else if (index == 7 || index == 8 || index == 18) {
-			tableData = $(`<td class="greyField"><strong>${outPrint}</strong></td>`);
+			tableData = $(`<td class="greyField possClass"><strong>${outPrint}</strong></td>`);
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
-				tableRow.append($(`<td class="player${index + 1} greyField"></td>`));
+				tableRow.append($(`<td class="player${index + 1} greyField possClass"></td>`));
 			});
 		} else {
-			tableData = $(`<td>${outPrint}</td>`);
+			tableData = $(`<td class="possClass">${outPrint}</td>`);
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
 				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
@@ -726,7 +726,7 @@ $(document).on('click', '.btn-info', function () {
 	if (flag) {
 		addPlayersToGame();
 		showActivePlayers();
-
+		$('#about').hide();
 		startGame();
 
 	}
@@ -748,25 +748,9 @@ $(document).on('click', '#diceTable #throwDice', function () {
 
 });
 
-var pages = ['aboutusPage','highscorePage','rulesPage','homePage'];
-
-
-$(document).on('click', 'li', function () {
-	var buttonId = $(this).attr('id');
-
-	var page;
-
-	pages.forEach(function(value){
-		if(buttonId === value){
-
-		page = value.replace("Page","");
-		$(`#${page}`).show();
-	} else {
-		page = value.replace("Page","");
-		$(`#${page}`).hide();
-	}
-	});
-
+$(document).on('click', '#about', function () {
+	$('#home').hide();
+	$('#aboutus').show();
 });
 
 $(document).on('click', '.customTd', function () {
