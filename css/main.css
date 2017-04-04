@@ -142,7 +142,29 @@ th{
 	cursor:pointer;
 }
 
+.btn{
+	background: none;
+    border-radius: 0;
+    color: #82b9b8;
+    letter-spacing: 1px;
+    border: 1px #82b9b8 solid;
+}
 
+.btn:hover{
+	background: none;
+    border-radius: 0;
+    color:#d78548;
+    letter-spacing: 1px;
+    border: 1px #d78548 solid;
+}
+.btn:active{
+	background-color: none;
+}
+
+.btn-info{
+	background-color: none;
+	color:none;
+}
 
 /* CSS för submitform*/
 
