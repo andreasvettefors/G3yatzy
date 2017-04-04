@@ -55,7 +55,6 @@ function start() {
 	$('#highscore').hide();
 	$('#aboutus').hide();
 	printHighScoreToDom();
-	
 }
 
 function startGame(){
@@ -127,7 +126,7 @@ function appendToDom() {
 function printHighScoreToDom() {
 	query.dbHighScore((users) => {
 		users.forEach(function (user, index) {
-			$('tbody').append(` 
+			$('tbody').append(`
 									<tr>
 					        <td class="lalign">${index+1}</td>
 					        <td>${user.score}</td>
@@ -196,12 +195,11 @@ function totalCalc() {
                     console.log(bonusPoints)
                     player.yatzyPoints[7]=bonusPoints;
                     $('tr:nth-child(9)').children(".player"+(index+1)).text(bonusPoints)
-                    
-                }
-                
+
+                }       
                 
 			     for(var i = 8; i < 17; i++){
-                     
+
                      if(typeof player.yatzyPoints[i]=='undefined'){
                         count++;
                      }else{
@@ -213,13 +211,13 @@ function totalCalc() {
                      }
 
                      $('tr:nth-child(19)').children(".player"+(index+1)).text(points)
+
                      player.score=points   
                      
                  }        
              }
-            
+
 	});
-    
 }
 
 //submit form (saves the players name in a variable)
@@ -313,7 +311,7 @@ function addToScore(thisDiv){
         for(var i = 0; i < dice.length; i++){
             if(dice[i].value==p){
                 pointAdded += p;
-            }	
+            }
         }
  		var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
 		players[playerToAddPointsTo -1].yatzyPoints[p-1] = pointAdded;
@@ -358,28 +356,28 @@ function addToScoreAdvanced(thisDiv){
         }else if(result1.length==6){
             if(result1[1]==true&&result1[3]==true&&result1[5]==true){
                 console.log('Var god välj vilket par som ska sparas!')
-                return;                
+                return;
             }else if(result1[0]==result1[2]&&result[1]==true&&result1[3]==true){
                 console.log('Var god välj vilket par som ska sparas!')
-                return;                    
+                return;
             }else if(result1[2]==result1[4]&&result1[1]==true&&result1[3]==true){
                 console.log('Var god välj vilket par som ska sparas!')
-                return;                    
+                return;
             }else if(result1[1]==false&&result1[3]==false&&result1[5]==false){
                 if(result1[0]==result1[2]&&result1[2]==result1[4]){
-                 pointAdded=result1[0]*2                        
+                 pointAdded=result1[0]*2
                 }
                 else{
                 console.log('Var god välj vilket par som ska sparas!')
-                return;                     
+                return;
                 }
             }
             else if(result1[1]==true){
-                 pointAdded=result1[0]*2    
+                 pointAdded=result1[0]*2
             }else if(result1[3]==true){
-                pointAdded=result1[2]*2  
+                pointAdded=result1[2]*2
             }else if(result1[5]==true){
-                pointAdded=result1[4]*2  
+                pointAdded=result1[4]*2
             }
         }
 						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
@@ -400,7 +398,7 @@ function addToScoreAdvanced(thisDiv){
             }
         });
         //To make sure you cant trick the system, we check several options which needs to be true
-   
+
         if(result1.length==2){
             var count=[0,0,0,0,0]
             for (var i = 0; i < dice.length;i++){
@@ -419,7 +417,7 @@ function addToScoreAdvanced(thisDiv){
         }else if(result1.length==3){
             console.log(result1)
             if(result1[0]==result1[1]&&result1[1]==result1[2]){
-               
+
                 var count=[0,0,0,0,0]
             for (var i = 0; i < dice.length;i++){
                 for(var j = 0; j < dice.length; j++){
@@ -429,17 +427,17 @@ function addToScoreAdvanced(thisDiv){
                 }
             }if(count[0]==4||count[1]==4){
                 pointAdded=result1[0]*4
-            }              
-                
+            }
+
             }else if(result1[0]==result1[1]){
-                pointAdded= (result1[0]*2) + (result1[2]*2)  
+                pointAdded= (result1[0]*2) + (result1[2]*2)
             }else if(result1[0]==result1[2]){
                 pointAdded= (result1[0]*2) + (result1[1]*2)
             }else{
                 pointAdded= (result1[0]*2) + (result1[2]*2)
             }
         }else if(result1.length==4){
-            
+
         }
     				var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
 						players[playerToAddPointsTo -1].yatzyPoints[9] = pointAdded;
@@ -614,8 +612,8 @@ function addToScoreAdvanced(thisDiv){
                         }
                     }
                 }
-            }    
-						var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
+            }
+									var playerToAddPointsTo = $(thisDiv).closest('table').find('.activePlayerForm').text();
 						players[playerToAddPointsTo -1].yatzyPoints[16] = pointAdded;
             $(thisDiv).text(pointAdded);
         }
@@ -641,16 +639,16 @@ function newRound(){
 				nextIndex = index+1;
 				player.active = false;
 			}
-			
+
 			else{
-	
+
 			}
 		});
-		
-		
+
+
 		players[nextIndex].active = true;
 		seeActivePlayer();
-		
+
     $('#diceHolder img').remove();
 }
 
@@ -669,12 +667,12 @@ function showActivePlayers(){
 function seeActivePlayer(){
 
 	players.forEach(function(player,index){
-	
+
 		if(player.active){
 			$(`#p${index}`).addClass('activePlayer');
 			$(`#player${index +1}`).addClass('activePlayerForm');
-			
-			
+
+
 		}
 		else{
 			$(`#p${index}`).removeClass('activePlayer');
@@ -683,7 +681,7 @@ function seeActivePlayer(){
 		}
 	});
 
-	
+
 }
 
 // Events
@@ -715,7 +713,7 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 });
 
 $(document).on('click', '.btn-info', function () {
-	
+
 	var flag = false;
 	$('.input').each(function (index) {
 		if ($(this).val() != '') {
@@ -780,8 +778,10 @@ $(document).on('click', '.customTd', function () {
 			tdThatCanBeUsed = index + 1;
 		}
 	});
-	
 	if($(this).attr('class').indexOf(`player${tdThatCanBeUsed}`) > -1){
+
+		if($(this).text() == ''){
+
 		addToScoreAdvanced(this);
         totalCalc();
         
@@ -809,7 +809,10 @@ $(document).on('click', '.customTd', function () {
         console.log(players[players.length-1])
         newRound();
 	}
+ }
 }
 	
 });
 
+
+});
