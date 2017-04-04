@@ -50,12 +50,10 @@ $(start);
 function start() {
 
 	$('body').append(startPage());
-
 	$('#gamePage').hide();
 	$('#highscore').hide();
 	$('#aboutus').hide();
 	printHighScoreToDom();
-
 	
 }
 
