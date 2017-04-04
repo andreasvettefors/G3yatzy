@@ -112,6 +112,7 @@ th{
 }
 
 #yatzyFormContainer{
+	margin-top: 75px;
 	background-color: #353a40;
 }
 /*Här slutar CSS för Yatzy formuläret*/
@@ -186,23 +187,7 @@ background: none;
     outline:none;
 }
 
-.btn-primary{
-	background: none;
-    border-radius: 0;
-    color: #82b9b8;
-    margin-left: 74%;
-    height: 37px;
-    letter-spacing: 1px;
-    border: 1px #82b9b8 solid;
-}
 
-.btn-primary:focus{
-	background: none;
-    border-radius: 0;
-    color: #d78548;
-    letter-spacing: 1px;
-    border: 1px #d78548 solid;
-}
 
 /* CSS för submitform*/
 
@@ -422,9 +407,34 @@ background: none;
 
 }
 
+.imgContainer{
+	margin:auto;
+	width:80%;
+}
 
+#welcome img{
+		width: 100%;
+	}
 
 .playerList{
 	font-family: 'Quicksand';
 	font-size: 14px;
+}
+
+/*för stående*/
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) {
+
+	
+
+}
+/*för liggande*/
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) { 
+
+	
 }
