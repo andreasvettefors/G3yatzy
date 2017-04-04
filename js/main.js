@@ -192,7 +192,6 @@ function totalCalc() {
                         bonusPoints+=50
                         bonusActive=true
                     }
-                    console.log(bonusPoints)
                     player.yatzyPoints[7]=bonusPoints;
                     $('tr:nth-child(9)').children(".player"+(index+1)).text(bonusPoints)
 
@@ -243,8 +242,10 @@ function findPlayerIndexOfWinner() {
 function endGame(){
     console.log(findPlayerIndexOfWinner())
     var playerIndex=findPlayerIndexOfWinner();
-    submitPlayer(players[playerIndex].username, players[playerIndex].score)
-    $('#myModal').modal('show');
+    for(var i = 0; i < players.length; i++){
+        submitPlayer(players[i].username, players[i].score)
+    }
+    $('#myModal2').modal('show');
     $('.popup-text').append('<p>Grattis till vinsten <br/><b>'+players[playerIndex].username+'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>')
 }
 
@@ -337,12 +338,17 @@ function addToScoreAdvanced(thisDiv){
                 result1.push(point.value,point.saved)
             }
         });
+        console.log(result1.length)
         if(result1.length==2){
             pointAdded=result1[0]*2
         }else if(result1.length==4){
+            console.log(result1)
             if(result1[1]==true&&result1[3]==true){
-                console.log('Var god välj vilket par som ska sparas!')
-                return;
+                if(result1[0]==result1[2]){
+                    pointAdded=result1[0]*2
+                }else{
+                    return false;
+                }
             }else if(result1[1]==true){
                 pointAdded=result1[0]*2
             }
@@ -350,26 +356,22 @@ function addToScoreAdvanced(thisDiv){
                 pointAdded=result1[2]*2
             }
             else{
-                console.log('Var god välj vilket par som ska sparas!')
-                return;
+                return false;
             }
-        }else if(result1.length==6){
+        }
+        else if(result1.length==6){
             if(result1[1]==true&&result1[3]==true&&result1[5]==true){
-                console.log('Var god välj vilket par som ska sparas!')
-                return;
+                return false;
             }else if(result1[0]==result1[2]&&result[1]==true&&result1[3]==true){
-                console.log('Var god välj vilket par som ska sparas!')
-                return;
+                return false;
             }else if(result1[2]==result1[4]&&result1[1]==true&&result1[3]==true){
-                console.log('Var god välj vilket par som ska sparas!')
-                return;
+                return false;
             }else if(result1[1]==false&&result1[3]==false&&result1[5]==false){
                 if(result1[0]==result1[2]&&result1[2]==result1[4]){
                  pointAdded=result1[0]*2
                 }
                 else{
-                console.log('Var god välj vilket par som ska sparas!')
-                return;
+                return false;
                 }
             }
             else if(result1[1]==true){
@@ -620,6 +622,7 @@ function addToScoreAdvanced(thisDiv){
     else if(x=="Ettor"||x=="Tvåor"||x=="Treor"||x=="Fyror"||x=="Femmor"||x=="Sexor"){
         addToScore(thisDiv);
     }
+    return true;
 }
 
 
@@ -633,7 +636,6 @@ function newRound(){
 			if(player.active && index == players.length - 1){
 				nextIndex = 0;
 				player.active = false;
-				console.log('last player')
 			}
 			else if(player.active && players.length > 1){
 				nextIndex = index+1;
@@ -677,7 +679,6 @@ function seeActivePlayer(){
 		else{
 			$(`#p${index}`).removeClass('activePlayer');
 			$(`#player${index +1}`).removeClass('activePlayerForm');
-			console.log('tar bort class');
 		}
 	});
 
@@ -764,9 +765,8 @@ $(document).on('click', '.customTd', function () {
 	if($(this).attr('class').indexOf(`player${tdThatCanBeUsed}`) > -1){
 
 		if($(this).text() == ''&&throws>=1){
-            console.log($(this).text())
 
-		addToScoreAdvanced(this);
+		var sucess = addToScoreAdvanced(this);
         totalCalc();
         
         var count=0;
@@ -790,8 +790,13 @@ $(document).on('click', '.customTd', function () {
             }
             
         }
-        console.log(players[players.length-1])
-        newRound();
+        if(sucess){
+           newRound();
+            $('.alert').remove()
+        }else{
+            $('.col-md-8').append('<div class="alert alert-danger parWarning" role="alert">Var god och välj ett par!</div>')    
+        }    
+        
 	   }
     }
  }
