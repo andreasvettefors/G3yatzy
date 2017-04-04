@@ -69,7 +69,7 @@ body {
 
 	}
 #welcome .well-custom > h5{
-	color:#A0A0A0;
+	color:#5a5959;
 	font-size: 17px;
 	line-height: 25px;
 }
@@ -144,6 +144,7 @@ body {
 }
 
 #yatzyFormContainer {
+	margin-top: 75px;
 	background-color: #353a40;
 }
 
@@ -176,7 +177,49 @@ body {
 	cursor: pointer;
 }
 
+.btn{
+	background: none;
+    border-radius: 0;
+    color: #82b9b8;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border: 1px #82b9b8 solid;
+}
 
+.btn:hover{
+	background: none;
+    border-radius: 0;
+    color:#d78548;
+    letter-spacing: 1px;
+    border: 1px #d78548 solid;
+}
+
+.btn:focus{
+	background: none;
+    border-radius: 0;
+    color: #d78548;
+    letter-spacing: 1px;
+    border: 1px #d78548 solid;
+    outline:none;
+}
+
+.btn-info:focus{
+	background: none;
+    border-radius: 0;
+    color: #d78548;
+    letter-spacing: 1px;
+    border: 1px #d78548 solid;
+    outline:none;
+}
+
+.btn:active{
+background: none;
+    border-radius: 0;
+    color: #d78548;
+    letter-spacing: 1px;
+    border: 1px #d78548 solid;
+    outline:none;
+}
 /* CSS för submitform*/
 
 .submitButton {
@@ -442,14 +485,16 @@ body {
 	list-style-type: none;
 }
 
-.activePlayerForm {
-	box-shadow: 0 0 14px 2px #f7ef42;
+.activePlayerForm{
+	    box-shadow:inset 0 0 5px 2px #f7ef42;
 }
 
-.activePlayer {
-	color: yellow;
-	font-size: 15px;
-	font-weight: bold;
+#activePlayers .activePlayer{
+	color: #acd13f;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 0.5em #8F7;
+
 }
 
 .playerList {
