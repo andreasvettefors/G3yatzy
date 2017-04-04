@@ -753,6 +753,8 @@ $(document).on('click', '.btn-info', function () {
 			flag = true;
 		} else {
 			flag = false;
+            console.log('hej');
+            $('.field').append('<div class="alert alert-danger" role="alert"><a href="#" class="alert-link">Fälten får inte vara tomma</a></div>');
 		}
 	});
 	if (flag) {
