@@ -1,21 +1,23 @@
-body{
+body {
 	/*margin-left: 20px;*/
-	background:#032329;
+	background: #032329;
 }
+
 
 /*Navbar style*/
 
-.navbar-custom{
+.navbar-custom {
 	background-color: transparent;
 	/*background-color: #353a40;*/
 	margin-top: 5%;
-	border-radius:0;
+	border-radius: 0;
 	border-top: 2px solid #0f446a;
 	border-bottom: 2px solid #0f446a;
 	box-shadow: none;
 }
 
-.navbar-custom .navbar-header .navbar-brand, .navbar-custom .navbar-nav > li > a{
+.navbar-custom .navbar-header .navbar-brand,
+.navbar-custom .navbar-nav>li>a {
 	color: #acd13f;
 	font-family: 'Quicksand';
 	font-size: 12px;
@@ -24,44 +26,46 @@ body{
 	text-transform: uppercase;
 }
 
-.navbar-custom .navbar-header .navbar-brand:hover{
+.navbar-custom .navbar-header .navbar-brand:hover {
 	color: #96ffe8;
 }
 
-.navbar-custom .navbar-nav > li > a:hover,
-.navbar-custom .navbar-nav > li > a:focus
-{
-	background:#0f446a;
+.navbar-custom .navbar-nav>li>a:hover,
+.navbar-custom .navbar-nav>li>a:focus {
+	background: #0f446a;
 	color: #a3efaf;
-	cursor:pointer;
+	cursor: pointer;
 }
 
-.navbar-custom .navbar-nav > .active > a,
-.navbar-custom .navbar-nav > .active > a:hover,
-.navbar-custom .navbar-nav > .active > a:focus
-{
-  background:#0f446a;
+.navbar-custom .navbar-nav>.active>a,
+.navbar-custom .navbar-nav>.active>a:hover,
+.navbar-custom .navbar-nav>.active>a:focus {
+	background: #0f446a;
 	color: #a3efaf;
 }
 
 .navbar-custom .navbar-toggle {
-	border-color:#82B9B8;
+	border-color: #82B9B8;
 	border-radius: 0;
 }
 
 .navbar-custom .navbar-toggle .icon-bar {
- background-color: #96ffe8;
+	background-color: #96ffe8;
 }
 
+
 /* Welcome splash style */
-#welcome .well-custom{
+
+#welcome .well-custom {
 	background: transparent;
 }
 
-#welcome .well-custom > h3{
-	color:#d78548;
+#welcome .well-custom>h3 {
+	color: #d78548;
 	letter-spacing: 0.5px;
 	font-family: 'Quicksand';
+}
+
 
 	}
 #welcome .well-custom > h5{
@@ -69,96 +73,181 @@ body{
 	font-size: 17px;
 	line-height: 25px;
 }
+
+
+/*Här börjar omoss sidan*/
+
+#aboutus .well-custom {
+	background: transparent;
+	width: 50%;
+	margin:auto;
+}
+
+#aboutus .well-custom h2 {
+	color: #d78548;
+	letter-spacing: 0.5px;
+	font-family: 'Quicksand';
+}
+
+#aboutus .well-custom p {
+	letter-spacing: 0.5px;
+	font-size: 17px;
+		line-height: 25px;
+}
+
+
 /*Här börjar CSS för Yatzy formuläret*/
+
 td {
 	font-family: 'Quicksand';
 	font-size: 15px;
-	color:lightgray;
+	color: lightgray;
 }
 
-
-th{
+th {
 	font-family: 'Quicksand';
 	font-size: 17px;
 }
+
 .possClass {
-	text-align:center;
+	text-align: center;
 }
+
 .scoreClass {
 	font-weight: bold;
 	font-size: 12pt;
-	text-align:center;
+	text-align: center;
 }
+
 .greyField {
-	    background-color: #032329;
-    color: #acd13f;
+	background-color: #032329;
+	color: #acd13f;
 }
+
 #tdSpecialField {
 	font-weight: bold;
 	color: blue;
 }
+
 #tdsmallerField {
 	width: 20%;
 }
 
-.customTd:hover{
-	background:pink;
-	cursor:pointer:;
+.customTd:hover {
+	background: pink;
+	cursor: pointer:;
 }
 
-.customTd{
+.customTd {
 	width: 10%;
 }
 
-#yatzyFormContainer{
+#yatzyFormContainer {
 	background-color: #353a40;
 }
+
+
 /*Här slutar CSS för Yatzy formuläret*/
 
-#diceHolder{
-	height:89.6px;
-	display:flex;
+#diceHolder {
+	height: 89.6px;
+	display: flex;
 	justify-content: space-around;
 	background-color: #353a40;
 }
 
-#diceHolder .active{
+#diceHolder .active {
 	border-color: #1ff973;
 	color: #96ffe8;
 	box-shadow: 0 0 14px 2px #1aeaa8;
 	background-color: #0b3444;
 }
 
-#diceHolder img{
-	width:50px;
-	height:50px;
+#diceHolder img {
+	width: 50px;
+	height: 50px;
 }
 
-#diceHolder img:hover{
-	width:50px;
-	height:50px;
+#diceHolder img:hover {
+	width: 50px;
+	height: 50px;
 	background-color: #150f28;
-	cursor:pointer;
+	cursor: pointer;
 }
-
 
 
 /* CSS för submitform*/
 
-.submitButton{
-	background-color:#67bdba;
+.submitButton {
+	background-color: #67bdba;
 	border-radius: 0px;
 }
 
-.form-control{
+.form-control {
 	font-style: italic;
-    color: #cccccc;
+	color: #cccccc;
 }
 
+
 /* Början för CSS vinnar popup*/
+
 .popup {
+	position: absolute;
+	width: 300px;
+	margin: 20% 0 0 40%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 20px 0 20px 0;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	background: -webkit-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -moz-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -ms-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -o-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+}
+
+.popup-content {
+	background: #3f3f40;
+	box-sizing: border-box;
+	border-radius: 500px 0 10px 0;
+}
+
+.popup-text {
+	color: #dfff43;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 18px;
+	line-height: 30px;
+	font-weight: 100;
+	text-align: center;
+	bottom: 30px;
+	transform: translateZ(15px);
+}
+
+.popup-text b {
+	color: coral;
+	font-weight: 300;
+}
+
+.modal-title {
+	font-family: 'Quicksand';
+}
+
+.modal-button {
+	background-color: #82c98d;
+}
+
+.modal-button:hover {
+	background-color: #5d8db2;
+}
+
+
+/* Slutet för CSS vinnar popup*/
+
+/* Början för CSS regler popup*/
+.popup2 {
     position: absolute;
-    width:300px;
+    width:50%;
     margin: 20% 0 0 40%;
     padding: 10px;
     box-sizing: border-box;
@@ -172,148 +261,145 @@ th{
     background:         linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
 }
 
-.popup-content {
+.popup-content2 {
     background: #3f3f40;
     box-sizing: border-box;
-    border-radius: 500px 0 10px 0;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.popup-text {
+.popup-text2 {
     color: #dfff43;
     font-family: 'Quicksand', sans-serif;
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 15px;
+    line-height: 25px;
     font-weight: 100;
     text-align: center;
     bottom:30px;
     transform: translateZ(15px);
 }
 
-.popup-text b {
+.popup-text2 b {
     color: coral;
     font-weight: 300;
 }
 
-.modal-title{
+.modal-title2{
 	font-family: 'Quicksand';
+	color: coral;
+	text-align: center;
 }
-
-.modal-button{
-	background-color:#82c98d;
-}
-
-.modal-button:hover{
-	background-color:#5d8db2;
-}
-/* Slutet för CSS vinnar popup*/
-
+/* Slutet för CSS regler popup*/
 
 /* CSS för inputField*/
-.form-control{
-	width:180px;
+
+.form-control {
+	width: 180px;
 }
 
-#member{
+#member {
 	width: 20px;
 }
 
-#field1{
-    background: rgba(255,255,255,.1);
-    border: 0;
-    border-radius: 4px;
-    font-size: 14px;
-    margin: 0;
-    outline: 0;
-    height:24px;
-    padding: 4px;
-    width: 130px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    background-color: #2f3133;
-    color: #8a97a0;
-    border: 2px #5a8ab1 solid;
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 8px;
+#field1 {
+	background: rgba(255, 255, 255, .1);
+	border: 0;
+	border-radius: 4px;
+	font-size: 14px;
+	margin: 0;
+	outline: 0;
+	height: 24px;
+	padding: 4px;
+	width: 130px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	background-color: #2f3133;
+	color: #8a97a0;
+	border: 2px #5a8ab1 solid;
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+	margin-bottom: 8px;
 }
 
-
-.addField, .removeField{
+.addField,
+.removeField {
 	margin-left: 5px;
 	border-radius: 50%;
 	cursor: pointer;
 	font-size: 18px;
-	top:5px;
+	top: 5px;
 }
 
-.addField{
-	color:#3fbdc5;
+.addField {
+	color: #3fbdc5;
 }
 
-.removeField{
-	color:#d7804a;
+.removeField {
+	color: #d7804a;
 }
 
-.addField:hover{
-	color:darkgrey;
+.addField:hover {
+	color: darkgrey;
 }
 
-.removeField:hover{
-	color:darkgrey;
+.removeField:hover {
+	color: darkgrey;
 }
-#child{
+
+#child {
 	border: 1px grey solid;
 }
 
-
-.containerInput{
+.containerInput {
 	margin-top: 50px;
 	background-color: #353a40;
 }
 
-.header2{
+.header2 {
 	color: #acd13f;
-    font-weight: bold;
-    font-size: 19px;
-    font-family: 'Quicksand';
-    }
-
-.paragraph{
-	color: #acd13f;
-    font-size: 15px;
-    font-family: 'Quicksand';
+	font-weight: bold;
+	font-size: 19px;
+	font-family: 'Quicksand';
 }
+
+.paragraph {
+	color: #acd13f;
+	font-size: 15px;
+	font-family: 'Quicksand';
+}
+
+
 /*CSS för startsida*/
 
-.navbar-brand{
-	padding:0;
+.navbar-brand {
+	padding: 0;
 }
 
-.navbar-brand> img{
-	height:80%;
+.navbar-brand>img {
+	height: 80%;
 	padding-top: 10px;
-	width:auto;
-
+	width: auto;
 }
+
 
 /* CSS för aktiv spelare*/
 
-.activePlayersList{
-	 list-style-type: none;
+.activePlayersList {
+	list-style-type: none;
 }
 
-.activePlayerForm{
-	    box-shadow: 0 0 14px 2px #f7ef42;
+.activePlayerForm {
+	box-shadow: 0 0 14px 2px #f7ef42;
 }
 
-.activePlayer{
-	color:yellow;
-	font-size:15px;
-	font-weight:bold;
+.activePlayer {
+	color: yellow;
+	font-size: 15px;
+	font-weight: bold;
 }
 
-.playerList{
+.playerList {
 	font-family: 'Quicksand';
 	font-size: 14px;
 }
