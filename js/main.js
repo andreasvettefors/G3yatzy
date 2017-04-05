@@ -3,6 +3,7 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
+var session = new Session();
 var throws = 0;
 var gameIsDone=false;
 var yatzyForm = ["Spelare", "Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor", "Bonus", "Summa",
@@ -728,6 +729,7 @@ $(document).on('click', '.btn-info', function () {
 		addPlayersToGame();
 		showActivePlayers();
 		$('#about').hide();
+		
 		startGame();
 
 	}
