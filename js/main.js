@@ -54,6 +54,7 @@ function start() {
 	$('#gamePage').hide();
 	$('#highscore').hide();
 	$('#aboutus').hide();
+    $('#confirmEnd').hide();
 	printHighScoreToDom();
 }
 
@@ -62,6 +63,8 @@ function startGame(){
 	buildYatzyForm();
 	$('#gamePage').show();
 	seeActivePlayer();
+    $("#brand").addClass("confirmEnd");
+    $("#brand").removeAttr("href").css("cursor","pointer");;
 }
 
 
@@ -752,6 +755,9 @@ $(document).on('click', '#diceTable #throwDice', function () {
 $(document).on('click', '#about', function () {
 	$('#home').hide();
 	$('#aboutus').show();
+});
+$(document).on('click', '.confirmEnd', function () {
+	$('#confirmEnd').modal('show');
 });
 
 $(document).on('click','#winnerTemplateModalClose',function(){
