@@ -61,8 +61,9 @@ function startGame(){
 	$('#home').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
+	showActivePlayers();
 	seeActivePlayer();
-		doIt();
+	
 }
 
 
@@ -262,16 +263,6 @@ function holdDice() {
 
 }
 
-// För att uppdatera yatzyformulär när vi ändrat något i databasen
-function doIt(){
-	players[0].yatzyPoints[0] = 1;
-	console.log(players);
-	
-	$('.player1').each(function(index){
-		console.log(index);
-		$(this).text(players[0].yatzyPoints[index]);
-	});
-}
 
 function addField() {
 
@@ -282,6 +273,7 @@ function addField() {
 
 //Funktion för att kunna starta spelet och rita upp spelet med spelare och formulär
 function buildYatzyForm() {
+	$("#scoretabel").html('');
 	var tableRow;
 	var tableData;
 	var count = 0;
@@ -670,6 +662,7 @@ function newRound(){
 //function see active players
 
 function showActivePlayers(){
+	$('#activePlayers').html('');
 		var unorderedList = $(`<ul class="activePlayersList"></ul>`);
 	players.forEach(function(player, index){
 		var playerItem = $(`<li class="playerList" id="p${index}">Spelare ${index + 1} - ${player.username}</li>`);
@@ -738,9 +731,8 @@ $(document).on('click', '.btn-info', function () {
 	});
 	if (flag) {
 		addPlayersToGame();
-		showActivePlayers();
 		$('#about').hide();
-		
+	
 		startGame();
 
 	}
@@ -796,7 +788,8 @@ $(document).on('click', '.customTd', function () {
             if(typeof players[tdThatCanBeUsed-1].yatzyPoints[i]=='undefined'){
                 
             }else{
-                count++
+                count++;
+
             }
         }
         if(count==15){
@@ -809,6 +802,7 @@ $(document).on('click', '.customTd', function () {
             
         }
         if(sucess){
+					query.updatePlayerInDB((tdThatCanBeUsed),players[tdThatCanBeUsed-1].yatzyPoints);
            newRound();
             $('.alert').remove()
         }else{

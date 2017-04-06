@@ -1,13 +1,13 @@
 class Session extends Base {
 
 	// Here is all our queries to the database
-	constructor(userName) {
+	constructor() {
 		super();
-		var sessionUser = userName;
-		this.startSession(sessionUser, (res) => {
+		var sessionUser;
+		/*this.startSession(sessionUser, (res) => {
 			this.sessionUser = res.sessionUser;
 			console.log('sessionUser', this.sessionUser);
-		});
+		});*/
 	}
 
 	startSession(sessionUser, callback) {

@@ -4,10 +4,10 @@ class Queries extends Base {
 	constructor() {
 		super();
 	}
-	
+
 	// Example how to insert data to db
 	submitHighscoreToDB(name, highscore, callback) {
-		this.db.newPlayers({
+		this.db.newHighscoreEntry({
 			username: name,
 			score: highscore
 		}, (data) => {
@@ -29,6 +29,39 @@ class Queries extends Base {
 		});
 	}
 
+	// Put players into gamesession to kepp track of active players and points
+	insertPlayerIntoDB(userId, userName, active, callback) {
+		this.db.newPlayer({
+			id: userId,
+			player: userName,
+			activeStatus: active
+		}, (data) => {
+			console.log('inputDB', data);
+			callback();
+		});
+	}
+
+	// Update points in DB
+	updatePlayerInDB(userId, userYatzyPoints) {
+		console.log('vi är inne');
+		console.log(userId);
+		console.log('inne i frågan',userYatzyPoints)
+		this.db.updateYatzyFormInDB([{
+			activeStatus: 0,
+			aces: 3	
+		},userId], (data) => {
+			console.log('update', data);
+		});
+	}
+
+	getGameSession(callback) {
+		this.db.getGameSession((data) => {
+
+			callback(data);
+
+		});
+	}
+
 	static get sqlQueries() {
 		//
 		// Please note: This part of the class is read by
@@ -41,13 +74,22 @@ class Queries extends Base {
 			all: `
         select * from players
       `,
-			newPlayers: `
+			newHighscoreEntry: `
         INSERT INTO players SET ?
 
       `,
 			highscore: `
         select * from players ORDER BY score DESC LIMIT 10
-      `
+      `,
+			newPlayer: `
+				INSERT INTO gamesession SET ?
+			`,
+			getGameSession: `
+				SELECT * FROM gamesession
+			`,
+			updateYatzyFormInDB: `
+				UPDATE gamesession SET ? WHERE id = ?
+			`
 		}
 	}
 
