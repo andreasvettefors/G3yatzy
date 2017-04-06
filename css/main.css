@@ -128,18 +128,9 @@ body {
 	text-align: center;
 }
 
-.greyField {
+#scoretabel th.greyField,#scoretabel td.greyField {
 	background-color: #032329;
 	color: #acd13f;
-}
-
-#tdSpecialField {
-	font-weight: bold;
-	color: blue;
-}
-
-#tdsmallerField {
-	width: 20%;
 }
 
 .customTd:hover {
@@ -148,7 +139,7 @@ body {
 }
 
 .customTd {
-	width: 10%;
+	width: 15%;
 }
 
 #yatzyFormContainer {
