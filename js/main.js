@@ -3,7 +3,6 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
-var session = new Session();
 var throws = 0;
 var gameIsDone=false;
 var yatzyForm = ["Spelare", "Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor", "Bonus", "Summa",
@@ -53,16 +52,17 @@ function start() {
 
 	$('body').append(startPage());
 	$('#gamePage').hide();
-	$('#highscore').hide();
 	$('#aboutus').hide();
 	printHighScoreToDom();
 }
 
 function startGame(){
+ 
 	$('#home').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
 	seeActivePlayer();
+		doIt();
 }
 
 
@@ -261,9 +261,17 @@ function holdDice() {
 	});
 
 }
-//function add inputfield for new players
 
-
+// För att uppdatera yatzyformulär när vi ändrat något i databasen
+function doIt(){
+	players[0].yatzyPoints[0] = 1;
+	console.log(players);
+	
+	$('.player1').each(function(index){
+		console.log(index);
+		$(this).text(players[0].yatzyPoints[index]);
+	});
+}
 
 function addField() {
 
@@ -276,6 +284,7 @@ function addField() {
 function buildYatzyForm() {
 	var tableRow;
 	var tableData;
+	var count = 0;
 	yatzyForm.forEach(function (outPrint, index) {
 		tableRow = $(`<tr></tr>`);
 		if (index == 0) {
@@ -289,12 +298,13 @@ function buildYatzyForm() {
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
 				tableRow.append($(`<td class="player${index + 1} customTd"></td>`));
+					count++;
 			});
        } else if (index == 7 || index == 8 || index == 18) {
 			tableData = $(`<td class="greyField possClass"><strong>${outPrint}</strong></td>`);
 			tableRow.append(tableData);
 			players.forEach(function (player, index) {
-				tableRow.append($(`<td class="player${index + 1} greyField possClass"></td>`));
+				tableRow.append($(`<td class="player${index + 1} greyField"></td>`));
 			});
 		} else {
 			tableData = $(`<td class="possClass">${outPrint}</td>`);
@@ -304,6 +314,7 @@ function buildYatzyForm() {
 			});
 		}
 		$("#scoretabel").append(tableRow);
+	
     });
 }
 
