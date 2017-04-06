@@ -799,8 +799,14 @@ $(document).on('click', '.customTd', function () {
         if(sucess){
            newRound();
             $('.alert').remove()
+            $('tr:nth-child(10)').tooltip('hide');
         }else{
-            $('.col-md-8').append('<div class="alert alert-danger parWarning" role="alert">Var god och välj ett par!</div>')    
+            $('.col-md-8').append('<div class="alert alert-danger parWarning" role="alert">Var god och välj ett par!</div>')
+            $('tr:nth-child(10)').attr('data-toggle','tooltip');
+            $('tr:nth-child(10)').attr('data-trigger','manual');
+            $('tr:nth-child(10)').attr('data-placement','auto');
+            $('tr:nth-child(10)').attr('title','Var god och välj ett par!');
+            $('tr:nth-child(10)').tooltip('show');
         }    
         
 	   }
