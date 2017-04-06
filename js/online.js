@@ -76,7 +76,14 @@ function updateYatzyForm() {
 	players.forEach(function (player,num) {
 		$(`.player${[num+1]}`).each(function (index) {
 			$(this).text(player.yatzyPoints[index]);
+			if(index==17){
+				$(this).text(player.score);
+			}
 		});
 	});
-
 }
+
+/*query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, () => {
+						newRound();
+						$('.alert').remove()
+					});*/

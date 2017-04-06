@@ -42,15 +42,31 @@ class Queries extends Base {
 	}
 
 	// Update points in DB
-	updatePlayerInDB(userId, userYatzyPoints) {
-		console.log('vi är inne');
-		console.log(userId);
-		console.log('inne i frågan',userYatzyPoints)
+	updatePlayerInDB(userId, userYatzyPoints, totalScore, callback) {
+
 		this.db.updateYatzyFormInDB([{
 			activeStatus: 0,
-			aces: 3	
-		},userId], (data) => {
+			aces: userYatzyPoints[0],
+			twos: userYatzyPoints[1],
+			threes: userYatzyPoints[2],
+			fours: userYatzyPoints[3],
+			fives: userYatzyPoints[4],
+			sixes: userYatzyPoints[5],
+			bonus: userYatzyPoints[6],
+			sum: userYatzyPoints[7],
+			onePair: userYatzyPoints[8],
+			twoPair: userYatzyPoints[9],
+			threeOfAKind: userYatzyPoints[10],
+			fourOfAKind: userYatzyPoints[11],
+			smallStraight: userYatzyPoints[12],
+			largeStraight: userYatzyPoints[13],
+			fullHouse: userYatzyPoints[14],
+			chance: userYatzyPoints[15],
+			yahtzee: userYatzyPoints[16],
+			total: totalScore
+		}, userId], (data) => {
 			console.log('update', data);
+			callback();
 		});
 	}
 
