@@ -4,6 +4,7 @@ var updater;
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
 	var userId;
+	
 
 	query.getGameSession((data) => {
 		if (data.length < 4) {
@@ -44,6 +45,7 @@ function addOnlinePlayersToGame() {
 			});
 
 		});
+		localGame = false;
 		startGame();
 		updater = setInterval(updateGamePage, 1000);
 

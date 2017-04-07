@@ -3,7 +3,7 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
-var localGame = false;
+var localGame = true;
 var throws = 0;
 var gameIsDone = false;
 var yatzyForm = ["Spelare", "Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor", "Bonus", "Summa",
@@ -62,8 +62,8 @@ function startGame() {
 	$('#about').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
-	/*showActivePlayers();
-	seeActivePlayer();*/
+	showActivePlayers();
+	seeActivePlayer();
 }
 
 function randomize() {
@@ -184,7 +184,7 @@ function totalCalc() {
 			var bonusActive = false;
 			var sumPoints = true;
 			for (var i = 0; i < 6; i++) {
-				if (typeof player.yatzyPoints[i] !== 'undefined' || player.yatzyPoints[i] !== null) {
+				if (typeof player.yatzyPoints[i] !== 'undefined') {
 					bonusPoints += player.yatzyPoints[i]
 				}
 				if (bonusPoints > 63 && bonusActive == false) {
@@ -200,7 +200,7 @@ function totalCalc() {
 
 			for (var i = 8; i < 17; i++) {
 
-				if (typeof player.yatzyPoints[i] == 'undefined' || player.yatzyPoints[i] == null) {
+				if (typeof player.yatzyPoints[i] == 'undefined') {
 					count++;
 				} else {
 					points += player.yatzyPoints[i]
@@ -650,12 +650,16 @@ function newRound() {
 		}
 	});
 
-
-	/*players[nextIndex].active = true;*/
-	query.updatePlayerStatusInDB(nextIndex + 1, () => {
+	if (localGame) {
+		players[nextIndex].active = true;
 		seeActivePlayer();
 		$('#diceHolder img').remove();
-	});
+	} else {
+		query.updatePlayerStatusInDB(nextIndex + 1, () => {
+			seeActivePlayer();
+			$('#diceHolder img').remove();
+		});
+	}
 
 
 }
@@ -797,11 +801,16 @@ $(document).on('click', '.customTd', function () {
 
 				}
 				if (sucess) {
-					query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, players[tdThatCanBeUsed - 1].score, () => {
-
+					if (localGame) {
 						newRound();
-						$('.alert').remove()
-					});
+						$('.alert').remove();
+					} else {
+						query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, players[tdThatCanBeUsed - 1].score, () => {
+							newRound();
+							$('.alert').remove();
+						});
+					}
+
 
 				} else {
 					$('.col-md-8').append('<div class="alert alert-danger parWarning" role="alert">Var god och välj ett par!</div>')
