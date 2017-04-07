@@ -3,6 +3,7 @@
 // Global variables
 // Use query to talk with the database
 var query = new Queries();
+var localGame = false;
 var throws = 0;
 var gameIsDone = false;
 var yatzyForm = ["Spelare", "Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor", "Bonus", "Summa",
@@ -57,15 +58,13 @@ function start() {
 }
 
 function startGame() {
-
 	$('#home').hide();
+	$('#about').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
-	showActivePlayers();
-	seeActivePlayer();
-
+	/*showActivePlayers();
+	seeActivePlayer();*/
 }
-
 
 function randomize() {
 	return Math.floor(Math.random() * 6) + 1;
@@ -201,7 +200,7 @@ function totalCalc() {
 
 			for (var i = 8; i < 17; i++) {
 
-				if (typeof player.yatzyPoints[i] == 'undefined'|| player.yatzyPoints[i] == null) {
+				if (typeof player.yatzyPoints[i] == 'undefined' || player.yatzyPoints[i] == null) {
 					count++;
 				} else {
 					points += player.yatzyPoints[i]
@@ -652,10 +651,13 @@ function newRound() {
 	});
 
 
-	players[nextIndex].active = true;
-	seeActivePlayer();
+	/*players[nextIndex].active = true;*/
+	query.updatePlayerStatusInDB(nextIndex + 1, () => {
+		seeActivePlayer();
+		$('#diceHolder img').remove();
+	});
 
-	$('#diceHolder img').remove();
+
 }
 
 //function see active players
@@ -678,7 +680,6 @@ function seeActivePlayer() {
 		if (player.active) {
 			$(`#p${index}`).addClass('activePlayer');
 			$(`#player${index +1}`).addClass('activePlayerForm');
-
 
 		} else {
 			$(`#p${index}`).removeClass('activePlayer');
@@ -729,8 +730,7 @@ $(document).on('click', '.btn-info', function () {
 	});
 	if (flag) {
 		addPlayersToGame();
-		$('#about').hide();
-
+		localGame = true;
 		startGame();
 
 	} else {
@@ -748,7 +748,6 @@ $(document).on('click', '#diceHolder img', function () {
 
 $(document).on('click', '#diceTable #throwDice', function () {
 	rollDie();
-
 });
 
 $(document).on('click', '#about', function () {
@@ -790,7 +789,7 @@ $(document).on('click', '.customTd', function () {
 				}
 				if (count == 15) {
 					if (players[players.length - 1].active == true) {
-						endGame()
+						endGame();
 						gameIsDone = true;
 					} else {
 
@@ -799,7 +798,7 @@ $(document).on('click', '.customTd', function () {
 				}
 				if (sucess) {
 					query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, players[tdThatCanBeUsed - 1].score, () => {
-						console.log(players[tdThatCanBeUsed - 1].score);
+
 						newRound();
 						$('.alert').remove()
 					});

@@ -70,6 +70,15 @@ class Queries extends Base {
 		});
 	}
 
+	// Update points in DB
+	updatePlayerStatusInDB(userId, callback) {
+			console.log(userId);
+		this.db.updatePlayerStatus([userId], (data) => {
+			console.log('update', data);
+			callback();
+		});
+	}
+
 	getGameSession(callback) {
 		this.db.getGameSession((data) => {
 
@@ -105,7 +114,11 @@ class Queries extends Base {
 			`,
 			updateYatzyFormInDB: `
 				UPDATE gamesession SET ? WHERE id = ?
+			`,
+			updatePlayerStatus: `
+				update gamesession SET activeStatus = 1 WHERE id = ?
 			`
+
 		}
 	}
 

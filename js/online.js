@@ -50,40 +50,59 @@ function addOnlinePlayersToGame() {
 	});
 }
 
-var check;
+var sizeBeforeUpdate = 0;
+var sizeAfterUpdate = 0;
+
 function updateGamePage() {
-	players = [];
+	console.log('sizeBeforeUpdate', sizeBeforeUpdate);
+	console.log('sizeAfterUpdate', sizeAfterUpdate);
+
+	sizeAfterUpdate = 0;
+
+
 	query.getGameSession((data) => {
 		data.forEach(function (player) {
-			players.push({
-				"username": player.player,
-				"yatzyPoints": [player.aces, player.twos, player.threes, player.fours, player.fives, player.sixes,player.bonus ,player.sum ,player.onePair ,player.twoPair ,player.threeOfAKind ,player.fourOfAKind ,player.smallStraight ,player.largeStraight ,player.fullHouse,player.chance ,player.yahtzee],
-				"active": player.activeStatus,
-				"score": player.total
+			for (cellData in player) {
+				if (player[cellData] !== null) {
+					sizeAfterUpdate++;
+				}
+			}
+		});
+
+		if (sizeAfterUpdate > sizeBeforeUpdate) {
+			sizeBeforeUpdate = sizeAfterUpdate;
+			players = [];
+			data.forEach(function (player) {
+				players.push({
+					"username": player.player,
+					"yatzyPoints": [player.aces, player.twos, player.threes, player.fours, player.fives, player.sixes, player.bonus, player.sum, player.onePair, player.twoPair, player.threeOfAKind, player.fourOfAKind, player.smallStraight, player.largeStraight, player.fullHouse, player.chance, player.yahtzee],
+					"active": player.activeStatus,
+					"score": player.total
+				});
+
 			});
+
 			buildYatzyForm();
 			updateYatzyForm();
 			showActivePlayers();
 			seeActivePlayer();
-		});
-
+		}
+	
 	});
-}
 
+}
 
 // För att uppdatera yatzyformulär när vi ändrat något i databasen
 function updateYatzyForm() {
-	players.forEach(function (player,num) {
+	players.forEach(function (player, num) {
 		$(`.player${[num+1]}`).each(function (index) {
 			$(this).text(player.yatzyPoints[index]);
-			if(index==17){
-				$(this).text(player.score);
+			if (index == 17) {
+				if (player.score !== null) {
+					$(this).text(player.score);
+				}
+
 			}
 		});
 	});
 }
-
-/*query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, () => {
-						newRound();
-						$('.alert').remove()
-					});*/
