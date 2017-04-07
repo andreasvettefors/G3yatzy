@@ -88,14 +88,13 @@ function rollDie() {
 	}
 }
 
+
 function appendToDom() {
 	$('#diceHolder img').remove();
 	dice.forEach(function (die) {
 		if (die.saved === false) {
 			if (die.value === 1) {
-
 				$('#diceHolder').append(`<img class="notactive" src="img/dice-1.png">`);
-
 			} else if (die.value === 2) {
 				$('#diceHolder').append(`<img class="notactive" src="img/dice-2.png">`);
 			} else if (die.value === 3) {
@@ -125,12 +124,6 @@ function appendToDom() {
 		}
 
 	});
-    /*$('#diceHolder img').animate({
-            left: '250px',
-            opacity: '0.5',
-            height: '100px',
-            width: '100px'
-        });*/
 }
 
 function printHighScoreToDom() {
@@ -257,7 +250,6 @@ function endGame(){
     }
     $('#myModal2').modal('show');
     $('.popup-text').append('<p>Grattis till vinsten <br/><b>'+players[playerIndex].username+'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
-		
 }
 
 function holdDice() {
@@ -775,15 +767,17 @@ $(document).on('click', '.btn-info', function () {
 	}
 });
 
+
+
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
-    //Tar bort klassen notactive från tärningarna som blir holdade
     $(this).removeClass('notactive')
     holdDice();
 });
 
 $(document).on('click', '#diceTable #throwDice', function () {
-        rollDie();
+	rollDie();
+
 });
 
 $(document).on('click', '#about', function () {
