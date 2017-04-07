@@ -528,3 +528,6 @@ background: none;
 	font-family: 'Quicksand';
 	font-size: 14px;
 }
+.tooltip {
+    white-space: pre-line;
+}

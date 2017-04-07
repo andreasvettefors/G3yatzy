@@ -88,14 +88,13 @@ function rollDie() {
 	}
 }
 
+
 function appendToDom() {
 	$('#diceHolder img').remove();
 	dice.forEach(function (die) {
 		if (die.saved === false) {
 			if (die.value === 1) {
-
 				$('#diceHolder').append(`<img class="notactive" src="img/dice-1.png">`);
-
 			} else if (die.value === 2) {
 				$('#diceHolder').append(`<img class="notactive" src="img/dice-2.png">`);
 			} else if (die.value === 3) {
@@ -125,12 +124,6 @@ function appendToDom() {
 		}
 
 	});
-    /*$('#diceHolder img').animate({
-            left: '250px',
-            opacity: '0.5',
-            height: '100px',
-            width: '100px'
-        });*/
 }
 
 function printHighScoreToDom() {
@@ -257,7 +250,6 @@ function endGame(){
     }
     $('#myModal2').modal('show');
     $('.popup-text').append('<p>Grattis till vinsten <br/><b>'+players[playerIndex].username+'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
-		
 }
 
 function holdDice() {
@@ -277,7 +269,7 @@ function holdDice() {
 function addField() {
 
 	$('.addField').remove();
-	var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input inputControl" id="field1" type="text"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
+	var newField = $('.input-append').append('<div class="field"><input autocomplete="off" class="input inputControl" id="field1" type="text" maxlength="15"><span class="glyphicon glyphicon-plus-sign addField" aria-hidden="true"></span><span class="glyphicon glyphicon-remove-sign removeField" aria-hidden="true"></span></div>');
 
 }
 
@@ -696,6 +688,7 @@ function seeActivePlayer(){
 
 }
 
+
 // Events
 
 var clicks = 0;
@@ -703,15 +696,19 @@ var clicks = 0;
 // Event that adds a new input field
 $(document).on('click', '.addField', function () {
 
-	if (clicks < 3) {
-		clicks += 1;
-
 		if ($(this).parent().find('input').val() != "") {
 			addField();
 		} else {
-			console.log("hej");
+            $('.addField').attr('data-toggle','tooltip');
+            $('.addField').attr('data-trigger','manual');
+            $('.addField').attr('data-placement','auto');
+            $('.addField').attr('title','Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
+            $('.addField').tooltip('show');
+            setTimeout(function(){
+                $('.addField').tooltip('hide');
+                $(".addField").removeAttr("title");
+            },3000);
 		}
-	}
 });
 
 // event that removes previous field
@@ -724,8 +721,22 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 
 });
 
-$(document).on('click', '.btn-info', function () {
+$(document).on('keyup','#field1', function (e){
+    if(e.target.value.length==15){
+            $('#field1').attr('data-toggle','tooltip');
+            $('#field1').attr('data-trigger','manual');
+            $('#field1').attr('data-placement','auto');
+            $('#field1').attr('title','Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
+            $('#field1').tooltip('show');
+            setTimeout(function(){
+                $('#field1').tooltip('hide');
+                $("#field1").removeAttr("title");
+            },3000);
+    }
+    
+});
 
+$(document).on('click', '.btn-info', function () {
 	var flag = false;
 	$('.input').each(function (index) {
 		if ($(this).val() != '') {
@@ -742,20 +753,31 @@ $(document).on('click', '.btn-info', function () {
 
 	}
 	else{
-		console.log('Får inte vara tomt');
+            $('.addField').attr('data-toggle','tooltip');
+            $('.addField').attr('data-trigger','manual');
+            $('.addField').attr('data-placement','auto');
+            $('.addField').attr('title','Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
+            $('.addField').tooltip('show');
+            setTimeout(function(){
+                $('.addField').tooltip('hide');
+                $(".addField").removeAttr("title");
+                $(".addField").removeAttr("title");
+            },3000);
 		return;
 	}
 });
 
+
+
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
-    //Tar bort klassen notactive från tärningarna som blir holdade
     $(this).removeClass('notactive')
     holdDice();
 });
 
 $(document).on('click', '#diceTable #throwDice', function () {
-        rollDie();
+	rollDie();
+
 });
 
 $(document).on('click', '#about', function () {
@@ -810,8 +832,13 @@ $(document).on('click', '.customTd', function () {
         if(sucess){
            newRound();
             $('.alert').remove()
+            $('tr:nth-child(10)').tooltip('hide');
         }else{
-            $('.col-md-8').append('<div class="alert alert-danger parWarning" role="alert">Var god och välj ett par!</div>')    
+            $('tr:nth-child(10)').attr('data-toggle','tooltip');
+            $('tr:nth-child(10)').attr('data-trigger','manual');
+            $('tr:nth-child(10)').attr('data-placement','auto');
+            $('tr:nth-child(10)').attr('title','Var god och välj ett par!');
+            $('tr:nth-child(10)').tooltip('show');
         }    
         
 	   }
