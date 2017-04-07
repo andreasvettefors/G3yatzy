@@ -13,27 +13,27 @@ var players = [];
 var dice = [
 	{
 		"die": 0,
-		"value": 5,
+		"value": 0,
 		"saved": false
 	},
 	{
 		"die": 1,
-		"value": 5,
+		"value": 0,
 		"saved": false
 	},
 	{
 		"die": 2,
-		"value": 5,
+		"value": 0,
 		"saved": false
 	},
 	{
 		"die": 3,
-		"value": 5,
+		"value": 0,
 		"saved": false
 	},
 	{
 		"die": 4,
-		"value": 5,
+		"value": 0,
 		"saved": false
 	}
 ];
@@ -146,8 +146,8 @@ function printHighScoreToDom() {
 function printScores() {
 	query.runAQuery((element) => {
 		for (var i = 0; i < element.length; i++) {
-			console.log(element[i].username)
-			console.log(element[i].score)
+			console.log(element[i].username);
+			console.log(element[i].score);
 		}
 	});
 }
@@ -249,7 +249,8 @@ function endGame(){
         submitPlayer(players[i].username, players[i].score)
     }
     $('#myModal2').modal('show');
-    $('.popup-text').append('<p>Grattis till vinsten <br/><b>'+players[playerIndex].username+'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>')
+    $('.popup-text').append('<p>Grattis till vinsten <br/><b>'+players[playerIndex].username+'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
+		
 }
 
 function holdDice() {
@@ -759,6 +760,10 @@ $(document).on('click', '.confirmEnd', function () {
 	$('#confirmEnd').modal('show');
 });
 
+$(document).on('click','#winnerTemplateModalClose',function(){
+	location.reload();
+});
+
 $(document).on('click', '.customTd', function () {
 	if(!gameIsDone){
     var tdThatCanBeUsed;
@@ -812,4 +817,5 @@ $(document).on('click', '.customTd', function () {
 	   }
     }
  }
+	console.log(count);
 });
