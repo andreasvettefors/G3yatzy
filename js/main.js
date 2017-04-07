@@ -88,23 +88,24 @@ function rollDie() {
 	}
 }
 
-
 function appendToDom() {
 	$('#diceHolder img').remove();
 	dice.forEach(function (die) {
 		if (die.saved === false) {
 			if (die.value === 1) {
-				$('#diceHolder').append(`<img src="img/dice-1.png">`);
+
+				$('#diceHolder').append(`<img class="notactive" src="img/dice-1.png">`);
+
 			} else if (die.value === 2) {
-				$('#diceHolder').append(`<img src="img/dice-2.png">`);
+				$('#diceHolder').append(`<img class="notactive" src="img/dice-2.png">`);
 			} else if (die.value === 3) {
-				$('#diceHolder').append(`<img src="img/dice-3.png">`);
+				$('#diceHolder').append(`<img class="notactive" src="img/dice-3.png">`);
 			} else if (die.value === 4) {
-				$('#diceHolder').append(`<img src="img/dice-4.png">`);
+				$('#diceHolder').append(`<img class="notactive" src="img/dice-4.png">`);
 			} else if (die.value === 5) {
-				$('#diceHolder').append(`<img src="img/dice-5.png">`);
+				$('#diceHolder').append(`<img class="notactive" src="img/dice-5.png">`);
 			} else if (die.value === 6) {
-				$('#diceHolder').append(`<img src="img/dice-6.png">`);
+				$('#diceHolder').append(`<img class="notactive" src="img/dice-6.png">`);
 			}
 		} else {
 			if (die.value === 1) {
@@ -124,6 +125,12 @@ function appendToDom() {
 		}
 
 	});
+    /*$('#diceHolder img').animate({
+            left: '250px',
+            opacity: '0.5',
+            height: '100px',
+            width: '100px'
+        });*/
 }
 
 function printHighScoreToDom() {
@@ -740,16 +747,15 @@ $(document).on('click', '.btn-info', function () {
 	}
 });
 
-
-
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
+    //Tar bort klassen notactive från tärningarna som blir holdade
+    $(this).removeClass('notactive')
     holdDice();
 });
 
 $(document).on('click', '#diceTable #throwDice', function () {
-	rollDie();
-
+        rollDie();
 });
 
 $(document).on('click', '#about', function () {
