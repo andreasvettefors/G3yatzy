@@ -82,6 +82,7 @@ function rollDie() {
                 
 			}
 		});
+        $('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws +'</strong> av 3</p>'); 
 		appendToDom();
 
 	}

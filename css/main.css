@@ -507,3 +507,20 @@ background: none;
 	font-family: 'Quicksand';
 	font-size: 14px;
 }
+
+#numberOfRollsContainer .strongForThrows{
+	color: #d78548;
+    font-size: 20px;
+  
+}
+
+#numberOfRollsContainer p{
+	color: #676e75;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'quicksand';
+    margin-bottom: -22px;
+}
+#numberOfRollsContainer {
+	margin-top: -10px;
+}
