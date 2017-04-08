@@ -470,6 +470,7 @@ background: none;
 
 .paragraph {
 	color: #acd13f;
+	margin-top: -8px;
 	font-size: 15px;
 	font-family: 'Quicksand';
 }
@@ -478,7 +479,7 @@ background: none;
 .paragraph3{
 	color: #032329;
     font-size: 15px;
-
+    margin-top: -8px;
     font-family: 'Quicksand';
 }
 
