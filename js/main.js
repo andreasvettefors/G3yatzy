@@ -54,7 +54,7 @@ function start() {
 	$('body').append(startPage());
 	$('#gamePage').hide();
 	$('#aboutus').hide();
-    $('#confirmEnd').hide();
+	$('#confirmEnd').hide();
 	printHighScoreToDom();
 }
 
@@ -65,8 +65,8 @@ function startGame() {
 	$('#gamePage').show();
 	showActivePlayers();
 	seeActivePlayer();
-    $("#brand").addClass("confirmEnd");
-    $("#brand").removeAttr("href").css("cursor","pointer");;
+	$("#brand").addClass("confirmEnd");
+	$("#brand").removeAttr("href").css("cursor", "pointer");;
 }
 
 function randomize() {
@@ -264,7 +264,7 @@ function endGame() {
 
 function eraseDataFromGameSession() {
 
-			query.clearGameSession(() => {});
+	query.clearGameSession(() => {});
 }
 
 function holdDice() {
@@ -717,19 +717,19 @@ var clicks = 0;
 // Event that adds a new input field
 $(document).on('click', '.addField', function () {
 
-		if ($(this).parent().find('input').val() != "") {
-			addField();
-		} else {
-            $('.addField').attr('data-toggle','tooltip');
-            $('.addField').attr('data-trigger','manual');
-            $('.addField').attr('data-placement','auto');
-            $('.addField').attr('title','Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
-            $('.addField').tooltip('show');
-            setTimeout(function(){
-                $('.addField').tooltip('hide');
-                $(".addField").removeAttr("title");
-            },3000);
-		}
+	if ($(this).parent().find('input').val() != "") {
+		addField();
+	} else {
+		$('.addField').attr('data-toggle', 'tooltip');
+		$('.addField').attr('data-trigger', 'manual');
+		$('.addField').attr('data-placement', 'auto');
+		$('.addField').attr('title', 'Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
+		$('.addField').tooltip('show');
+		setTimeout(function () {
+			$('.addField').tooltip('hide');
+			$(".addField").removeAttr("title");
+		}, 3000);
+	}
 });
 
 // event that removes previous field
@@ -742,19 +742,19 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 
 });
 
-$(document).on('keyup','#field1', function (e){
-    if(e.target.value.length==15){
-            $('#field1').attr('data-toggle','tooltip');
-            $('#field1').attr('data-trigger','manual');
-            $('#field1').attr('data-placement','auto');
-            $('#field1').attr('title','Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
-            $('#field1').tooltip('show');
-            setTimeout(function(){
-                $('#field1').tooltip('hide');
-                $("#field1").removeAttr("title");
-            },3000);
-    }
-    
+$(document).on('keyup', '#field1', function (e) {
+	if (e.target.value.length == 15) {
+		$('#field1').attr('data-toggle', 'tooltip');
+		$('#field1').attr('data-trigger', 'manual');
+		$('#field1').attr('data-placement', 'auto');
+		$('#field1').attr('title', 'Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
+		$('#field1').tooltip('show');
+		setTimeout(function () {
+			$('#field1').tooltip('hide');
+			$("#field1").removeAttr("title");
+		}, 3000);
+	}
+
 });
 
 $(document).on('click', '.btn-info', function () {
@@ -771,18 +771,17 @@ $(document).on('click', '.btn-info', function () {
 		localGame = true;
 		startGame();
 
-	}
-	else{
-            $('.addField').attr('data-toggle','tooltip');
-            $('.addField').attr('data-trigger','manual');
-            $('.addField').attr('data-placement','auto');
-            $('.addField').attr('title','Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
-            $('.addField').tooltip('show');
-            setTimeout(function(){
-                $('.addField').tooltip('hide');
-                $(".addField").removeAttr("title");
-                $(".addField").removeAttr("title");
-            },3000);
+	} else {
+		$('.addField').attr('data-toggle', 'tooltip');
+		$('.addField').attr('data-trigger', 'manual');
+		$('.addField').attr('data-placement', 'auto');
+		$('.addField').attr('title', 'Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
+		$('.addField').tooltip('show');
+		setTimeout(function () {
+			$('.addField').tooltip('hide');
+			$(".addField").removeAttr("title");
+			$(".addField").removeAttr("title");
+		}, 3000);
 		return;
 	}
 });
@@ -791,8 +790,8 @@ $(document).on('click', '.btn-info', function () {
 
 $(document).on('click', '#diceHolder img', function () {
 	$(this).toggleClass('active');
-    $(this).removeClass('notactive');
-    holdDice();
+	$(this).removeClass('notactive');
+	holdDice();
 
 });
 
@@ -839,57 +838,58 @@ $(document).on('click', '.customTd', function () {
 				tdThatCanBeUsed = index + 1;
 			}
 		});
+	}
 
-		if ($(this).attr('class').indexOf(`player${tdThatCanBeUsed}`) > -1) {
+	if ($(this).attr('class').indexOf(`player${tdThatCanBeUsed}`) > -1) {
 
-			if ($(this).text() == '' && throws >= 1) {
+		if ($(this).text() == '' && throws >= 1) {
 
-				var sucess = addToScoreAdvanced(this);
-				totalCalc();
+			var sucess = addToScoreAdvanced(this);
+			totalCalc();
 
-				var count = 0;
+			var count = 0;
 
-				for (var i = 0; i < players[tdThatCanBeUsed - 1].yatzyPoints.length; i++) {
-					if (i == 6 || i == 7 || i == 17) {
-						continue;
-					}
-					if (typeof players[tdThatCanBeUsed - 1].yatzyPoints[i] == 'undefined' || players[tdThatCanBeUsed - 1].yatzyPoints[i] == null) {
-
-					} else {
-						count++
-					}
+			for (var i = 0; i < players[tdThatCanBeUsed - 1].yatzyPoints.length; i++) {
+				if (i == 6 || i == 7 || i == 17) {
+					continue;
 				}
-				if (count == 15) {
-					if (players[players.length - 1].active == true) {
-						endGame();
-						gameIsDone = true;
-					} else {
-
-					}
-
-				}
-				if (sucess) {
-					if (localGame) {
-						newRound();
-						$('.alert').remove();
-            $('tr:nth-child(10)').tooltip('hide');
-					} else {
-						query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, players[tdThatCanBeUsed - 1].score, () => {
-							newRound();
-							$('.alert').remove();
-              $('tr:nth-child(10)').tooltip('hide');
-						});
-					}
-
+				if (typeof players[tdThatCanBeUsed - 1].yatzyPoints[i] == 'undefined' || players[tdThatCanBeUsed - 1].yatzyPoints[i] == null) {
 
 				} else {
-					     $('tr:nth-child(10)').attr('data-toggle','tooltip');
-            $('tr:nth-child(10)').attr('data-trigger','manual');
-            $('tr:nth-child(10)').attr('data-placement','auto');
-            $('tr:nth-child(10)').attr('title','Var god och välj ett par!');
-            $('tr:nth-child(10)').tooltip('show');
+					count++
+				}
+			}
+			if (count == 15) {
+				if (players[players.length - 1].active == true) {
+					endGame();
+					gameIsDone = true;
+				} else {
+
 				}
 
 			}
+			if (sucess) {
+				if (localGame) {
+					newRound();
+					$('.alert').remove();
+					$('tr:nth-child(10)').tooltip('hide');
+				} else {
+					query.updatePlayerInDB((tdThatCanBeUsed), players[tdThatCanBeUsed - 1].yatzyPoints, players[tdThatCanBeUsed - 1].score, () => {
+						newRound();
+						$('.alert').remove();
+						$('tr:nth-child(10)').tooltip('hide');
+					});
+				}
+
+
+			} else {
+				$('tr:nth-child(10)').attr('data-toggle', 'tooltip');
+				$('tr:nth-child(10)').attr('data-trigger', 'manual');
+				$('tr:nth-child(10)').attr('data-placement', 'auto');
+				$('tr:nth-child(10)').attr('title', 'Var god och välj ett par!');
+				$('tr:nth-child(10)').tooltip('show');
+			}
+
 		}
+	}
 });
