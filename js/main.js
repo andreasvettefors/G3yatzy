@@ -84,7 +84,7 @@ function rollDie() {
 				die.value = randomize();
 			}
 		});
-		$('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws +'</strong> av 3</p>');
+		$('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws + '</strong> av 3</p>');
 		appendToDom();
 
 	}
