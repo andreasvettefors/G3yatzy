@@ -86,6 +86,12 @@ class Queries extends Base {
 
 		});
 	}
+	
+	clearGameSession(userId,callback){
+		this.db.clearGameSession([userId], () => {
+			callback();
+		});
+	}
 
 	static get sqlQueries() {
 		//
@@ -117,6 +123,9 @@ class Queries extends Base {
 			`,
 			updatePlayerStatus: `
 				update gamesession SET activeStatus = 1 WHERE id = ?
+			`,
+			clearGameSession: `
+				DELETE FROM gamesession
 			`
 
 		}

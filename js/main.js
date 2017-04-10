@@ -203,10 +203,10 @@ function totalCalc() {
 				if (typeof player.yatzyPoints[i] == 'undefined') {
 					count++;
 				} else {
-					points += player.yatzyPoints[i]
+					points += player.yatzyPoints[i];
 				}
 				if (sumPoints) {
-					points += player.yatzyPoints[7]
+					points += player.yatzyPoints[7];
 					sumPoints = false
 				}
 
@@ -222,7 +222,9 @@ function totalCalc() {
 
 //submit form (saves the players name in a variable)
 function submitPlayer(textValue, sumValue) {
-	query.submitHighscoreToDB(textValue, sumValue, () => {});
+	query.submitHighscoreToDB(textValue, sumValue, () => {
+
+	});
 }
 
 //function that shows who's the winner
@@ -242,14 +244,25 @@ function findPlayerIndexOfWinner() {
 }
 
 function endGame() {
-	console.log(findPlayerIndexOfWinner())
 	var playerIndex = findPlayerIndexOfWinner();
+
 	for (var i = 0; i < players.length; i++) {
-		submitPlayer(players[i].username, players[i].score)
+		submitPlayer(players[i].username, players[i].score);
 	}
+
 	$('#myModal2').modal('show');
 	$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
 
+	if (!localGame) {
+		eraseDataFromGameSession();
+	}
+
+
+}
+
+function eraseDataFromGameSession() {
+
+			query.clearGameSession(() => {});
 }
 
 function holdDice() {
@@ -751,7 +764,17 @@ $(document).on('click', '#diceHolder img', function () {
 });
 
 $(document).on('click', '#diceTable #throwDice', function () {
-	rollDie();
+	if (localGame) {
+		rollDie();
+	} else {
+		players.forEach(function (player) {
+			if (player.active == true && player.username == user.sessionUser) {
+				rollDie();
+			}
+		});
+	}
+
+
 });
 
 $(document).on('click', '#about', function () {
@@ -764,6 +787,15 @@ $(document).on('click', '#winnerTemplateModalClose', function () {
 });
 
 $(document).on('click', '.customTd', function () {
+
+	if (!localGame) {
+		players.forEach(function (player) {
+			if (player.active !== true && player.username !== user.sessionUser) {
+				return;
+			}
+		});
+	}
+
 	if (!gameIsDone) {
 		var tdThatCanBeUsed;
 		players.forEach(function (player, index) {

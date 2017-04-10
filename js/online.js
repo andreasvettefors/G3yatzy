@@ -47,7 +47,7 @@ function addOnlinePlayersToGame() {
 		});
 		localGame = false;
 		startGame();
-		updater = setInterval(updateGamePage, 1000);
+		updater = setInterval(updateGamePage, 500);
 
 	});
 }
