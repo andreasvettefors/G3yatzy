@@ -722,6 +722,11 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 });
 
 $(document).on('keyup','#field1', function (e){
+    console.log(e.target.value)
+    if(e.which==13){
+        console.log("Enter")
+    }
+    
     if(e.target.value.length==15){
             $('#field1').attr('data-toggle','tooltip');
             $('#field1').attr('data-trigger','manual');
