@@ -66,21 +66,21 @@ body {
 	font-family: 'Quicksand';
 }
 
-#welcome .well-custom > h5{
-	color:#5a5959;
+#welcome .well-custom>h5 {
+	color: #5a5959;
 	font-size: 17px;
 	line-height: 25px;
 	font-family: 'Quicksand';
 }
 
-.imgContainer{
-	margin:auto;
-	width:80%;
+.imgContainer {
+	margin: auto;
+	width: 80%;
 }
 
-#welcome img{
-		width: 100%;
-	}
+#welcome img {
+	width: 100%;
+}
 
 
 /*Här börjar omoss sidan*/
@@ -88,7 +88,7 @@ body {
 #aboutus .well-custom {
 	background: transparent;
 	width: 50%;
-	margin:auto;
+	margin: auto;
 }
 
 #aboutus .well-custom h2 {
@@ -128,7 +128,8 @@ body {
 	text-align: center;
 }
 
-#scoretabel th.greyField,#scoretabel td.greyField {
+#scoretabel th.greyField,
+#scoretabel td.greyField {
 	background-color: #032329;
 	color: #acd13f;
 }
@@ -151,9 +152,10 @@ body {
 
 
 /*Här börjar CSS för tärningar*/
-#diceHolder{
-	height:89.6px;
-	display:flex;
+
+#diceHolder {
+	height: 89.6px;
+	display: flex;
 	justify-content: space-around;
 	background-color: #353a40;
 }
@@ -164,20 +166,38 @@ body {
 	box-shadow: 0 0 14px 2px #1aeaa8;
 	background-color: #0b3444;
 }
+
+
 /*Här skapas tärnrotationen*/
-.notactive{
+
+.notactive {
 	-webkit-animation: spin 0.8s linear 0s;
-	-moz-animation:spin 0.8s linear 0s;
-    animation:spin 0.8s linear 0s;
+	-moz-animation: spin 0.8s linear 0s;
+	animation: spin 0.8s linear 0s;
 }
 
-@-moz-keyframes spin{ 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin {
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
 
-#diceHolder img{
-	width:50px;
-	height:50px;
+@-webkit-keyframes spin {
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+#diceHolder img {
+	width: 50px;
+	height: 50px;
 }
 
 #diceHolder img:hover {
@@ -187,49 +207,54 @@ body {
 	cursor: pointer;
 }
 
-.btn{
+.btn {
 	background: none;
-    border-radius: 0;
-    color: #82b9b8;
-    font-size: 13px;
-    letter-spacing: 1px;
-    border: 1px #82b9b8 solid;
+	border-radius: 0;
+	color: #82b9b8;
+	font-size: 13px;
+	letter-spacing: 1px;
+	border: 1px #82b9b8 solid;
 }
+
+
 /*Här slutar CSS för tärningar*/
-.btn:hover{
+
+.btn:hover {
 	background: none;
-    border-radius: 0;
-    color:#d78548;
-    letter-spacing: 1px;
-    border: 1px #d78548 solid;
+	border-radius: 0;
+	color: #d78548;
+	letter-spacing: 1px;
+	border: 1px #d78548 solid;
 }
 
-.btn:focus{
+.btn:focus {
 	background: none;
-    border-radius: 0;
-    color: #d78548;
-    letter-spacing: 1px;
-    border: 1px #d78548 solid;
-    outline:none;
+	border-radius: 0;
+	color: #d78548;
+	letter-spacing: 1px;
+	border: 1px #d78548 solid;
+	outline: none;
 }
 
-.btn-info:focus{
+.btn-info:focus {
 	background: none;
-    border-radius: 0;
-    color: #d78548;
-    letter-spacing: 1px;
-    border: 1px #d78548 solid;
-    outline:none;
+	border-radius: 0;
+	color: #d78548;
+	letter-spacing: 1px;
+	border: 1px #d78548 solid;
+	outline: none;
 }
 
-.btn:active{
-background: none;
-    border-radius: 0;
-    color: #d78548;
-    letter-spacing: 1px;
-    border: 1px #d78548 solid;
-    outline:none;
+.btn:active {
+	background: none;
+	border-radius: 0;
+	color: #d78548;
+	letter-spacing: 1px;
+	border: 1px #d78548 solid;
+	outline: none;
 }
+
+
 /* CSS för submitform*/
 
 .submitButton {
@@ -298,104 +323,113 @@ background: none;
 
 /* Slutet för CSS vinnar popup*/
 
+
 /* Början för CSS regler popup*/
+
 .popup2 {
-    width:50%;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 20px 0 20px 0;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    background: -webkit-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:    -moz-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:     -ms-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:      -o-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:         linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
+	width: 50%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 20px 0 20px 0;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	background: -webkit-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -moz-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -ms-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -o-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: linear-gradient(top left, #acd13f 50%, #82c98d 50%);
 }
 
 .popup-content2 {
-    background: #3f3f40;
-    box-sizing: border-box;
-    padding-left: 10px;
-    padding-right: 10px;
+	background: #3f3f40;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .popup-text2 {
-    color: #dfff43;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 15px;
-    line-height: 25px;
-    font-weight: 100;
-    text-align: center;
-    bottom:30px;
-    transform: translateZ(15px);
+	color: #dfff43;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 15px;
+	line-height: 25px;
+	font-weight: 100;
+	text-align: center;
+	bottom: 30px;
+	transform: translateZ(15px);
 }
 
 .popup-text2 b {
-    color: coral;
-    font-weight: 300;
+	color: coral;
+	font-weight: 300;
 }
 
-.modal-title2{
+.modal-title2 {
 	font-family: 'Quicksand';
 	color: coral;
 	text-align: center;
 }
+
+
 /* Slutet för CSS regler popup*/
 
+
 /* Början för CSS highscore popup*/
+
 .popup3 {
-    width:30%;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 20px 0 20px 0;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    background: -webkit-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:    -moz-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:     -ms-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:      -o-linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
-    background:         linear-gradient(top left, #acd13f 50%,  #82c98d 50%);
+	width: 30%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 20px 0 20px 0;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	background: -webkit-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -moz-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -ms-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: -o-linear-gradient(top left, #acd13f 50%, #82c98d 50%);
+	background: linear-gradient(top left, #acd13f 50%, #82c98d 50%);
 }
 
 .popup-content3 {
-    background: #3f3f40;
-    box-sizing: border-box;
-    padding-left: 10px;
-    padding-right: 10px;
+	background: #3f3f40;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .popup-text3 {
-    color: #dfff43;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 15px;
-    line-height: 25px;
-    font-weight: 100;
-    bottom:30px;
-    transform: translateZ(15px);
+	color: #dfff43;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 15px;
+	line-height: 25px;
+	font-weight: 100;
+	bottom: 30px;
+	transform: translateZ(15px);
 }
 
 .popup-text3 b {
-    color: coral;
-    font-weight: 300;
+	color: coral;
+	font-weight: 300;
 }
 
-.modal-title3{
+.modal-title3 {
 	font-family: 'Quicksand';
 	color: coral;
 	text-align: center;
 }
 
-#highscoreTable{
+#highscoreTable {
 	margin: auto;
 }
-#highscoreTable th,td{
- padding-right: 5px;
+
+#highscoreTable th,
+td {
+	padding-right: 5px;
 	text-align: center;
-	}
+}
 
 
 /* Slutet för CSS highscore popup*/
+
 
 /* CSS för inputField*/
 
@@ -407,7 +441,8 @@ background: none;
 	width: 20px;
 }
 
-#field1 {
+#field1,
+#fieldOnline {
 	background: rgba(255, 255, 255, .1);
 	border: 0;
 	border-radius: 4px;
@@ -420,9 +455,9 @@ background: none;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	background-color: #2f3133;
+	background-color: rgba(0, 0, 0, 0.2);
 	color: #8a97a0;
-	border: 2px #5a8ab1 solid;
+	border: 1px #82b9b8 solid;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	margin-bottom: 8px;
@@ -458,8 +493,16 @@ background: none;
 }
 
 .containerInput {
-	margin-top: 50px;
-	background-color: #353a40;
+	background: linear-gradient( #353a40, #22262b);
+	border: none;
+}
+
+.header1 {
+	margin-top: 0px;
+	color: #acd13f;
+	font-weight: bold;
+	font-size: 22px;
+	font-family: 'Quicksand';
 }
 
 .header2 {
@@ -471,8 +514,57 @@ background: none;
 
 .paragraph {
 	color: #acd13f;
+	margin-top: -8px;
 	font-size: 15px;
 	font-family: 'Quicksand';
+}
+
+
+/* Online*/
+
+.paragraph3 {
+	color: #032329;
+	font-size: 15px;
+	margin-top: -8px;
+	font-family: 'Quicksand';
+}
+
+.header1Online {
+	margin-top: 0px;
+	color: #032329;
+	font-weight: bold;
+	font-size: 22px;
+	font-family: 'Quicksand';
+}
+
+.playerName {
+	color: #032329;
+	font-family: 'Quicksand';
+	margin-bottom: 0px;
+	font-weight: bold;
+}
+
+.containerInput2 {
+	background: linear-gradient(#b7cc7a, #104f76);
+	border: none;
+}
+
+#numberOfRollsContainer .strongForThrows {
+	color: #d78548;
+	font-size: 20px;
+}
+
+#numberOfRollsContainer p {
+	color: #676e75;
+	font-weight: bold;
+	font-size: 14px;
+	font-family: 'quicksand';
+	margin-bottom: -22px;
+}
+
+#numberOfRollsContainer {
+	margin-top: -10px;
+	margin-left: 40px;
 }
 
 
@@ -487,37 +579,36 @@ background: none;
 	padding-top: 10px;
 	width: auto;
 }
-.parWarning
-{
-    background: none;
-    border: 3px darkred solid;
-    font-family: 'Quicksand'
-    
+
+.parWarning {
+	background: none;
+	border: 3px darkred solid;
+	font-family: 'Quicksand'
 }
 
 
 /* CSS för aktiv spelare*/
 
-.activePlayersList {	
+.activePlayersList {
 	list-style-type: none;
 }
 
-.activePlayerForm{
-	    box-shadow:inset 0 0 5px 2px #f7ef42;
+.activePlayerForm {
+	box-shadow: inset 0 0 5px 2px #f7ef42;
 }
 
-#activePlayers .activePlayer{
+#activePlayers .activePlayer {
 	color: #acd13f;
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 0 0 0.5em #8F7;
-
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0 0 0.5em #8F7;
 }
 
 .playerList {
 	font-family: 'Quicksand';
 	font-size: 14px;
 }
+
 .tooltip {
-    white-space: pre-line;
+	white-space: pre-line;
 }

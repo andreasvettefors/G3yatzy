@@ -84,6 +84,7 @@ function rollDie() {
 				die.value = randomize();
 			}
 		});
+		$('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws +'</strong> av 3</p>');
 		appendToDom();
 
 	}
@@ -747,12 +748,12 @@ $(document).on('keyup', '#field1', function (e) {
 		$('#field1').attr('data-toggle', 'tooltip');
 		$('#field1').attr('data-trigger', 'manual');
 		$('#field1').attr('data-placement', 'auto');
-		$('#field1').attr('title', 'Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
+		$('#field1').attr('title', 'Det där användarnamnet är alldeles för coolt! \n Håll dig till 15 tecken.');
 		$('#field1').tooltip('show');
 		setTimeout(function () {
 			$('#field1').tooltip('hide');
 			$("#field1").removeAttr("title");
-		}, 3000);
+		}, 5000);
 	}
 
 });
@@ -775,13 +776,13 @@ $(document).on('click', '.btn-info', function () {
 		$('.addField').attr('data-toggle', 'tooltip');
 		$('.addField').attr('data-trigger', 'manual');
 		$('.addField').attr('data-placement', 'auto');
-		$('.addField').attr('title', 'Det där användarnamnet är alldelles för coolt! \n Tyvärr måste du namnge dig själv.');
+		$('.addField').attr('title', 'Det där användarnamnet är alldeles för coolt! \n Tyvärr måste du namnge dig själv.');
 		$('.addField').tooltip('show');
 		setTimeout(function () {
 			$('.addField').tooltip('hide');
 			$(".addField").removeAttr("title");
 			$(".addField").removeAttr("title");
-		}, 3000);
+		}, 5000);
 		return;
 	}
 });
