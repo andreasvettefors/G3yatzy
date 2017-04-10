@@ -672,7 +672,7 @@ function newRound() {
 		$('#diceHolder img').remove();
 	} else {
 		query.updatePlayerStatusInDB(nextIndex + 1, () => {
-			seeActivePlayer();
+			players[nextIndex].active = true;
 			$('#diceHolder img').remove();
 		});
 	}

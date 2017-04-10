@@ -4,7 +4,7 @@ var updater;
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
 	var userId;
-	
+
 
 	query.getGameSession((data) => {
 		if (data.length < 4) {
@@ -56,22 +56,22 @@ var sizeBeforeUpdate = 0;
 var sizeAfterUpdate = 0;
 
 function updateGamePage() {
-	console.log('sizeBeforeUpdate', sizeBeforeUpdate);
-	console.log('sizeAfterUpdate', sizeAfterUpdate);
-
+	console.log('UpdateGamepage 1');
 	sizeAfterUpdate = 0;
 
 
 	query.getGameSession((data) => {
+		/*console.log('check size 2');
 		data.forEach(function (player) {
 			for (cellData in player) {
 				if (player[cellData] !== null) {
 					sizeAfterUpdate++;
 				}
 			}
-		});
+		});*/
 
-		if (sizeAfterUpdate > sizeBeforeUpdate) {
+		/*if (sizeAfterUpdate > sizeBeforeUpdate) {*/
+			console.log('Update player 3');
 			sizeBeforeUpdate = sizeAfterUpdate;
 			players = [];
 			data.forEach(function (player) {
@@ -81,16 +81,19 @@ function updateGamePage() {
 					"active": player.activeStatus,
 					"score": player.total
 				});
-
 			});
-
+			console.log('buildyatzyform 4');
 			buildYatzyForm();
+			console.log('updateYatzyform 5');
 			updateYatzyForm();
+			console.log('showactiveplayer 6');
 			showActivePlayers();
+			console.log('seeActiveplayer 7');
 			seeActivePlayer();
-		}
-	
+
+	/*}*/
 	});
+
 
 }
 
