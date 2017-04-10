@@ -11,10 +11,18 @@ $(document).on('click', '.btn-online', function () {
 			if (data.length == 0) {
 				playersIntoDbWithRightId((data.length + 1), userInput, true);
 			} else {
+
+				// If the first player has made the first insertion in the yatzyform 
+				// the game has started and more players can't join
+				if (data[0].total !== null) {
+					alert('Du får inte vara med');
+					return;
+				}
+
 				playersIntoDbWithRightId((data.length + 1), userInput, false);
 			}
 		} else {
-			/*Show the player that the game is full*/
+			/*Show the players that the game is full*/
 			alert('fullt spel');
 		}
 	});
@@ -55,9 +63,10 @@ function addOnlinePlayersToGame() {
 var sizeBeforeUpdate = 0;
 var sizeAfterUpdate = 0;
 
+var emptyPointCell = 0;
+
 function updateGamePage() {
-	console.log('UpdateGamepage 1');
-	sizeAfterUpdate = 0;
+	//sizeAfterUpdate = 0;
 
 
 	query.getGameSession((data) => {
@@ -69,29 +78,46 @@ function updateGamePage() {
 				}
 			}
 		});*/
-
 		/*if (sizeAfterUpdate > sizeBeforeUpdate) {*/
-			console.log('Update player 3');
-			sizeBeforeUpdate = sizeAfterUpdate;
-			players = [];
-			data.forEach(function (player) {
-				players.push({
-					"username": player.player,
-					"yatzyPoints": [player.aces, player.twos, player.threes, player.fours, player.fives, player.sixes, player.bonus, player.sum, player.onePair, player.twoPair, player.threeOfAKind, player.fourOfAKind, player.smallStraight, player.largeStraight, player.fullHouse, player.chance, player.yahtzee],
-					"active": player.activeStatus,
-					"score": player.total
-				});
-			});
-			console.log('buildyatzyform 4');
-			buildYatzyForm();
-			console.log('updateYatzyform 5');
-			updateYatzyForm();
-			console.log('showactiveplayer 6');
-			showActivePlayers();
-			console.log('seeActiveplayer 7');
-			seeActivePlayer();
+		//sizeBeforeUpdate = sizeAfterUpdate;
 
-	/*}*/
+		emptyPointCell = 0;
+		players.forEach(function (player) {
+			for (var point of player.yatzyPoints) {
+				if (point == null) {
+					emptyPointCell++;
+				}
+			}
+		});
+
+		if (emptyPointCell == 0) {
+			endOnlineGame();
+	
+		}
+
+		console.log(emptyPointCell);
+
+
+		players = [];
+		data.forEach(function (player) {
+			players.push({
+				"username": player.player,
+				"yatzyPoints": [player.aces, player.twos, player.threes, player.fours, player.fives, player.sixes, player.bonus, player.sum, player.onePair, player.twoPair, player.threeOfAKind, player.fourOfAKind, player.smallStraight, player.largeStraight, player.fullHouse, player.chance, player.yahtzee],
+				"active": player.activeStatus,
+				"score": player.total
+			});
+		});
+
+
+		buildYatzyForm();
+		updateYatzyForm();
+		showActivePlayers();
+		seeActivePlayer();
+
+
+
+
+		/*}*/
 	});
 
 
@@ -109,5 +135,26 @@ function updateYatzyForm() {
 
 			}
 		});
+	});
+}
+
+function endOnlineGame(){
+			console.log('Slut på spelet');
+			eraseDataFromGameSession();
+			var playerIndex = findPlayerIndexOfWinner();
+
+			for (var i = 0; i < players.length; i++) {
+				submitPlayer(players[i].username, players[i].score);
+			}
+
+			$('#myModal2').modal('show');
+			$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '!');
+			clearInterval(updater);
+}
+
+function eraseDataFromGameSession() {
+
+	query.clearGameSession(() => {
+
 	});
 }
