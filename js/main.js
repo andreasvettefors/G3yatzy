@@ -724,7 +724,7 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 $(document).on('keyup','#field1', function (e){
     console.log(e.target.value)
     if(e.which==13){
-        console.log("Enter")
+        $('.btn-info').trigger('click')
     }
     
     if(e.target.value.length==15){
