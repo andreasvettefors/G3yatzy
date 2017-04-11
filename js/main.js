@@ -251,14 +251,36 @@ function findPlayerIndexOfWinner() {
 
 function endGame() {
 	var playerIndex = findPlayerIndexOfWinner();
+	var winner = players[playerIndex].username;
+	var winnerScore = players[playerIndex].score;
+	var averageScore = calculateAverageScore();
 
 	for (var i = 0; i < players.length; i++) {
 		submitPlayer(players[i].username, players[i].score);
 	}
-
-
+	if (localGame) {
 		$('#myModal2').modal('show');
-		$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');	
+		$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + +'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
+	} else {
+		query.insertGameStatistics(winner, winnerScore, averageScore, () => {
+			query.clearGameSession(() => {
+			});
+		});
+	}
+}
+
+function calculateAverageScore() {
+	var totalPlayersScore = 0;
+	var averageScore = 0;
+	players.forEach(function (player) {
+		totalPlayersScore += player.score;
+	});
+	
+	console.log('totalPlayersScore',totalPlayersScore);
+
+	averageScore = totalPlayersScore / (players.length);
+	console.log('averageScore',averageScore);
+	return averageScore;
 
 }
 
@@ -696,10 +718,12 @@ function seeActivePlayer() {
 		if (player.active) {
 			$(`#p${index}`).addClass('activePlayer');
 			$(`#player${index +1}`).addClass('activePlayerForm');
+			$(`.player${index +1}`).addClass('activeCell');
 
 		} else {
 			$(`#p${index}`).removeClass('activePlayer');
 			$(`#player${index +1}`).removeClass('activePlayerForm');
+			$(`.player${index +1}`).removeClass('activeCell');
 		}
 	});
 
@@ -868,17 +892,16 @@ $(document).on('click', '.customTd', function () {
 				}
 			}
 
-			if (localGame) {
-				if (count == 15) {
-					if (players[players.length - 1].active == true) {
-						endGame();
-						gameIsDone = true;
-					} else {
-
-					}
+			if (count == 15) {
+				if (players[players.length - 1].active == true) {
+					endGame();
+					gameIsDone = true;
+				} else {
 
 				}
+
 			}
+
 			if (sucess) {
 				if (localGame) {
 					newRound();

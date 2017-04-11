@@ -14,7 +14,8 @@ $(document).on('click', '.btn-online', function () {
 				// If the first player has made the first insertion in the yatzyform 
 				// the game has started and more players can't join
 				if (data[0].total !== null) {
-					alert('Du får inte vara med');
+					$('#myModal9').modal('show');
+					$('.popup-text').append('<p>Du får inte vara med!<br/><b>');
 					return;
 				}
 
@@ -22,7 +23,9 @@ $(document).on('click', '.btn-online', function () {
 			}
 		} else {
 			/*Show the players that the game is full*/
-			alert('fullt spel');
+			$('#myModal9').modal('show');
+			$('.popup-text').append('<p>Fullt Spel!<br/>Försök igen senare.<b>');
+			
 		}
 	});
 });
@@ -112,11 +115,9 @@ function updateGamePage() {
 		});
 
 		if (emptyPointCell == 0) {
-			endOnlineGame();
-	
+			clearInterval(updater);
+			setTimeout(endOnlineGame, 2000);
 		}
-
-		console.log(emptyPointCell);
 
 
 		players = [];
@@ -133,7 +134,8 @@ function updateGamePage() {
 		updateYatzyForm();
 		showActivePlayers();
 		seeActivePlayer();
-        displayChatMsgs()
+    displayChatMsgs()
+		showPlayerTurnOnSpecificComputer();
 		/*}*/
 	});
 
@@ -176,11 +178,21 @@ function endOnlineGame(){
 			clearInterval(updater);
 }
 
-function eraseDataFromGameSession() {
-
-	query.clearGameSession(() => {
-
+function showPlayerTurnOnSpecificComputer() {
+	players.forEach(function (player) {
+		if (player.active && player.username == user.sessionUser) {
+			$('#activePlayers').prepend(`<h3 id="showTurn">Nu är det din tur</h3>`);
+		}
 	});
+}
+
+function endOnlineGame() {
+	query.getWinnerFromDb((data) => {
+		$('#myModal2').modal('show');
+		$('.popup-text').append(`<p>Grattis till vinsten</p>
+														 <p>${data[0].winner}!</p>'`);
+	});
+
 }
 
 $(document).on('click', '.chatSubmit', function (e) {

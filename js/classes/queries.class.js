@@ -86,7 +86,7 @@ class Queries extends Base {
 
 	// Update points in DB
 	updatePlayerStatusInDB(userId, callback) {
-			console.log(userId);
+		console.log(userId);
 		this.db.updatePlayerStatus([userId], (data) => {
 			console.log('update', data);
 			callback();
@@ -100,6 +100,7 @@ class Queries extends Base {
 
 		});
 	}
+
 	updatePlayerStatusInDB(userId, callback) {
 			console.log(userId);
 		this.db.updatePlayerStatus([userId], (data) => {
@@ -109,8 +110,27 @@ class Queries extends Base {
 	}
 	
 	clearGameSession(callback){
+
 		this.db.clearGameSession(() => {
 			callback();
+		});
+	}
+
+	// Insert into insert gamesstatistics
+	insertGameStatistics(winner, winnerScore, averageScore, callback) {
+		this.db.newGameStat({
+			winner: winner,
+			winnerScore: winnerScore,
+			averageScore: averageScore
+		}, (data) => {
+			console.log('gameStat', data);
+			callback();
+		});
+	}
+	
+	getWinnerFromDb(callback) {
+		this.db.getWinnerInLastGame((data) => {
+			callback(data);
 		});
 	}
 
@@ -156,7 +176,14 @@ class Queries extends Base {
                 `,
             deleteAllChat:`
                 DELETE FROM chat WHERE ID > 0
-                `
+                `,
+			newGameStat: `
+				INSERT INTO games SET ?
+			`,
+			getWinnerInLastGame: `
+				SELECT winner FROM games ORDER BY id DESC LIMIT 1
+			`
+		
 		}
 	}
 
