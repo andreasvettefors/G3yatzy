@@ -134,9 +134,9 @@ body {
 	color: #acd13f;
 }
 
-.customTd:hover {
+.activeCell:hover{
 	background: pink;
-	cursor: pointer:;
+	cursor: pointer;
 }
 
 .customTd {
@@ -604,6 +604,11 @@ td {
 	font-size: 18px;
 	font-weight: bold;
 	text-shadow: 0 0 0.5em #8F7;
+}
+
+#activePlayers h3#showTurn {
+	color: #acd13f;
+	margin: auto;
 }
 
 .playerList {

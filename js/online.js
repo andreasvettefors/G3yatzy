@@ -91,11 +91,9 @@ function updateGamePage() {
 		});
 
 		if (emptyPointCell == 0) {
-			endOnlineGame();
-	
+			clearInterval(updater);
+			setTimeout(endOnlineGame, 2000);
 		}
-
-		console.log(emptyPointCell);
 
 
 		players = [];
@@ -113,8 +111,7 @@ function updateGamePage() {
 		updateYatzyForm();
 		showActivePlayers();
 		seeActivePlayer();
-
-
+		showPlayerTurnOnSpecificComputer();
 
 
 		/*}*/
@@ -138,23 +135,19 @@ function updateYatzyForm() {
 	});
 }
 
-function endOnlineGame(){
-			console.log('Slut på spelet');
-			eraseDataFromGameSession();
-			var playerIndex = findPlayerIndexOfWinner();
-
-			for (var i = 0; i < players.length; i++) {
-				submitPlayer(players[i].username, players[i].score);
-			}
-
-			$('#myModal2').modal('show');
-			$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '!');
-			clearInterval(updater);
+function showPlayerTurnOnSpecificComputer() {
+	players.forEach(function (player) {
+		if (player.active && player.username == user.sessionUser) {
+			$('#activePlayers').prepend(`<h3 id="showTurn">Nu är det din tur</h3>`);
+		}
+	});
 }
 
-function eraseDataFromGameSession() {
-
-	query.clearGameSession(() => {
-
+function endOnlineGame() {
+	query.getWinnerFromDb((data) => {
+		$('#myModal2').modal('show');
+		$('.popup-text').append(`<p>Grattis till vinsten</p>
+														 <p>${data[0].winner}!</p>'`);
 	});
+
 }
