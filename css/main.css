@@ -601,33 +601,15 @@ td {
 }
 
 /* css för chat*/
-/*#onlineChat .glyphicon-minus{
-	float:left;
-	cursor:pointer;
-	font-size: 20px;
+
+.holder{
+	 position: fixed;
+    bottom: 0;
+    width: 100%;
 }
-
-#onlineChat .glyphicon-circle-arrow-right{
-	cursor: pointer;
-	font-size: 20px;
+.form-control{
+	padding-left: 10px;
 }
-
-#onlineChat{
-	width: 45%;
-	height:320px;
-
-	
-}
-
-.messages{
-	overflow: scroll;
-	word-wrap: break-word;
-}
-
-#chatHolder{
-	width: 100%;
-	height: 100%;
-}*/
 
 #chatHolder{
 	background-color: #2f363e;
@@ -638,32 +620,36 @@ td {
 	position: relative;
 }
 
-.messages{
-	padding-left: 5px;
-	overflow: scroll;
+div.messages{
+	padding: 10px;
 	word-wrap: break-word;
+	width: 100%;
+	overflow: scroll;
 }
 
 .chat-box-footer{
 	position: absolute;
 	bottom: 0px;
-	padding: 10px;
+	width: 100%;
+	background: #71a4a4;
 }
 
 .pull-right{
-	
+
 	padding:10px;
 	cursor: pointer;
 }
 
 .menu{
 	background: linear-gradient(to bottom right, #b7cc7a, #104f76);
-
+	position: absolute;
+	width: 100%;
 	height:40px;
 }
 
 .placeHolder{
 	font-size: 12px;
+	padding-left: 10px;
 }
 .glyphicon-minus{
 	color:white;
@@ -671,6 +657,7 @@ td {
 
 .input-group{
 	font-size: 12px;
+	width: 100%;
 }
 
 .glyphicon-circle-arrow-right{

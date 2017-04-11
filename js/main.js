@@ -712,11 +712,14 @@ function seeActivePlayer() {
 }
 
 
+
 // Events
 
 var clicks = 0;
 
 // Event that adds a new input field
+
+
 $(document).on('click', '.addField', function () {
 
 	if ($(this).parent().find('input').val() != "") {
