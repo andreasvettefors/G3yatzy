@@ -1,14 +1,14 @@
 body {
-	/*margin-left: 20px;*/
 	background: #032329;
 }
 
-
+#throwDice{
+	z-index: 1000;
+}
 /*Navbar style*/
 
 .navbar-custom {
 	background-color: transparent;
-	/*background-color: #353a40;*/
 	margin-top: 5%;
 	border-radius: 0;
 	border-top: 2px solid #0f446a;
@@ -271,9 +271,9 @@ body {
 /* Början för CSS vinnar popup*/
 
 .popup {
-	position: absolute;
+	/*position: absolute;*/
 	width: 300px;
-	margin: 20% 0 0 40%;
+	margin: 5% auto;
 	padding: 10px;
 	box-sizing: border-box;
 	border-radius: 20px 0 20px 0;
@@ -328,6 +328,7 @@ body {
 
 .popup2 {
 	width: 50%;
+	margin: 5% auto;
 	padding: 10px;
 	box-sizing: border-box;
 	border-radius: 20px 0 20px 0;
@@ -376,7 +377,8 @@ body {
 /* Början för CSS highscore popup*/
 
 .popup3 {
-	width: 30%;
+	margin:5% auto;
+	width: 35%;
 	padding: 10px;
 	box-sizing: border-box;
 	border-radius: 20px 0 20px 0;
@@ -744,4 +746,23 @@ td {
 	white-space: pre-line;
 
 }
+@media (min-width: 376px) and (max-width:768px) {
+		.popup2 {
+		width: 70%;
+	}
+	
+	.popup3 {
+		width: 70%;
+	}
+}
+/* Mobile potrait and small desktopwidth */
 
+@media screen and (max-width: 376px) {
+	.popup2 {
+		width: 90%;
+	}
+	
+	.popup3 {
+		width: 90%;
+	}
+}
