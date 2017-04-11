@@ -38,6 +38,11 @@ class Queries extends Base {
 			console.log('Result of the query "addMsg"', data);
 		});
 	}
+    deleteMsgs(){
+        this.db.deleteAllChat((data)=>{
+            console.log('Chat deleted',data);
+        })
+    }
 	// Put players into gamesession to kepp track of active players and points
 	insertPlayerIntoDB(userId, userName, active, callback) {
 		this.db.newPlayer({
@@ -148,6 +153,9 @@ class Queries extends Base {
                 `,
             insertChatMsg: `
                INSERT INTO chat (msg,userName) VALUES (?, ?)
+                `,
+            deleteAllChat:`
+                DELETE FROM chat WHERE ID > 0
                 `
 		}
 	}

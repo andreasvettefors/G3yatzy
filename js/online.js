@@ -4,7 +4,7 @@ var updater;
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
 	var userId;
-
+    query.deleteMsgs();
 	query.getGameSession((data) => {
 		if (data.length < 4) {
 			if (data.length == 0) {
@@ -38,13 +38,22 @@ function playersIntoDbWithRightId(id, inputFromUser, active) {
 	});
 }
 var chatLength =-1;
-
+var playerNumber = 0;
+var uniqueAppendID=9000;
+var uniqueAppendID2=4000;
 function displayChatMsgs() {
 		query.getMsgs((data) => {
             if(data.length>chatLength){
                 chatLength=data.length;
-              $('.Content').append('<p>'+data[data.length-1].userName+':'+data[data.length-1].msg+'</p>')
-               
+                players.forEach(function (e){
+                    if(data[data.length-1].userName==e.username){
+                        playerNumber=(players.indexOf(e)+1);
+                    }
+                }) 
+$('.Content').append('<div class="talk-bubble player"><div class="talktext"><p class="chatParagraph">'+data[data.length-1].userName+':</p><p class="chatParagraph">'+data[data.length-1].msg+'</p></div></div>');
+                 $('.Content').animate({scrollTop: $('.Content').prop("scrollHeight")}, 500);
+                
+
             }
 		});
 	
@@ -147,7 +156,6 @@ function updateYatzyForm() {
 }
 
 $(document).on('keyup','.form-control', function (e){
-    console.log(e.target.value)
     if(e.which==13){
         query.addMsg(e.target.value,user.sessionUser)
     }
@@ -175,3 +183,8 @@ function eraseDataFromGameSession() {
 	});
 }
 
+$(document).on('click', '.chatSubmit', function (e) {
+	var inMsg = $('.form-control').val();
+    query.addMsg(inMsg,user.sessionUser)
+
+});

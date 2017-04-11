@@ -697,7 +697,20 @@ input.form-control, input[type=text]{
 	padding-left: 5px;
 	padding-right: 5px;
 }
+@media screen and (max-width: 376px) {
+	#chat{
+		width:80%;
+	}
 
+
+}
+
+@media (min-width: 376px) and (max-width:768px) {
+	#chat{
+		width:50%;
+	}
+
+}
 
 /*CSS för startsida*/
 
