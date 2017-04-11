@@ -82,9 +82,10 @@ function rollDie() {
 		dice.forEach(function (die) {
 			if (die.saved === false) {
 				die.value = randomize();
+                
 			}
 		});
-		$('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws + '</strong> av 3</p>');
+        $('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws +'</strong> av 3</p>'); 
 		appendToDom();
 
 	}
@@ -762,9 +763,11 @@ $(document).on('click', '.btn-info', function () {
 	$('.input').each(function (index) {
 		if ($(this).val() != '') {
 			flag = true;
-		} else {
+		} /*else {
 			flag = false;
-		}
+            console.log('hej');
+            $('.field').append('<div class="alert alert-danger" role="alert"><a href="#" class="alert-link">Fälten får inte vara tomma</a></div>');
+		}*/
 	});
 	if (flag) {
 		addPlayersToGame();
