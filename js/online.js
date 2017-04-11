@@ -53,7 +53,7 @@ function displayChatMsgs() {
                         playerNumber=(players.indexOf(e)+1);
                     }
                 }) 
-$('.Content').append('<div class="talk-bubble player"><div class="talktext"><p class="chatParagraph">'+data[data.length-1].userName+':</p><p class="chatParagraph">'+data[data.length-1].msg+'</p></div></div>');
+$('.Content').append('<div class="talk-bubble player'+playerNumber+'"><div class="talktext"><p class="chatParagraph">'+data[data.length-1].userName+':</p><p class="chatParagraph">'+data[data.length-1].msg+'</p></div></div>');
                  $('.Content').animate({scrollTop: $('.Content').prop("scrollHeight")}, 500);
                 
 
@@ -160,6 +160,7 @@ function updateYatzyForm() {
 $(document).on('keyup','.form-control', function (e){
     if(e.which==13){
         query.addMsg(e.target.value,user.sessionUser)
+        $('.form-control').val("");
     }
 
 });
@@ -198,5 +199,6 @@ function endOnlineGame() {
 $(document).on('click', '.chatSubmit', function (e) {
 	var inMsg = $('.form-control').val();
     query.addMsg(inMsg,user.sessionUser)
+    $('.form-control').val("");
 
 });
