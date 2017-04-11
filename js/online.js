@@ -15,7 +15,8 @@ $(document).on('click', '.btn-online', function () {
 				// If the first player has made the first insertion in the yatzyform 
 				// the game has started and more players can't join
 				if (data[0].total !== null) {
-					alert('Du får inte vara med');
+					$('#myModal9').modal('show');
+					$('.popup-text').append('<p>Du får inte vara med!<br/><b>');
 					return;
 				}
 
@@ -23,7 +24,9 @@ $(document).on('click', '.btn-online', function () {
 			}
 		} else {
 			/*Show the players that the game is full*/
-			alert('fullt spel');
+			$('#myModal9').modal('show');
+			$('.popup-text').append('<p>Fullt Spel!<br/>Försök igen senare.<b>');
+			
 		}
 	});
 });
