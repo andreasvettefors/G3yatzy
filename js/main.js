@@ -82,9 +82,10 @@ function rollDie() {
 		dice.forEach(function (die) {
 			if (die.saved === false) {
 				die.value = randomize();
+                
 			}
 		});
-		$('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws + '</strong> av 3</p>');
+        $('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws +'</strong> av 3</p>'); 
 		appendToDom();
 
 	}
@@ -730,11 +731,14 @@ function seeActivePlayer() {
 }
 
 
+
 // Events
 
 var clicks = 0;
 
 // Event that adds a new input field
+
+
 $(document).on('click', '.addField', function () {
 
 	if ($(this).parent().find('input').val() != "") {
@@ -762,19 +766,23 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 
 });
 
-$(document).on('keyup', '#field1', function (e) {
-	if (e.target.value.length == 15) {
-		$('#field1').attr('data-toggle', 'tooltip');
-		$('#field1').attr('data-trigger', 'manual');
-		$('#field1').attr('data-placement', 'auto');
-		$('#field1').attr('title', 'Det där användarnamnet är alldeles för coolt! \n Håll dig till 15 tecken.');
-		$('#field1').tooltip('show');
-		setTimeout(function () {
-			$('#field1').tooltip('hide');
-			$("#field1").removeAttr("title");
-		}, 5000);
-	}
-
+$(document).on('keyup','#field1', function (e){
+    console.log(e.target.value)
+    if(e.which==13){
+        $('.btn-info').trigger('click')
+    }
+    
+    if(e.target.value.length==15){
+            $('#field1').attr('data-toggle','tooltip');
+            $('#field1').attr('data-trigger','manual');
+            $('#field1').attr('data-placement','auto');
+            $('#field1').attr('title','Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
+            $('#field1').tooltip('show');
+            setTimeout(function(){
+                $('#field1').tooltip('hide');
+                $("#field1").removeAttr("title");
+            },3000);
+    }
 });
 
 $(document).on('click', '.btn-info', function () {
@@ -782,9 +790,11 @@ $(document).on('click', '.btn-info', function () {
 	$('.input').each(function (index) {
 		if ($(this).val() != '') {
 			flag = true;
-		} else {
+		} /*else {
 			flag = false;
-		}
+            console.log('hej');
+            $('.field').append('<div class="alert alert-danger" role="alert"><a href="#" class="alert-link">Fälten får inte vara tomma</a></div>');
+		}*/
 	});
 	if (flag) {
 		addPlayersToGame();
@@ -916,5 +926,4 @@ $(document).on('click', '.customTd', function () {
 
 		}
 	}
-	console.log(count);
 });

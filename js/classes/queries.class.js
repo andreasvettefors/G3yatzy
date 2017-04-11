@@ -28,7 +28,21 @@ class Queries extends Base {
 			callback(data);
 		});
 	}
-
+    getMsgs(callback) {
+		this.db.getChatMsgs((data) => {
+			callback(data);
+		});
+	}
+    addMsg(userName, message) {
+		this.db.insertChatMsg([userName, message], (data) => {
+			console.log('Result of the query "addMsg"', data);
+		});
+	}
+    deleteMsgs(){
+        this.db.deleteAllChat((data)=>{
+            console.log('Chat deleted',data);
+        })
+    }
 	// Put players into gamesession to kepp track of active players and points
 	insertPlayerIntoDB(userId, userName, active, callback) {
 		this.db.newPlayer({
@@ -87,7 +101,16 @@ class Queries extends Base {
 		});
 	}
 
-	clearGameSession(callback) {
+	updatePlayerStatusInDB(userId, callback) {
+			console.log(userId);
+		this.db.updatePlayerStatus([userId], (data) => {
+			console.log('update', data);
+			callback();
+		});
+	}
+	
+	clearGameSession(callback){
+
 		this.db.clearGameSession(() => {
 			callback();
 		});
@@ -145,14 +168,22 @@ class Queries extends Base {
 			clearGameSession: `
 				DELETE FROM gamesession
 			`,
+            getChatMsgs: `
+                select * from chat
+                `,
+            insertChatMsg: `
+               INSERT INTO chat (msg,userName) VALUES (?, ?)
+                `,
+            deleteAllChat:`
+                DELETE FROM chat WHERE ID > 0
+                `,
 			newGameStat: `
 				INSERT INTO games SET ?
 			`,
 			getWinnerInLastGame: `
 				SELECT winner FROM games ORDER BY id DESC LIMIT 1
-			`,
-			
-
+			`
+		
 		}
 	}
 

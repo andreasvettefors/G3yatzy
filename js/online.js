@@ -4,8 +4,7 @@ var updater;
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
 	var userId;
-
-
+    query.deleteMsgs();
 	query.getGameSession((data) => {
 		if (data.length < 4) {
 			if (data.length == 0) {
@@ -41,6 +40,28 @@ function playersIntoDbWithRightId(id, inputFromUser, active) {
 		});
 	});
 }
+var chatLength =-1;
+var playerNumber = 0;
+var uniqueAppendID=9000;
+var uniqueAppendID2=4000;
+function displayChatMsgs() {
+		query.getMsgs((data) => {
+            if(data.length>chatLength){
+                chatLength=data.length;
+                players.forEach(function (e){
+                    if(data[data.length-1].userName==e.username){
+                        playerNumber=(players.indexOf(e)+1);
+                    }
+                }) 
+$('.Content').append('<div class="talk-bubble player"><div class="talktext"><p class="chatParagraph">'+data[data.length-1].userName+':</p><p class="chatParagraph">'+data[data.length-1].msg+'</p></div></div>');
+                 $('.Content').animate({scrollTop: $('.Content').prop("scrollHeight")}, 500);
+                
+
+            }
+		});
+	
+}
+
 
 function addOnlinePlayersToGame() {
 	query.getGameSession((data) => {
@@ -107,16 +128,14 @@ function updateGamePage() {
 				"active": player.activeStatus,
 				"score": player.total
 			});
+
 		});
-
-
 		buildYatzyForm();
 		updateYatzyForm();
 		showActivePlayers();
 		seeActivePlayer();
+    displayChatMsgs()
 		showPlayerTurnOnSpecificComputer();
-
-
 		/*}*/
 	});
 
@@ -138,6 +157,27 @@ function updateYatzyForm() {
 	});
 }
 
+$(document).on('keyup','.form-control', function (e){
+    if(e.which==13){
+        query.addMsg(e.target.value,user.sessionUser)
+    }
+
+});
+
+function endOnlineGame(){
+			console.log('Slut på spelet');
+			eraseDataFromGameSession();
+			var playerIndex = findPlayerIndexOfWinner();
+
+			for (var i = 0; i < players.length; i++) {
+				submitPlayer(players[i].username, players[i].score);
+			}
+
+			$('#myModal2').modal('show');
+			$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '!');
+			clearInterval(updater);
+}
+
 function showPlayerTurnOnSpecificComputer() {
 	players.forEach(function (player) {
 		if (player.active && player.username == user.sessionUser) {
@@ -154,3 +194,9 @@ function endOnlineGame() {
 	});
 
 }
+
+$(document).on('click', '.chatSubmit', function (e) {
+	var inMsg = $('.form-control').val();
+    query.addMsg(inMsg,user.sessionUser)
+
+});
