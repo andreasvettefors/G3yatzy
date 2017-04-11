@@ -4,7 +4,6 @@ var updater;
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
 	var userId;
-	
 
 	query.getGameSession((data) => {
 		if (data.length < 4) {
@@ -30,6 +29,16 @@ function playersIntoDbWithRightId(id, inputFromUser, active) {
 		});
 	});
 }
+
+function displayChatMsgs() {
+		query.getMsgs((data) => {
+			data.forEach(function(e){
+                $('#gamePage').append('<p>'+e.userName+':'+e.msg+'</p>')
+            })
+		});
+	
+}
+
 
 function addOnlinePlayersToGame() {
 	query.getGameSession((data) => {
@@ -83,11 +92,12 @@ function updateGamePage() {
 				});
 
 			});
-
+            $('#gamePage').append('<input type="text" id="chatMsg"></input>')
 			buildYatzyForm();
 			updateYatzyForm();
 			showActivePlayers();
 			seeActivePlayer();
+            displayChatMsgs()
 		}
 	
 	});
@@ -108,3 +118,11 @@ function updateYatzyForm() {
 		});
 	});
 }
+
+$(document).on('keyup','#chatMsg', function (e){
+    console.log(e.target.value)
+    if(e.which==13){
+        query.addMsg(e.target.value,user.sessionUser)
+    }
+
+});
