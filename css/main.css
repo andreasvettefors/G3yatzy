@@ -436,7 +436,7 @@ td {
 /* CSS för inputField*/
 
 .form-control {
-	width: 180px;
+	width: 140px;
 }
 
 #member {
@@ -614,12 +614,13 @@ height: 50px;
     border-radius: 5px;
     width: 30%;
 	margin: auto;
+
 }
 .fixedHeightContainer{
     float:right;
     height: 250px;
-    
     padding: 3px;
+    width: 100%
    
 }
 .Content{
@@ -674,7 +675,7 @@ input.form-control, input[type=text]{
 	margin: 5px;
   	display: inline-block;
   	position: relative;
-	width: 200px;
+	width: 150px;
 	height: auto;
 	
 	border-radius: 5px;
@@ -698,7 +699,6 @@ input.form-control, input[type=text]{
 	padding-left: 5px;
 	padding-right: 5px;
 }
-
 
 /*CSS för startsida*/
 
