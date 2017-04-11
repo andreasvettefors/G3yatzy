@@ -37,13 +37,15 @@ function playersIntoDbWithRightId(id, inputFromUser, active) {
 		});
 	});
 }
+var chatLength =-1;
 
 function displayChatMsgs() {
-    $("p").remove(".test1213");
 		query.getMsgs((data) => {
-			data.forEach(function(e){
-                $('#gamePage').append('<p class="test1213">'+e.userName+':'+e.msg+'</p>')
-            })
+            if(data.length>chatLength){
+                chatLength=data.length;
+              $('.Content').append('<p>'+data[data.length-1].userName+':'+data[data.length-1].msg+'</p>')
+               
+            }
 		});
 	
 }
@@ -144,7 +146,7 @@ function updateYatzyForm() {
 	});
 }
 
-$(document).on('keyup','#chatMsg', function (e){
+$(document).on('keyup','.form-control', function (e){
     console.log(e.target.value)
     if(e.which==13){
         query.addMsg(e.target.value,user.sessionUser)
