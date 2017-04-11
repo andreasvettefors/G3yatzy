@@ -103,8 +103,8 @@ class Queries extends Base {
 		});
 	}
 	
-	clearGameSession(userId,callback){
-		this.db.clearGameSession([userId], () => {
+	clearGameSession(callback){
+		this.db.clearGameSession(() => {
 			callback();
 		});
 	}

@@ -138,7 +138,6 @@ function printHighScoreToDom() {
 					        <td>${user.username}</td>
 					      </tr>
 				`)
-			//console.log(user.score);
 		})
 	});
 
@@ -193,10 +192,12 @@ function totalCalc() {
 				}
 				if (bonusPoints > 63 && bonusActive == false) {
 					player.yatzyPoints[6] = 50;
-					$('tr:nth-child(8)').children(".player" + (index + 1)).text(50)
+					$('tr:nth-child(8)').children(".player" + (index + 1)).text(50);
 					bonusPoints += 50
 					bonusActive = true
 				}
+				player.yatzyPoints[6] = 0;
+				$('tr:nth-child(8)').children(".player" + (index + 1)).text(0);
 				player.yatzyPoints[7] = bonusPoints;
 				$('tr:nth-child(9)').children(".player" + (index + 1)).text(bonusPoints)
 
@@ -254,19 +255,13 @@ function endGame() {
 		submitPlayer(players[i].username, players[i].score);
 	}
 
-	$('#myModal2').modal('show');
-	$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
 
-	if (!localGame) {
-		eraseDataFromGameSession();
-	}
+		$('#myModal2').modal('show');
+		$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');	
 
 }
 
-function eraseDataFromGameSession() {
 
-	query.clearGameSession(() => {});
-}
 
 function holdDice() {
 	$('#diceHolder img').each(function (index) {
@@ -672,7 +667,7 @@ function newRound() {
 		$('#diceHolder img').remove();
 	} else {
 		query.updatePlayerStatusInDB(nextIndex + 1, () => {
-			seeActivePlayer();
+			players[nextIndex].active = true;
 			$('#diceHolder img').remove();
 		});
 	}
@@ -829,6 +824,8 @@ $(document).on('click', '#winnerTemplateModalClose', function () {
 $(document).on('click', '.customTd', function () {
 
 	if (!localGame) {
+
+
 		players.forEach(function (player) {
 			if (player.active !== true && player.username !== user.sessionUser) {
 				return;
@@ -864,14 +861,17 @@ $(document).on('click', '.customTd', function () {
 					count++
 				}
 			}
-			if (count == 15) {
-				if (players[players.length - 1].active == true) {
-					endGame();
-					gameIsDone = true;
-				} else {
+
+			if (localGame) {
+				if (count == 15) {
+					if (players[players.length - 1].active == true) {
+						endGame();
+						gameIsDone = true;
+					} else {
+
+					}
 
 				}
-
 			}
 			if (sucess) {
 				if (localGame) {
