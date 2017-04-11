@@ -436,7 +436,7 @@ td {
 /* CSS för inputField*/
 
 .form-control {
-	width: 180px;
+	width: 140px;
 }
 
 #member {
@@ -612,13 +612,13 @@ height: 50px;
 	background: linear-gradient(to right, #104f76,#b7cc7a);
     border: 1px #b7cc7a solid;
     border-radius: 5px;
-    width: 35%;
+    width: 75%;
 }
 .fixedHeightContainer{
     float:right;
     height: 250px;
-    
     padding: 3px;
+    width: 100%
    
 }
 .Content{
@@ -673,7 +673,7 @@ input.form-control, input[type=text]{
 	margin: 5px;
   	display: inline-block;
   	position: relative;
-	width: 200px;
+	width: 150px;
 	height: auto;
 	
 	border-radius: 5px;
@@ -696,6 +696,13 @@ input.form-control, input[type=text]{
 .chatParagraph{
 	padding-left: 5px;
 	padding-right: 5px;
+}
+@media screen and (max-width: 1200px) {
+	#chat{
+		width:30%;
+	}
+
+
 }
 @media screen and (max-width: 376px) {
 	#chat{
