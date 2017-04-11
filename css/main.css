@@ -697,20 +697,7 @@ input.form-control, input[type=text]{
 	padding-left: 5px;
 	padding-right: 5px;
 }
-@media screen and (max-width: 376px) {
-	#chat{
-		width:80%;
-	}
 
-
-}
-
-@media (min-width: 376px) and (max-width:768px) {
-	#chat{
-		width:50%;
-	}
-
-}
 
 /*CSS för startsida*/
 
@@ -781,6 +768,9 @@ input.form-control, input[type=text]{
 
 }
 @media (min-width: 376px) and (max-width:768px) {
+	#chat{
+		width:100%;
+	}
 		.popup2 {
 		width: 70%;
 	}
@@ -792,6 +782,9 @@ input.form-control, input[type=text]{
 /* Mobile potrait and small desktopwidth */
 
 @media screen and (max-width: 376px) {
+	#chat{
+		width:80%;
+	}
 	.popup2 {
 		width: 90%;
 	}
@@ -799,4 +792,11 @@ input.form-control, input[type=text]{
 	.popup3 {
 		width: 90%;
 	}
+}
+	
+
+
+@media (min-width: 376px) and (max-width:768px) {
+	
+
 }
