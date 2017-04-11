@@ -59,14 +59,18 @@ function start() {
 }
 
 function startGame() {
+
 	$('#home').hide();
 	$('#about').hide();
 	buildYatzyForm();
 	$('#gamePage').show();
+	if (localGame) {
+		$('#chat').remove();
+	}
 	showActivePlayers();
 	seeActivePlayer();
 	$("#brand").addClass("confirmEnd");
-	$("#brand").removeAttr("href").css("cursor", "pointer");;
+	$("#brand").removeAttr("href").css("cursor", "pointer");
 }
 
 function randomize() {
@@ -82,10 +86,10 @@ function rollDie() {
 		dice.forEach(function (die) {
 			if (die.saved === false) {
 				die.value = randomize();
-                
+
 			}
 		});
-        $('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws +'</strong> av 3</p>'); 
+		$('#numberOfRollsContainer').empty().append('<p>Kast <strong class="strongForThrows">' + throws + '</strong> av 3</p>');
 		appendToDom();
 
 	}
@@ -263,8 +267,7 @@ function endGame() {
 		$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + +'</b>!<br/>Du har <b>vunnit</b>. Hurraaa!!</p>');
 	} else {
 		query.insertGameStatistics(winner, winnerScore, averageScore, () => {
-			query.clearGameSession(() => {
-			});
+			query.clearGameSession(() => {});
 		});
 	}
 }
@@ -275,11 +278,11 @@ function calculateAverageScore() {
 	players.forEach(function (player) {
 		totalPlayersScore += player.score;
 	});
-	
-	console.log('totalPlayersScore',totalPlayersScore);
+
+	console.log('totalPlayersScore', totalPlayersScore);
 
 	averageScore = totalPlayersScore / (players.length);
-	console.log('averageScore',averageScore);
+	console.log('averageScore', averageScore);
 	return averageScore;
 
 }
@@ -711,6 +714,8 @@ function showActivePlayers() {
 	$('#activePlayers').append(unorderedList);
 }
 
+
+
 function seeActivePlayer() {
 
 	players.forEach(function (player, index) {
@@ -718,7 +723,14 @@ function seeActivePlayer() {
 		if (player.active) {
 			$(`#p${index}`).addClass('activePlayer');
 			$(`#player${index +1}`).addClass('activePlayerForm');
-			$(`.player${index +1}`).addClass('activeCell');
+			if (!localGame) {
+				if (player.username == user.sessionUser) {
+					$(`.player${index +1}`).addClass('activeCell');
+				}
+			} else {
+				$(`.player${index +1}`).addClass('activeCell');
+			}
+
 
 		} else {
 			$(`#p${index}`).removeClass('activePlayer');
@@ -766,23 +778,23 @@ $(document).on("click", ".removeField", function (e) { //user click on remove te
 
 });
 
-$(document).on('keyup','#field1', function (e){
-    console.log(e.target.value)
-    if(e.which==13){
-        $('.btn-info').trigger('click')
-    }
-    
-    if(e.target.value.length==15){
-            $('#field1').attr('data-toggle','tooltip');
-            $('#field1').attr('data-trigger','manual');
-            $('#field1').attr('data-placement','auto');
-            $('#field1').attr('title','Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
-            $('#field1').tooltip('show');
-            setTimeout(function(){
-                $('#field1').tooltip('hide');
-                $("#field1").removeAttr("title");
-            },3000);
-    }
+$(document).on('keyup', '#field1', function (e) {
+	console.log(e.target.value)
+	if (e.which == 13) {
+		$('.btn-info').trigger('click')
+	}
+
+	if (e.target.value.length == 15) {
+		$('#field1').attr('data-toggle', 'tooltip');
+		$('#field1').attr('data-trigger', 'manual');
+		$('#field1').attr('data-placement', 'auto');
+		$('#field1').attr('title', 'Det där användarnamnet är alldelles för coolt! \n Håll dig till 15 tecken.');
+		$('#field1').tooltip('show');
+		setTimeout(function () {
+			$('#field1').tooltip('hide');
+			$("#field1").removeAttr("title");
+		}, 3000);
+	}
 });
 
 $(document).on('click', '.btn-info', function () {
@@ -790,7 +802,8 @@ $(document).on('click', '.btn-info', function () {
 	$('.input').each(function (index) {
 		if ($(this).val() != '') {
 			flag = true;
-		} /*else {
+		}
+		/*else {
 			flag = false;
             console.log('hej');
             $('.field').append('<div class="alert alert-danger" role="alert"><a href="#" class="alert-link">Fälten får inte vara tomma</a></div>');

@@ -4,28 +4,38 @@ var updater;
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
 	var userId;
-    query.deleteMsgs();
+	var nameExist;
+	query.deleteMsgs();
 	query.getGameSession((data) => {
+
 		if (data.length < 4) {
+			data.forEach(function (name) {
+				if (userInput == name.player) {
+					nameExist = true;
+				}
+			});
+
+			if (nameExist) {
+				$('#myModal9').modal('show');
+				$('.popup-text').append('<p>Namnet är<br/>redan taget!<b>');
+				return;
+			}
 			if (data.length == 0) {
 				playersIntoDbWithRightId((data.length + 1), userInput, true);
-			} else {
-
-				// If the first player has made the first insertion in the yatzyform 
-				// the game has started and more players can't join
-				if (data[0].total !== null) {
-					$('#myModal9').modal('show');
-					$('.popup-text').append('<p>Du får inte vara med!<br/><b>');
-					return;
-				}
-
-				playersIntoDbWithRightId((data.length + 1), userInput, false);
 			}
+			// If the first player has made the first insertion in the yatzyform 
+			// the game has started and more players can't join
+			else if (data[0].total !== null) {
+				$('#myModal9').modal('show');
+				$('.popup-text').append('<p>Du får inte vara med!<br/><b>');
+				return;
+			}
+			playersIntoDbWithRightId((data.length + 1), userInput, false);
 		} else {
 			/*Show the players that the game is full*/
 			$('#myModal9').modal('show');
 			$('.popup-text').append('<p>Fullt Spel!<br/>Försök igen senare.<b>');
-			
+			return;
 		}
 	});
 });
@@ -40,26 +50,30 @@ function playersIntoDbWithRightId(id, inputFromUser, active) {
 		});
 	});
 }
-var chatLength =-1;
+var chatLength = -1;
 var playerNumber = 0;
-var uniqueAppendID=9000;
-var uniqueAppendID2=4000;
-function displayChatMsgs() {
-		query.getMsgs((data) => {
-            if(data.length>chatLength){
-                chatLength=data.length;
-                players.forEach(function (e){
-                    if(data[data.length-1].userName==e.username){
-                        playerNumber=(players.indexOf(e)+1);
-                    }
-                }) 
-$('.Content').append('<div class="talk-bubble player'+playerNumber+'"><div class="talktext"><p class="chatParagraph">'+data[data.length-1].userName+':</p><p class="chatParagraph">'+data[data.length-1].msg+'</p></div></div>');
-                 $('.Content').animate({scrollTop: $('.Content').prop("scrollHeight")}, 500);
-                
+var uniqueAppendID = 9000;
+var uniqueAppendID2 = 4000;
 
-            }
-		});
-	
+function displayChatMsgs() {
+	query.getMsgs((data) => {
+		if (data.length > chatLength) {
+			chatLength = data.length;
+			players.forEach(function (e) {
+				if (data[data.length - 1].userName == e.username) {
+					playerNumber = (players.indexOf(e) + 1);
+				}
+			});
+
+			$('.Content').append('<div class="talk-bubble play' + playerNumber + '"><div class="talktext"><p class="chatParagraph">' + data[data.length - 1].userName + ':</p><p class="chatParagraph">' + data[data.length - 1].msg + '</p></div></div>');
+			$('.Content').animate({
+				scrollTop: $('.Content').prop("scrollHeight")
+			}, 500);
+
+
+		}
+	});
+
 }
 
 
@@ -134,7 +148,7 @@ function updateGamePage() {
 		updateYatzyForm();
 		showActivePlayers();
 		seeActivePlayer();
-    displayChatMsgs()
+		displayChatMsgs()
 		showPlayerTurnOnSpecificComputer();
 		/*}*/
 	});
@@ -157,26 +171,26 @@ function updateYatzyForm() {
 	});
 }
 
-$(document).on('keyup','.form-control', function (e){
-    if(e.which==13){
-        query.addMsg(e.target.value,user.sessionUser)
-        $('.form-control').val("");
-    }
+$(document).on('keyup', '.form-control', function (e) {
+	if (e.which == 13) {
+		query.addMsg(e.target.value, user.sessionUser)
+		$('.form-control').val("");
+	}
 
 });
 
-function endOnlineGame(){
-			console.log('Slut på spelet');
-			eraseDataFromGameSession();
-			var playerIndex = findPlayerIndexOfWinner();
+function endOnlineGame() {
+	console.log('Slut på spelet');
+	eraseDataFromGameSession();
+	var playerIndex = findPlayerIndexOfWinner();
 
-			for (var i = 0; i < players.length; i++) {
-				submitPlayer(players[i].username, players[i].score);
-			}
+	for (var i = 0; i < players.length; i++) {
+		submitPlayer(players[i].username, players[i].score);
+	}
 
-			$('#myModal2').modal('show');
-			$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '!');
-			clearInterval(updater);
+	$('#myModal2').modal('show');
+	$('.popup-text').append('<p>Grattis till vinsten <br/><b>' + players[playerIndex].username + '!');
+	clearInterval(updater);
 }
 
 function showPlayerTurnOnSpecificComputer() {
@@ -198,7 +212,7 @@ function endOnlineGame() {
 
 $(document).on('click', '.chatSubmit', function (e) {
 	var inMsg = $('.form-control').val();
-    query.addMsg(inMsg,user.sessionUser)
-    $('.form-control').val("");
+	query.addMsg(inMsg, user.sessionUser);
+	$('.form-control').val("");
 
 });

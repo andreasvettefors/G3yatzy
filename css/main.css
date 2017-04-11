@@ -612,7 +612,8 @@ height: 50px;
 	background: linear-gradient(to right, #104f76,#b7cc7a);
     border: 1px #b7cc7a solid;
     border-radius: 5px;
-    width: 35%;
+    width: 30%;
+	margin: auto;
 }
 .fixedHeightContainer{
     float:right;
@@ -679,17 +680,17 @@ input.form-control, input[type=text]{
 	border-radius: 5px;
 }
 
-.talk-bubble.player1{
+.talk-bubble.play1{
 	background-color:#538783;
 }
 
-.talk-bubble.player2{
+.talk-bubble.play2{
 	background-color: #286177;
 }
-.talk-bubble.player3{
+.talk-bubble.play3{
 	background-color: #874b74;
 }
-.talk-bubble.player4{
+.talk-bubble.play4{
 	background-color: #353a40;
 }
 
@@ -762,14 +763,40 @@ input.form-control, input[type=text]{
 #numberOfRollsContainer {
 	margin-top: -10px;
 	margin-left: 40px;
+}
 
 .tooltip {
 	white-space: pre-line;
 
 }
-@media (min-width: 376px) and (max-width:768px) {
+	
+ div#showOnSmallScreens{
+		display: none;
+	}
+
+@media (min-width: 768px) and (max-width:1200px) {
+		div#showOnSmallScreens{
+		display: block;
+	}
+	div#showOnBigScreens{
+		display: none;
+	}
 	#chat{
-		width:100%;
+		width:50%;
+	}
+}
+
+
+	
+@media (min-width: 376px) and (max-width:768px) {
+	div#showOnSmallScreens{
+		display: block;
+	}
+	div#showOnBigScreens{
+		display: none;
+	}
+	#chat{
+		width:75%;
 	}
 		.popup2 {
 		width: 70%;
@@ -782,8 +809,14 @@ input.form-control, input[type=text]{
 /* Mobile potrait and small desktopwidth */
 
 @media screen and (max-width: 376px) {
+	div#showOnSmallScreens{
+		display: block;
+	}
+	div#showOnBigScreens{
+		display: none;
+	}
 	#chat{
-		width:80%;
+		width:75%;
 	}
 	.popup2 {
 		width: 90%;
@@ -794,9 +827,3 @@ input.form-control, input[type=text]{
 	}
 }
 	
-
-
-@media (min-width: 376px) and (max-width:768px) {
-	
-
-}
