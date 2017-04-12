@@ -16,6 +16,25 @@
 CREATE DATABASE IF NOT EXISTS `yatzydb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `yatzydb`;
 
+-- Dumping structure for tabell yatzydb.chat
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `msg` varchar(9999) DEFAULT NULL,
+  `userName` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+-- Dumping structure for tabell yatzydb.games
+CREATE TABLE IF NOT EXISTS `games` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `winner` varchar(45) DEFAULT NULL,
+  `winnerScore` int(11) DEFAULT NULL,
+  `averageScore` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
 -- Dumping structure for tabell yatzydb.gamesession
 CREATE TABLE IF NOT EXISTS `gamesession` (
   `id` int(11) NOT NULL,
@@ -50,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `players` (
   `username` varchar(45) DEFAULT NULL,
   `score` double DEFAULT NULL,
   PRIMARY KEY (`idplayers`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

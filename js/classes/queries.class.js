@@ -16,33 +16,26 @@ class Queries extends Base {
 		});
 	}
 
-	// Hämtar "all" från sqlQueries och returnerar data
-	runAQuery(callback) {
-		this.db.all((data) => {
-			callback(data);
-		});
-	}
-
 	dbHighScore(callback) {
 		this.db.highscore((data) => {
 			callback(data);
 		});
 	}
-    getMsgs(callback) {
+	getMsgs(callback) {
 		this.db.getChatMsgs((data) => {
 			callback(data);
 		});
 	}
-    addMsg(userName, message) {
+	addMsg(userName, message) {
 		this.db.insertChatMsg([userName, message], (data) => {
 			console.log('Result of the query "addMsg"', data);
 		});
 	}
-    deleteMsgs(){
-        this.db.deleteAllChat((data)=>{
-            console.log('Chat deleted',data);
-        })
-    }
+	deleteMsgs() {
+		this.db.deleteAllChat((data) => {
+			console.log('Chat deleted', data);
+		})
+	}
 	// Put players into gamesession to kepp track of active players and points
 	insertPlayerIntoDB(userId, userName, active, callback) {
 		this.db.newPlayer({
@@ -102,14 +95,14 @@ class Queries extends Base {
 	}
 
 	updatePlayerStatusInDB(userId, callback) {
-			console.log(userId);
+		console.log(userId);
 		this.db.updatePlayerStatus([userId], (data) => {
 			console.log('update', data);
 			callback();
 		});
 	}
-	
-	clearGameSession(callback){
+
+	clearGameSession(callback) {
 
 		this.db.clearGameSession(() => {
 			callback();
@@ -127,7 +120,7 @@ class Queries extends Base {
 			callback();
 		});
 	}
-	
+
 	getWinnerFromDb(callback) {
 		this.db.getWinnerInLastGame((data) => {
 			callback(data);
@@ -143,15 +136,11 @@ class Queries extends Base {
 		// But you can use ? as placeholders for parameters.
 		//
 		return {
-			all: `
-        select * from players
-      `,
 			newHighscoreEntry: `
-        INSERT INTO players SET ?
-
+        INSERT INTO highscore SET ?
       `,
 			highscore: `
-        select * from players ORDER BY score DESC LIMIT 10
+        select * from highscore ORDER BY score DESC LIMIT 10
       `,
 			newPlayer: `
 				INSERT INTO gamesession SET ?
@@ -168,13 +157,13 @@ class Queries extends Base {
 			clearGameSession: `
 				DELETE FROM gamesession
 			`,
-            getChatMsgs: `
+			getChatMsgs: `
                 select * from chat
                 `,
-            insertChatMsg: `
+			insertChatMsg: `
                INSERT INTO chat (msg,userName) VALUES (?, ?)
                 `,
-            deleteAllChat:`
+			deleteAllChat: `
                 DELETE FROM chat WHERE ID > 0
                 `,
 			newGameStat: `
@@ -183,7 +172,7 @@ class Queries extends Base {
 			getWinnerInLastGame: `
 				SELECT winner FROM games ORDER BY id DESC LIMIT 1
 			`
-		
+
 		}
 	}
 

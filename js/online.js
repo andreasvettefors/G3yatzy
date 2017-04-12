@@ -1,3 +1,5 @@
+// Yatzy online.js
+
 var user = new Session();
 var updater;
 
@@ -57,6 +59,9 @@ var uniqueAppendID2 = 4000;
 
 function displayChatMsgs() {
 	query.getMsgs((data) => {
+		if(data.length==0){
+			return;
+		}
 		if (data.length > chatLength) {
 			chatLength = data.length;
 			players.forEach(function (e) {
@@ -165,7 +170,6 @@ function updateYatzyForm() {
 				if (player.score !== null) {
 					$(this).text(player.score);
 				}
-
 			}
 		});
 	});
