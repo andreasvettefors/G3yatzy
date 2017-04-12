@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `msg` varchar(9999) DEFAULT NULL,
   `userName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Dumping structure for tabell yatzydb.games
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `games` (
   `winnerScore` int(11) DEFAULT NULL,
   `averageScore` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Dumping structure for tabell yatzydb.gamesession
@@ -63,13 +63,13 @@ CREATE TABLE IF NOT EXISTS `gamesession` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
--- Dumping structure for tabell yatzydb.players
-CREATE TABLE IF NOT EXISTS `players` (
+-- Dumping structure for tabell yatzydb.highscore
+CREATE TABLE IF NOT EXISTS `highscore` (
   `idplayers` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
   `score` double DEFAULT NULL,
   PRIMARY KEY (`idplayers`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

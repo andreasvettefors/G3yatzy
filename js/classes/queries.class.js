@@ -21,21 +21,25 @@ class Queries extends Base {
 			callback(data);
 		});
 	}
+	
 	getMsgs(callback) {
 		this.db.getChatMsgs((data) => {
 			callback(data);
 		});
 	}
+	
 	addMsg(userName, message) {
 		this.db.insertChatMsg([userName, message], (data) => {
 			console.log('Result of the query "addMsg"', data);
 		});
 	}
+	
 	deleteMsgs() {
 		this.db.deleteAllChat((data) => {
 			console.log('Chat deleted', data);
 		})
 	}
+	
 	// Put players into gamesession to kepp track of active players and points
 	insertPlayerIntoDB(userId, userName, active, callback) {
 		this.db.newPlayer({
@@ -128,13 +132,6 @@ class Queries extends Base {
 	}
 
 	static get sqlQueries() {
-		//
-		// Please note: This part of the class is read by
-		// the Node server on start so you can not build
-		// queries dynamically here.
-		//
-		// But you can use ? as placeholders for parameters.
-		//
 		return {
 			newHighscoreEntry: `
         INSERT INTO highscore SET ?
@@ -152,19 +149,19 @@ class Queries extends Base {
 				UPDATE gamesession SET ? WHERE id = ?
 			`,
 			updatePlayerStatus: `
-				update gamesession SET activeStatus = 1 WHERE id = ?
+				UPDATE gamesession SET activeStatus = 1 WHERE id = ?
 			`,
 			clearGameSession: `
 				DELETE FROM gamesession
 			`,
 			getChatMsgs: `
-                select * from chat
+        SELECT * FROM chat
                 `,
 			insertChatMsg: `
-               INSERT INTO chat (msg,userName) VALUES (?, ?)
+        INSERT INTO chat (msg,userName) VALUES (?, ?)
                 `,
 			deleteAllChat: `
-                DELETE FROM chat WHERE ID > 0
+        DELETE FROM chat WHERE ID > 0
                 `,
 			newGameStat: `
 				INSERT INTO games SET ?

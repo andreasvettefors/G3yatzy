@@ -4,10 +4,6 @@ class Session extends Base {
 	constructor() {
 		super();
 		var sessionUser;
-		/*this.startSession(sessionUser, (res) => {
-			this.sessionUser = res.sessionUser;
-			console.log('sessionUser', this.sessionUser);
-		});*/
 	}
 
 	startSession(sessionUser, callback) {

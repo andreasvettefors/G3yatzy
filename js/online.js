@@ -1,7 +1,7 @@
 // Yatzy online.js
 
 var user = new Session();
-var updater;
+var updater = 0;
 
 $(document).on('click', '.btn-online', function () {
 	var userInput = $('#fieldOnline').val();
@@ -52,35 +52,11 @@ function playersIntoDbWithRightId(id, inputFromUser, active) {
 		});
 	});
 }
+
 var chatLength = -1;
 var playerNumber = 0;
 var uniqueAppendID = 9000;
 var uniqueAppendID2 = 4000;
-
-function displayChatMsgs() {
-	query.getMsgs((data) => {
-		if(data.length==0){
-			return;
-		}
-		if (data.length > chatLength) {
-			chatLength = data.length;
-			players.forEach(function (e) {
-				if (data[data.length - 1].userName == e.username) {
-					playerNumber = (players.indexOf(e) + 1);
-				}
-			});
-
-			$('.Content').append('<div class="talk-bubble play' + playerNumber + '"><div class="talktext"><p class="chatParagraph">' + data[data.length - 1].userName + ':</p><p class="chatParagraph">' + data[data.length - 1].msg + '</p></div></div>');
-			$('.Content').animate({
-				scrollTop: $('.Content').prop("scrollHeight")
-			}, 500);
-
-
-		}
-	});
-
-}
-
 
 function addOnlinePlayersToGame() {
 	query.getGameSession((data) => {
@@ -103,26 +79,12 @@ function addOnlinePlayersToGame() {
 	});
 }
 
-var sizeBeforeUpdate = 0;
-var sizeAfterUpdate = 0;
-
 var emptyPointCell = 0;
 
 function updateGamePage() {
-	//sizeAfterUpdate = 0;
 
-
+	console.log(updater);
 	query.getGameSession((data) => {
-		/*console.log('check size 2');
-		data.forEach(function (player) {
-			for (cellData in player) {
-				if (player[cellData] !== null) {
-					sizeAfterUpdate++;
-				}
-			}
-		});*/
-		/*if (sizeAfterUpdate > sizeBeforeUpdate) {*/
-		//sizeBeforeUpdate = sizeAfterUpdate;
 
 		emptyPointCell = 0;
 		players.forEach(function (player) {
@@ -134,10 +96,12 @@ function updateGamePage() {
 		});
 
 		if (emptyPointCell == 0) {
-			clearInterval(updater);
-			endOnlineGame();
+			// a bit akward solution but the interval wouldn't stop with clearInterval(updater) 
+			for (var i = 1; i < 99999; i++) {
+				window.clearInterval(i);
+			}
+			setTimeout(endOnlineGame, 500);
 		}
-
 
 		players = [];
 		data.forEach(function (player) {
@@ -149,13 +113,13 @@ function updateGamePage() {
 			});
 
 		});
+
 		buildYatzyForm();
 		updateYatzyForm();
 		showActivePlayers();
 		seeActivePlayer();
 		displayChatMsgs()
 		showPlayerTurnOnSpecificComputer();
-		/*}*/
 	});
 
 
@@ -175,14 +139,27 @@ function updateYatzyForm() {
 	});
 }
 
-$(document).on('keyup', '.form-control', function (e) {
-	if (e.which == 13) {
-		query.addMsg(e.target.value, user.sessionUser)
-		$('.form-control').val("");
-	}
+function displayChatMsgs() {
+	query.getMsgs((data) => {
+		if (data.length == 0) {
+			return;
+		}
+		if (data.length > chatLength) {
+			chatLength = data.length;
+			players.forEach(function (e) {
+				if (data[data.length - 1].userName == e.username) {
+					playerNumber = (players.indexOf(e) + 1);
+				}
+			});
 
-});
+			$('.Content').append('<div class="talk-bubble play' + playerNumber + '"><div class="talktext"><p class="chatParagraph">' + data[data.length - 1].userName + ':</p><p class="chatParagraph">' + data[data.length - 1].msg + '</p></div></div>');
+			$('.Content').animate({
+				scrollTop: $('.Content').prop("scrollHeight")
+			}, 500);
+		}
+	});
 
+}
 
 function showPlayerTurnOnSpecificComputer() {
 	players.forEach(function (player) {
@@ -199,8 +176,14 @@ function endOnlineGame() {
 		$('.popup-text').append(`<p>Grattis till vinsten</p>
 														 <p>${data[0].winner}!</p>`);
 	});
-
 }
+
+$(document).on('keyup', '.form-control', function (e) {
+	if (e.which == 13) {
+		query.addMsg(e.target.value, user.sessionUser)
+		$('.form-control').val("");
+	}
+});
 
 $(document).on('click', '.chatSubmit', function (e) {
 	var inMsg = $('.form-control').val();
