@@ -14,6 +14,4 @@ I gruppen har Ramona Chantaf, Hampus Karlsson, Alexis Knöös, Conrad Letelier o
 
 * multiplayer online gäller bara ett spel i taget
 * i mappen db ligger en databasdump av den databas som används i applikationen
-* i mappen dokument ligger 	* userstories som vi jobbat utifrån
-				* Vårat burndownchart
-				* Projektrapporter. Både som grupp och individuellt
+* i mappen dokument ligger userstories som vi jobbat utifrån, vårat burndownchart och våra projektrapporter
