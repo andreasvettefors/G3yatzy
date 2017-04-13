@@ -2,9 +2,11 @@ body {
 	background: #032329;
 }
 
-#throwDice{
+#throwDice {
 	z-index: 1000;
 }
+
+
 /*Navbar style*/
 
 .navbar-custom {
@@ -134,7 +136,7 @@ body {
 	color: #acd13f;
 }
 
-.activeCell:hover{
+.activeCell:hover {
 	background: pink;
 	cursor: pointer;
 }
@@ -377,7 +379,7 @@ body {
 /* Början för CSS highscore popup*/
 
 .popup3 {
-	margin:5% auto;
+	margin: 5% auto;
 	width: 35%;
 	padding: 10px;
 	box-sizing: border-box;
@@ -443,11 +445,12 @@ td {
 	width: 20px;
 }
 
-#diceTable #throwDiceDiv{
-	height:50px;
+#diceTable #throwDiceDiv {
+	height: 50px;
 }
 
-#field1,#fieldOnline {
+#field1,
+#fieldOnline {
 	background: rgba(255, 255, 255, .1);
 	border: 0;
 	border-radius: 4px;
@@ -462,13 +465,11 @@ td {
 	-moz-box-sizing: border-box;
 	background-color: rgba(0, 0, 0, 0.2);
 	color: #8a97a0;
-	border: 1px #82b9b8  solid;
+	border: 1px #82b9b8 solid;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	margin-bottom: 8px;
 }
-
-
 
 .addField,
 .removeField {
@@ -500,8 +501,8 @@ td {
 }
 
 .containerInput {
-	background: linear-gradient( #353a40,#22262b);
-    border: none;
+	background: linear-gradient( #353a40, #22262b);
+	border: none;
 }
 
 .header1 {
@@ -574,131 +575,135 @@ td {
 	margin-left: 40px;
 }
 
+
 /* Online*/
-.paragraph3{
+
+.paragraph3 {
 	color: #032329;
-    font-size: 15px;
-    margin-top: -8px;
-    font-family: 'Quicksand';
+	font-size: 15px;
+	margin-top: -8px;
+	font-family: 'Quicksand';
 }
 
-.header1Online{
+.header1Online {
 	margin-top: 0px;
-	color:#032329;
+	color: #032329;
 	font-weight: bold;
-    font-size: 22px;
-    font-family: 'Quicksand';
+	font-size: 22px;
+	font-family: 'Quicksand';
 }
 
-.playerName{
-	color:#032329;
+.playerName {
+	color: #032329;
 	font-family: 'Quicksand';
 	margin-bottom: 0px;
 	font-weight: bold;
 }
 
-.containerInput2{
+.containerInput2 {
 	background: linear-gradient(#b7cc7a, #104f76);
-    border: none;
+	border: none;
 }
+
 
 /*css för chat*/
 
-.inputContainer{
-height: 50px;
+.inputContainer {
+	height: 50px;
 }
 
-#chat{
-	background: linear-gradient(to right, #104f76,#b7cc7a);
-    border: 1px #b7cc7a solid;
-    border-radius: 5px;
-    width: 30%;
+#chat {
+	background: linear-gradient(to right, #104f76, #b7cc7a);
+	border: 1px #b7cc7a solid;
+	border-radius: 5px;
+	width: 30%;
 	margin: auto;
-
-}
-.fixedHeightContainer{
-    float:right;
-    height: 250px;
-    padding: 3px;
-    width: 100%
-   
-}
-.Content{
-    height: 224px;
-    overflow: auto;
-    background: #032329;
-    word-wrap: break-word;
-    padding-left: 8px;
-    padding-right: 5px;
-    color: #b7b6b6;
 }
 
-.chatTitle{
+.fixedHeightContainer {
+	float: right;
+	height: 250px;
+	padding: 3px;
+	width: 100%
+}
+
+.Content {
+	height: 224px;
+	overflow: auto;
+	background: #032329;
+	word-wrap: break-word;
+	padding-left: 8px;
+	padding-right: 5px;
+	color: #b7b6b6;
+}
+
+.chatTitle {
 	margin-top: 9px;
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    padding-left: 8px;
-    font-family: 'Quicksand';
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	padding-left: 8px;
+	font-family: 'Quicksand';
 }
 
-input.form-control{
+input.form-control {
 	float: left;
 	font-size: 12px;
-	color:white;
+	color: white;
 	padding-left: 5px;
-
 }
 
-input.form-control, input[type=text]{
+input.form-control,
+input[type=text] {
 	font-size: 13px !important;
-	color:white;
+	color: white;
 	padding-left: 5px !important;
 }
 
-::-webkit-input-placeholder{
+::-webkit-input-placeholder {
 	font-size: 12px;
-	color:blue;
+	color: blue;
 	padding-left: 5px;
 }
 
-.glyphicon-circle-arrow-right{
+.glyphicon-circle-arrow-right {
 	font-size: 20px;
-	color:white;
+	color: white;
 	cursor: pointer;
 	margin-left: 15%;
 	margin-top: 15px;
 }
 
-
-.talk-bubble{
+.talk-bubble {
 	margin: 5px;
-  	display: inline-block;
-  	position: relative;
+	display: inline-block;
+	position: relative;
 	width: 150px;
 	height: auto;
-	
 	border-radius: 5px;
 }
 
-.talk-bubble.play1{
-	background-color:#538783;
+.talk-bubble.play1 {
+	background-color: #538783;
 }
 
-.talk-bubble.play2{
+.talk-bubble.play2 {
 	background-color: #286177;
 }
-.talk-bubble.play3{
+
+.talk-bubble.play3 {
 	background-color: #874b74;
 }
-.talk-bubble.play4{
+
+.talk-bubble.play4 {
 	background-color: #353a40;
 }
 
-.chatParagraph{
+.chatParagraph {
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
 
 /*CSS för startsida*/
 
@@ -746,20 +751,19 @@ input.form-control, input[type=text]{
 	font-size: 14px;
 }
 
-
-#numberOfRollsContainer .strongForThrows{
+#numberOfRollsContainer .strongForThrows {
 	color: #d78548;
-    font-size: 20px;
-  
+	font-size: 20px;
 }
 
-#numberOfRollsContainer p{
+#numberOfRollsContainer p {
 	color: #676e75;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: 'quicksand';
-    margin-bottom: -22px;
+	font-weight: bold;
+	font-size: 14px;
+	font-family: 'quicksand';
+	margin-bottom: -22px;
 }
+
 #numberOfRollsContainer {
 	margin-top: -10px;
 	margin-left: 40px;
@@ -767,63 +771,59 @@ input.form-control, input[type=text]{
 
 .tooltip {
 	white-space: pre-line;
-
 }
-	
- div#showOnSmallScreens{
-		display: none;
-	}
+
+div#showOnSmallScreens {
+	display: none;
+}
 
 @media (min-width: 768px) and (max-width:1200px) {
-		div#showOnSmallScreens{
+	div#showOnSmallScreens {
 		display: block;
 	}
-	div#showOnBigScreens{
+	div#showOnBigScreens {
 		display: none;
 	}
-	#chat{
-		width:50%;
+	#chat {
+		width: 50%;
 	}
 }
 
-
-	
 @media (min-width: 376px) and (max-width:768px) {
-	div#showOnSmallScreens{
+	div#showOnSmallScreens {
 		display: block;
 	}
-	div#showOnBigScreens{
+	div#showOnBigScreens {
 		display: none;
 	}
-	#chat{
-		width:75%;
+	#chat {
+		width: 75%;
 	}
-		.popup2 {
+	.popup2 {
 		width: 70%;
 	}
-	
 	.popup3 {
 		width: 70%;
 	}
-}
+}s
+
+
 /* Mobile potrait and small desktopwidth */
 
 @media screen and (max-width: 376px) {
-	div#showOnSmallScreens{
+	div#showOnSmallScreens {
 		display: block;
 	}
-	div#showOnBigScreens{
+	div#showOnBigScreens {
 		display: none;
 	}
-	#chat{
-		width:75%;
+	#chat {
+		width: 75%;
 	}
 	.popup2 {
 		width: 90%;
 	}
-	
 	.popup3 {
 		width: 90%;
 	}
 }
-	
