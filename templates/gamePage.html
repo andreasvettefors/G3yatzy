@@ -1,14 +1,23 @@
 function gamePage(){return `
 <div id="gamePage">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-lg-9 col-lg-push-3">
+			${activePlayers()} ${diceTable()}
+			<div id="showOnBigScreens">
+				${chat()}
+			</div>
+		</div>
+
+
+		<div class="col-lg-3 col-lg-pull-9">
 			${yatzyformular()}
+			<div id="showOnSmallScreens">
+				${chat()}
+			</div>
 		</div>
-		<div class="col-md-8">
-			${diceTable()}
-			${activePlayers()}
-			${rulesPopUp()}
-		</div>
+
+
 	</div>
+
 </div>
 `}

@@ -3,12 +3,14 @@ function startPage(){return `
 	${navBar()}
 
 	<div id="pageContent">
-		${homePage()}
+		${homePage()} 
 		${gamePage()}
-		${HighScoreTemplate()}
 		${aboutUs()}
-        ${winnerTemplate()}
+		${rules()} 
+		${highscore()} 
+		${confirmEndGame()} 
+		${winnerTemplate()}
+		${multiplayererror()}
 	</div>
-
 </div>
 `}
