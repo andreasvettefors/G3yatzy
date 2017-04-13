@@ -1,8 +1,16 @@
 function homePage(){return `
 <div id="home">
 	<div class="row">
-	<div class="col-md-8"> ${welcome()} </div>
-	<div  class="col-md-4 inputField">${inputField()}</div>
+		<div class="col-md-8">
+			${welcome()}
+		</div>
+
+		<div class="col-md-4 col-sm-6 inputField">
+			${inputField()}
+		</div>
+		<div class="col-md-4 col-sm-6 inputField">
+			${inputFieldOnline()}
+		</div>
 	</div>
 </div>
 `}
